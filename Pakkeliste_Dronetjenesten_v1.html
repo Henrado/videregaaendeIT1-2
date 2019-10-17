@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Pakkeliste</title>
+        <style>
+            #innhold {
+                border: solid;
+                border-radius: 10px;
+                background-color: limegreen;
+                margin: auto;
+                width: 80%;
+                padding: 20px;
+                align-items: center;
+                text-align: center;
+            }
+            body {
+                background-color: gray;
+            }
+            #chart {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            #chart > div {
+                background-color: aqua;
+                margin: 5px;
+                flex-grow: 1;
+            }
+            table{
+                border-collapse: collapse;
+                width: 100%;
+                background-color: white;
+            }
+            table, th, td {
+                border: 1px solid black;
+                padding: 15px;
+            }
+            tr:nth-child(even) {background-color: #f2f2f2;}
+        </style>
+	</head>
+	<body>
+        <div id="innhold">
+            <h2>Valg av drone</h2>
+                <form id="formListeDrone">
+                    <select id="inpDroneType"></select><span id="info"></span>
+                    <button type="submit">Legg til</button>
+                </form>
+            <div id="liListe">
+                <br>
+            </div>
+                <form id="formDroneType">
+                    <button type="submit">Regn ut</button>
+                </form>
+            <br>
+            <div id="htmlListe">
+            
+            </div>
+            <p>Liste slutt</p>
+        </div>
+        
+    <script>
+        var formDroneType = document.getElementById("formDroneType");
+        var inpDroneType = document.getElementById("inpDroneType");
+        var htmlListe = document.getElementById("htmlListe");
+        var formListeDrone = document.getElementById("formListeDrone");
+        var liListe = document.getElementById("liListe");
+        
+        var lagtTil = [];
+        
+        var droneTyper = [
+            {type: "Jet", gruppe: [0, 2]},
+            {type: "Prop", gruppe: [1, 2]},
+            {type: "Prop med treffindekator", gruppe: [1, 2, 3]},
+            {type: "Snipe", gruppe: [2]},
+            {type: "Båt", gruppe: [3]}
+        ];
+        
+        var grupper = [
+            [
+                {navn: "Jet-Hale", type: "stykk", antall: 1},
+                {navn: "Jet-Motorkobling", type: "stykk", antall: 1},
+                {navn: "Jet-Fuel", type: "liter", antall: 70},
+                {navn: "Jet-Fuel", type: "liter", antall: 70},
+                {navn: "Pompe", type: "stykk", antall: 1, kanslaasammen: true},
+                {navn: "Pompe", type: "stykk", antall: 1, kanslaasammen: true}
+            ],
+            [
+                {navn: "Prop-Hale", type: "stykk", antall: 1},
+                {navn: "Prop-Motorkobling", type: "stykk", antall: 1},
+                {navn: "Prop-Fuel", type: "liter", antall: 30},
+                {navn: "Pompe", type: "stykk", antall: 1, kanslaasammen: true}
+            ],
+            [
+                {navn: "Antennemast", type: "stykk", antall: 2, kanslaasammen: true},
+                {navn: "Antennekabel", type: "stykk", antall: 2, kanslaasammen: true},
+                {navn: "Bakkestasjon", type: "stykk", antall: 1, kanslaasammen: true}
+            ],
+            [
+                {navn: "Antennemast", type: "stykk", antall: 1},
+                {navn: "Antennekabel", type: "stykk", antall: 1}
+            ]
+        ]
+        
+        for (var drone of droneTyper){
+                inpDroneType.innerHTML+= "<option>" + drone.type + "</option>"; //Lager option verdier 
+        }
+        
+        
+        formListeDrone.onsubmit = function(evt){
+            evt.preventDefault();
+            var valgtIndex = inpDroneType.selectedIndex;
+            lagtTil.push(droneTyper[valgtIndex]);
+            var tekst = "<ol>";
+            for (drone of lagtTil){
+                tekst += "<li>" + drone.type + "</li>";
+            }
+            tekst += "</ol>";
+            liListe.innerHTML = tekst;
+            
+        }
+        
+        formDroneType.onsubmit = function(evt){ //Når man sender inn / trykker sjekk kjøres den
+            evt.preventDefault();
+            //console.log(lagtTil);
+            var grupperSkalLegg = [];
+            //console.log(lagtTil);
+            for (var i = 0; i < lagtTil.length; i++){
+                grupperSkalLegg.push(lagtTil[i].gruppe)
+            }
+            //console.log(grupperSkalLegg);
+            var arrayMedAlt = [];
+            var arrayLagtSammen = [];
+            //console.error(grupperSkalLegg);
+            for (var i=0; i < grupperSkalLegg.length; i++){
+                //arrayMedAlt.push(grupper[i]);
+                for (var j = 0; j < grupperSkalLegg[i].length; j++){
+                    arrayMedAlt = arrayMedAlt.concat(grupper[grupperSkalLegg[i][j]]);
+                }
+            }
+            //console.warn(arrayMedAlt);
+            
+            for (var i =0; i < arrayMedAlt.length; i++){
+                var funnet = false;
+                for (var j = 0; j < arrayLagtSammen.length; j++){
+                    //console.log(i + "i og j" + j)
+                    if (arrayLagtSammen[j].navn == arrayMedAlt[i].navn){
+                        funnet = true;
+                        if(arrayMedAlt[i].kanslaasammen){
+                            break;
+                        }
+                        arrayLagtSammen[j].antall += arrayMedAlt[i].antall;
+                    }
+                }
+                if (!funnet){
+                    arrayLagtSammen.push(arrayMedAlt[i]);
+                }
+            }
+            console.warn(arrayLagtSammen);
+            lagListe(arrayLagtSammen);
+            //lagtTil=[];
+        }
+        
+        function lagListe(liste){
+            var tekst = "<table><tr><th>Navn</th><th>Type</th><th>Antall</th><th>Underskrift</th></tr>";
+            for (ting of liste){
+                tekst += "<tr>";
+                tekst += "<td>"+ting.navn+"</td>"
+                tekst += "<td>"+ting.type+"</td>"
+                tekst += "<td>"+ting.antall+"</td>"
+                tekst += "<td>  </td>"
+                tekst += "</tr>";
+            }
+            tekst += "</table>";
+            htmlListe.innerHTML = tekst;
+        }
+    </script>
+    </body>
+</html>
