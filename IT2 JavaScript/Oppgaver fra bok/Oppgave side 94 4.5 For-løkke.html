@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 94</title>
+	</head>
+	
+	<body>
+        <h1>Oppgave 1</h1>
+        <p id="oppgave1"></p>
+        
+        <h1>Oppgave 2</h1>
+        <p id="oppgave2"></p>
+        <canvas id="canvas" width="500" height="500"></canvas>
+        
+        <h1>Oppgave 3</h1>
+        <p id="oppgave3"></p>
+        
+		<script>
+        //Oppgave 1
+            var oppgave1 = document.getElementById("oppgave1");
+            
+            for(var i = 10; i > 0; i--){
+                oppgave1.innerHTML += i + "<br>";
+            }
+            oppgave1.innerHTML += "<br><br>";
+            for(var i = 0; i <= 50; i++){
+                oppgave1.innerHTML += i + "<br>";
+                i++
+            }
+            oppgave1.innerHTML += "<br><br>";
+            var u = 0;
+            for(var i = 0; i < 1000; i++){
+                var u = u + i;
+            }
+            oppgave1.innerHTML += u;
+            
+        //Oppgave 2
+            var oppgave2 = document.getElementById("oppgave2");
+            
+            var y = 0;
+            for(var i = 0; i <= 10; i++){ //De ti første fibonccitallene
+                var y = y + i;
+                oppgave2.innerHTML += y + "<br>";
+            }
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            var side = 10;
+            
+            for(var i = 0; i < 10; i++){
+                ctx.strokeRect(250-side/2, 250-side/2, side, side);
+                side += 20;
+            }
+            
+        //Oppgave 3
+            var oppgave3 = document.getElementById("oppgave3");
+            
+            for(var i = 1; i <= 10; i++){
+                for(var j=; j <= 10; j++){
+                    oppgave3.innerHTML+=
+                }
+            }
+		</script>
+		
+	</body>
+</html>

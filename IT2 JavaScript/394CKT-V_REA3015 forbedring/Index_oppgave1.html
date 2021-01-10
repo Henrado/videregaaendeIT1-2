@@ -1,0 +1,209 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Matteside</title>
+        <style>
+            #innhold {
+                border: solid;
+                border-radius: 10px;
+                background-color: white;
+                margin: auto;
+                width: 80%;
+                padding: 20px;
+                align-items: center;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+            }
+            body {
+                background-color: gray;
+            }
+            #meny {
+                width: 100%;
+                border-radius: 10px;
+                background-color: #333;
+            }
+            #infoBoks {
+                width: 100%;
+            }
+            #alleBilerHolder {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
+            #alleBilerHolder > div {
+                flex-basis: 1;
+/*                border: solid;*/
+                flex-grow: 1;
+                margin: 20px;
+            }
+            #alleBilerHolder > div > img {
+                height: 200px;
+            }
+            .hovedInnhold {
+                background-color: aqua;
+                display: flex;
+                flex-direction: column;
+            }
+            .hovedInnhold {
+                width: 100%;
+                flex-basis: 1;
+                border-radius: 10px;
+            }
+            .steng {
+                background-color: gray;
+                border-radius: 10px;
+                font-size: 20px;
+                font-weight: bold;
+                cursor: pointer;
+                text-align: center;
+                padding: 20px;
+            }
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #333;
+                margin: auto
+            }
+            
+            li {
+                float: left;
+                margin: auto;
+                width: 33.3%;
+            }
+
+            li a {
+                display: block;
+                color: white;
+                margin: auto;
+                text-align: center;
+                padding: 15px 20px;
+                text-decoration: none;
+            }
+            
+            /* Change the link color to #111 (black) on hover */
+            li a:hover {
+                background-color: #111;
+            }
+            .knapp {
+                position: absolute;
+                top: 50%;
+                width: auto;
+                padding: 16px;
+                border: solid;
+                margin-top: -22px;
+                border-radius: 3px;
+            }
+            .knapp:hover {
+                background-color: white;
+            }
+            #neste {
+                right: 0;
+            }
+            .ramme {
+                border: solid;
+                border-radius: 20px;
+                flex-grow: 1;
+                margin: 10px;
+                padding: 10px;
+                background-color:gray;
+                background-repeat: repeat;
+                background-position: center;
+            }
+            .ramme > img {
+                width: 200px;
+            }
+            #bildeholder > img {
+                width: 100%;
+            }
+            #bildeHolder {
+                width: 100%;
+                margin: auto;
+                position: relative;
+                border: solid;
+                background-color: darkgreen;
+            }
+            #meny {
+                margin: 10px;
+            }
+            #fastRad {
+                background-color: white;
+                display: flex;
+                justify-content: space-around;
+            }
+            #fastRad > div {
+                flex-basis: 1;
+/*                border: solid;*/
+                flex-grow: 1;
+                margin: 20px;
+            }
+        </style>
+	</head>
+	<body>
+        <div id="innhold">
+            <h1>Ringve musikkhistoriske museum</h1>
+            <div id="meny"></div>
+            <div id="menyInfo"></div>
+            <div id="infoBoks"></div>
+            <div id="bildeHolder">
+                <img id="bilde" src="#">
+                <div id="neste" data-verdi="1" class="knapp">&#10095;</div>
+                <div id="forgje" data-verdi="-1" class="knapp">&#10094;</div>
+            </div>
+        </div>
+        <script src="slett_meg.js"></script>
+        <script>
+            var infoBoks = document.getElementById("infoBoks");
+            var bilde = document.getElementById("bilde");   //Deklarer variabler
+            var neste = document.getElementById("neste");
+            var forgje = document.getElementById("forgje");
+            var nummer = -1;
+            var setTid;
+            var erTrykket = false;
+            var bilder = ["./media/intro_1.jpg","./media/intro_2.jpg","./media/intro_3.jpg","./media/intro_4.jpg"];
+            
+            
+            start(); //Starter bildefremvisning
+            
+            function start(){
+                nummer = nummer +1;
+                if (nummer > bilder.length - 1){  //Hvis nummeret er større enn lengden til imgKilde
+                    nummer = 0; //Sette nummer = 0
+                } else if (nummer < 0){
+                    nummer = bilder.length - 1; //For å starte på 0 igjen
+                }
+                bilde.src = bilder[nummer]; //Setter kilden på bilde til bilde
+                //Setter ny kilde til bilde
+                setTid = setTimeout(start, 3000); //Starter på nytt om 3 sekunder
+            }
+            
+            neste.onclick = forgje.onclick = function(evt){
+                var knappTrykket = evt.target; //Finner hvilken knapp som blir trykket
+                clearTimeout(setTid); //Stopper at start skal kjøre igjen
+                erTrykket = true; //Setter at den er tykket
+                nummer = nummer + Number(knappTrykket.getAttribute("data-verdi")); //Finner ut om den skal 
+                nummer = Number(nummer);
+                if (nummer > bilder.length - 1){  //Hvis nummeret er større enn lengden til imgKilde
+                    nummer = 0; //Sette nummer = 0
+                } else if (nummer < 0){
+                    nummer = bilder.length - 1;
+                }
+                bilde.src = bilder[nummer];   //Setter ny kilde til bilde
+            }
+            bilde.onclick = function(){ //Når trykker på 
+                if(erTrykket){ //Sjekker om den er trykket
+                    setTimeout(start, 0); //Starter karusellen igjen 
+                    erTrykket = false; //Setter at den ikke er trykket 
+                }else{
+                    clearTimeout(setTid); //Stopper at de skal kjøre igjen 
+                    erTrykket = true; //Setter at knappen er trykket 
+                }
+            }
+        </script>
+    </body>
+</html>

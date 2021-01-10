@@ -1,0 +1,55 @@
+.hoved {
+	width: 80%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+    margin: auto;
+	background-color:;
+}
+
+body {
+	background-image: url("");
+	background-repeat: no-repeat;
+	background-color:#aaa;
+}
+
+.kjop {
+	display: inline-block;
+	color: black;
+	text-align: center;
+	padding: 14px 70px;
+	text-decoration: none;
+	width:50px;
+	background-color:red;
+}
+
+.Innhold {
+	background-color:;
+	order: 4;
+	flex-basis: 100%;
+	height: 65%;
+	float: left;
+	border-top: solid groove;
+}
+table {
+	border-color: #000000;
+	border-collapse:collapse;
+    border-spacing: 5px;
+}
+th {
+	background-color: #0540DE;
+	border: 1px solid;
+}
+td {
+	background-color: #135DF4;
+	border: 1px solid;
+}
+
+.ting {
+	border:;
+	flex-basis:1;
+	flex-direction:row;
+	display:flex;
+	padding:5px;
+	color:black;
+}

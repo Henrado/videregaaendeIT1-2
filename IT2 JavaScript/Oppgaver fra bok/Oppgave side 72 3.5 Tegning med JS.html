@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Canvas oppgaver side 72</title>
+	</head>
+	
+	<body>
+        <h1>Oppgave 1</h1>
+        <canvas id="canvas1" width="200" height="200"></canvas>
+        
+        <h1>Oppgave 2</h1>
+        <canvas id="canvas2" width="500" height="400"></canvas>
+        
+        <h1>Oppgave 3</h1>
+        <canvas id="canvas3" width="500" height="400"></canvas>
+		
+		<h1>Oppgave 4</h1>
+		<h2>A</h2>
+        <canvas id="canvas4A" width="500" height="400"></canvas>
+		<h2>B</h2>
+        <canvas id="canvas4B" width="500" height="400"></canvas>
+		<script>
+        //Oppgave 1
+            var canvas = document.getElementById("canvas1");
+            var ctx = canvas.getContext("2d");
+            
+            ctx.fillStyle="red";
+            ctx.fillRect(20,30,50,50);   
+            
+        //Oppgave 2
+            var canvas = document.getElementById("canvas2");
+            var ctx = canvas.getContext("2d");
+            
+            ctx.fillStyle="green";
+            ctx.fillRect(20,30,150,100);
+            ctx.strokeStyle="red";
+            ctx.lineWidth=5;
+            ctx.strokeRect(20,30,150,100);
+            ctx.stroke();
+            
+            ctx.strokeStyle="blue";
+            ctx.moveTo(200,130)
+            ctx.lineTo(250, 30)
+            ctx.lineTo(300, 130)
+            ctx.lineTo(200, 130)
+            ctx.stroke();
+            
+        //Oppgave 3
+            var canvas = document.getElementById("canvas3");
+            var ctx = canvas.getContext("2d");
+            var variabel =87;
+            //var variabel = Number(prompt("Husets størrelse"));
+            
+            ctx.strokeStyle="blue";
+            ctx.moveTo(250,10)
+            ctx.lineTo(260+variabel, 20+variabel)
+            var j = 260+variabel;
+            var k = 20+variabel;
+            ctx.lineTo(j-variabel/2, 20+variabel)
+            ctx.lineTo(j-variabel/2, k+variabel)
+            ctx.lineTo(250, k+variabel)
+            
+            ctx.moveTo(250,10)
+            ctx.lineTo(240-variabel, 20+variabel)
+            var r = 240-variabel;
+            ctx.lineTo(r+variabel/2, 20+variabel)
+            ctx.lineTo(r+variabel/2, k+variabel)
+			ctx.lineTo(250, k+variabel)
+
+            ctx.stroke();
+
+		//Oppgave 4 A
+			var canvas = document.getElementById("canvas4A");
+            var ctx = canvas.getContext("2d");
+			
+			ctx.fillStyle="red";
+			ctx.fillRect(10,10,430,280);
+			ctx.fillStyle="white";
+			ctx.fillRect(10,110,430,80)
+			ctx.fillRect(110,10,80,280)
+			ctx.fillStyle="blue";
+			ctx.fillRect(10,130,430,40)
+			ctx.fillRect(130,10,40,280)
+			
+		//Oppgave 4 B
+			var canvas = document.getElementById("canvas4B");
+            var ctx = canvas.getContext("2d");
+			
+			ctx.fillStyle="red";
+			ctx.fillRect(10,10,430,46);
+			ctx.fillStyle="orange";
+			ctx.fillRect(10,56,430,46);
+			ctx.fillStyle="yellow";
+			ctx.fillRect(10,101,430,46);
+			ctx.fillStyle="green";
+			ctx.fillRect(10,147,430,46);
+			ctx.fillStyle="blue";
+			ctx.fillRect(10,193,430,46);
+			ctx.fillStyle="purple";
+			ctx.fillRect(10,239,430,46);
+		</script>
+		
+	</body>
+</html>

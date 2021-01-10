@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Øveprøve oppgave 2</title>
+	</head>
+	
+	<body>
+        <h1>Øveprøve oppgave 3</h1>
+        <button onclick="velgNavn()">Trekk et navn</button>
+        <h1 id="navn"></h1>
+        
+		<script>
+            var navn = ["Henrik", "Olav","Eirik", "Per","Jenny"];
+            var tilfeldig = 0;
+            var ArryLengde = navn.length;
+            
+            function velgNavn(){  //Funksjon for å trekke ut navn
+                tilfeldig = Math.floor(Math.random()*ArryLengde)
+                document.getElementById("navn").innerHTML= "Hei " + navn[tilfeldig] + " Du er plukket ut til å vise oss noe på tavla!";
+            }
+            
+            
+        </script>
+		
+	</body>
+</html>

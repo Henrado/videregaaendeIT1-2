@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 144</title>
+        <style>
+        </style>
+	</head>
+	<body>
+        <span><input id="navn" placeholder="Navn"><input id="antFilmer" placeholder="Antall Filmer" type="number"><button id="btnKnapp">Legg til</button></span>
+        <ol id="liste">
+        </ol>
+        <script>
+            var inpNavn = document.getElementById("navn");
+            var inpAntFilmr = document.getElementById("antFilmer");
+            var btnKnapp = document.getElementById("btnKnapp")
+            var liste = document.getElementById("liste");
+            
+            var resultat = [];
+            
+            btnKnapp.onclick = function(){
+                resultat.push({navn:inpNavn.value, filmer: inpAntFilmr.value});
+                
+                resultat.sort(function(a,b){
+                    return b.filmer - a.filmer;
+                })
+                
+                liste.innerHTML = "";
+                
+                for(var alleNavn of resultat){
+                    liste.innerHTML += "<li>" + alleNavn.navn + " har sett " + alleNavn.filmer + " i år </li>";
+                }
+            }
+        </script>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Øveprøve til heldags 2017</title>
+        <style>
+        </style>
+    </head>
+	<body>
+        <h1>Oppgave 2</h1>
+        <form id="form">
+            <table>
+                <tr>
+                    <td>Vekt i kg</td>
+                    <td><input type="number" placeholder="Masse" id="kg" required></td>
+                </tr>
+                <tr>
+                    <td>Høyde i cm</td>
+                    <td><input type="number" placeholder="Høyde" id="cm" required></td>
+                </tr>
+                <tr>
+                    <td><button type="submit">Send inn</button></td>
+                </tr>
+            </table>
+        </form>
+        <p id="info"></p>
+        <script>
+            var form = document.getElementById("form");
+            var kg = document.getElementById("kg");
+            var cm = document.getElementById("cm");
+            var info = document.getElementById("info");
+            var bmi = 0;
+            
+            form.onsubmit = function(evt){
+                evt.preventDefault();
+                
+                bmi = kg.value/Math.pow((cm.value/100), 2);
+                
+                info.innerHTML = "Din BMI er: " + bmi.toFixed(1) + " kg/m^2"
+            }
+        </script>
+	</body>
+</html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 144</title>
+        <style>
+        </style>
+	</head>
+	<h1>Eksempel side 123</h1>
+    <button id="btn1" data-knapp="knapp1">Trykk her</button>
+    <button id="btn2" data-knapp="knapp2">Trykk her</button>
+	<body>
+        <script>
+            var btn1 = document.getElementById("btn1");
+            var btn2 = document.getElementById("btn2");
+                
+                
+            function info(evt){
+                var knappSomStarterFunksjonen = evt.target;
+                document.write("ID;" + knappSomStarterFunksjonen.id + "<br>");
+                document.write("InnerHTML;" + knappSomStarterFunksjonen.innerHTML + "<br>");
+                document.write("Data;" + knappSomStarterFunksjonen.getAttribute("data-knapp") + "<br>");
+                document.write("Test;" + knappSomStarterFunksjonen);
+            }
+            btn1.onclick = btn2.onmouseover = info;
+        </script>
+	</body>
+</html>

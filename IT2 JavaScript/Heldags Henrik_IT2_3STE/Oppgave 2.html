@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Heldagsprøve IT2 27.04.18</title>
+        <style>
+            #innhold {
+                border: solid;
+                border-radius: 10px;
+                background-color: limegreen;
+                margin: auto;
+                width: 80%;
+                padding: 20px;
+                align-items: center;
+                text-align: center;
+            }
+            body {
+                background-color: gray;
+            }
+            #chart {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            #chart > div {
+                background-color: aqua;
+                margin: 5px;
+                flex-grow: 1;
+                
+                
+            }
+        </style>
+	</head>
+	<body>
+        
+        <div id="innhold">
+            <h1>Skriv inn et land for å se hvor mange medlaljer det har</h1>
+            <form id="formLand">
+                <input type="text" id="impLand" list="alleLand" placeholder="Skriv inn land">
+                <button type="submit">Sjekk land</button>
+            </form>
+            <p id="info"></p>
+            <div id="chart"></div>
+        </div>
+        
+        <datalist id="alleLand"></datalist>
+        <script>
+            var medaljer = [
+                {land:"Sør-Korea", verdensdel: "Asia", antGull:5, antSolv:8, antBronse:4},
+                {land:"Japan", verdensdel: "Asia", antGull:1, antSolv:4, antBronse:3},
+                {land:"Sverige", verdensdel: "Europa", antGull:4, antSolv:5, antBronse:5},
+                {land:"Norge", verdensdel: "Europa", antGull:14, antSolv:14, antBronse:11},
+                {land:"Kina", verdensdel: "Asia", antGull:1, antSolv:6, antBronse:2},
+                {land:"Olympick atlets of Russia", verdensdel: "Asia", antGull:2, antSolv:6, antBronse:9},
+                {land:"Finland", verdensdel: "Europa", antGull:1, antSolv:1, antBronse:4},
+                {land:"Østerriket", verdensdel: "Europa", antGull:5, antSolv:3, antBronse:6},
+                {land:"USA", verdensdel: "Nord-Amerika", antGull:9, antSolv:8, antBronse:6},
+                {land:"Hviterussland", verdensdel: "Europa", antGull:2, antSolv:1, antBronse:0},
+                {land:"Canada", verdensdel: "Nord-Amerika", antGull:11, antSolv:8, antBronse:10}
+            ];
+            var formLand = document.getElementById("formLand"); //Deklarerer variabler
+            var alleLand = document.getElementById("alleLand");
+            var impLand = document.getElementById("impLand");
+            var innhold = document.getElementById("innhold");
+            var info = document.getElementById("info");
+            var chart = document.getElementById("chart");
+            var maksGull= -Infinity;
+            var maksSolv = -Infinity;
+            var maksBronse = -Infinity;
+            finnMaks();
+            
+            for (var land of medaljer){
+                alleLand.innerHTML+="<option value='"+land.land+"'>" //Skriver ut de forskjellige landene som options
+            }
+            
+            formLand.onsubmit = function(evt){ //Når man sender inn / trykker sjekk kjøres den
+                evt.preventDefault();
+                var funnet = false; //Setter at den ikke er funnet 
+                var i = 0;
+                var landValue = impLand.value; //Finner det bruker har skrevet inn 
+                for(i = 0; i < medaljer.length; i++){ //Går gjennom array medaljer og finner om det er et land som heter det samme som det bruker har skrevet inn
+                    if(medaljer[i].land===landValue){
+                        funnet = true; //Setter at landet er funnet 
+                        break; //Stopper løkken, variabelen i vil være det den stoppet på
+                    }
+                }
+                if(!funnet){
+                    alert("Landet du har skrevet inn finnes ikke"); //Om den ikke har funnet noe som likner skal den vise feilmeldingen 
+                    info.innerHTML =""; //Sletter det som er der fra før
+                    chart.innerHTML="";
+                    return; //Stopper funksjonen 
+                } else {
+                    info.innerHTML="<h3>"+medaljer[i].land+" har "+medaljer[i].antGull+" gull, "+medaljer[i].antSolv+" sølv, og "+ medaljer[i].antBronse+" bronsemedaljer</h3>"; //Skriver ut informasjonen fra array medaljer med index i
+                    lagDiagram(i); //Lager diagram for land i 
+                }
+            }
+            
+            function lagDiagram(hvilket){
+                
+                console.log(maksGull);
+                chart.innerHTML = "<h3>Det er i prosent i forhold til det landet som hadde mest</h3>"; //Som er Norge :)
+                chart.innerHTML += "<div style='background-color: gold; width:"+medaljer[hvilket].antGull/maksGull*100+"%'>"+(medaljer[hvilket].antGull/maksGull*100).toFixed(1)+"% Gull</div>"; 
+                chart.innerHTML += "<div style='background-color: silver; width:"+medaljer[hvilket].antSolv/maksSolv*100+"%'>"+(medaljer[hvilket].antSolv/maksSolv*100).toFixed(1)+"% Sølv</div>";
+                chart.innerHTML += "<div style='background-color: brown; width:"+medaljer[hvilket].antBronse/maksBronse*100+"%'>"+(medaljer[hvilket].antBronse/maksBronse*100).toFixed(1)+"% Bronse</div>";
+            }
+            
+            function finnMaks(){
+                for (var medalje of medaljer){ //Går gjennom arrayet medaljer 
+                    if(medalje.antGull > maksGull){ //Hvis gull er større en det det var så skal det overskskrive den forrigje maks
+                        maksGull = medalje.antGull;
+                    }
+                    if(medalje.antSolv > maksSolv){ //Hvis sølv er større en det det var så skal det overskskrive den forrigje maks
+                        maksSolv = medalje.antSolv;
+                    }
+                    if(medalje.antBronse > maksBronse){ //Hvis bronse er større en det det var så skal det overskskrive den forrigje maks
+                        maksBronse = medalje.antBronse;
+                    }
+                }
+                return;
+            }
+        </script>
+	</body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Øveprøve oppgave 1</title>
+	</head>
+	
+	<body>
+        <h1>DIV elementer</h1>
+        <p id="oppgave1"></p>
+        
+        <canvas id="canvas"></canvas>
+        
+		<script>
+            alert("En tekst");
+            prompt("En tekst")
+            
+            //KONVERTERING
+            //String --> Number Number(variabel)
+            
+            //Number --> String String(variabel)
+            
+            window.innerWidth
+            
+            document.body.innerHTML //Hente ut 
+            document.getElementById("idTilElemente").innerHTML
+            
+            document.body.innerHTML = "Nytt inhold"
+            
+            document.getElementById("idTilElemente").innerHTML="nytt inhold"
+            
+            var variabel = 0;
+            variabel.toFixed(2);
+            
+            var arry = ["Tekst", "Tekst", 2, 5]
+            //skrive ut arry[0]
+            //arry.push legge til variabel i arry
+            
+            var objekt = {navn:"Henrik", alder:18}
+            //skrive ut objekt objekt.navn
+            //endre variabel objekt.navn = "Nytt navn"
+            
+            var canvas = document.getElementById("canvas");
+            var ctx =canvas.getContext("2d");
+            
+            ctx.beginPath();
+            ctx.arc(x,y,radius,0,2*Math.PI);
+            ctx.stroke();
+            
+            if(10 < 0){
+                //Kode!!!
+            }
+            else if(30 < 0){
+                //Annen kode
+            }
+            else{
+                //Siste kode
+            }
+            
+            switch(variabel){
+                case "Noe":
+                    //Noe
+                    break;
+                case "Annet":
+                    //Annet
+                    break;
+                           }
+            
+            
+            while(betingelse){
+                //Kode
+            }
+            
+            for(var i = 0; i < 5; i++){
+                //Kode
+            }
+            
+        </script>
+		
+	</body>
+</html>

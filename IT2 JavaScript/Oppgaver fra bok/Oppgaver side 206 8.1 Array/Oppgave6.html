@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 206</title>
+        <style>
+        </style>
+	</head>
+	<body>
+        <input type="text" id="inpTekst">
+        <button id="btn">Sett inn</button>
+        <p id="tekst"></p>
+        <script>
+            var inpTekst = document.getElementById("inpTekst");
+            var btn = document.getElementById("btn");
+            var tekst = document.getElementById("tekst");
+            var tekstArray = [];
+            
+            btn.onclick = function(){
+                tekstArray.push(inpTekst.value);
+                tekst.innerHTML = tekstArray.join("<br>");
+                inpTekst.value = "";
+            }
+        </script>
+	</body>
+</html>

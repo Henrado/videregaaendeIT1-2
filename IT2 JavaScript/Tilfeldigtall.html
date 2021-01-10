@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 94</title>
+	</head>
+	
+	<body>
+        <p id="skriv"></p>
+        
+		<script>
+            var ferdig = 0;
+            var min = 0;
+            var maks = 100; 
+            var forsøk = 0;
+            var j = 0;
+            var n = 0;
+            var skriv = document.getElementById("skriv");
+            var tall = 0;
+            var svar = "j";
+            
+            svar = prompt("Gjett ett tall mellom 0 og 100")
+
+
+while (ferdig === 0) {
+    tall = min + (maks - min ) / 2;
+    tall = Math.round(tall);
+    forsøk = forsøk + 1;
+    svar = prompt("Tenker du på " + tall + "? (n/j)");
+   
+    if (svar === 'j') {
+        skriv.innerHTML += "<br>Jeg klarte det på " + forsøk + " forsøk.";
+        ferdig = 1;
+    }
+    
+    else {
+        skriv.innerHTML += "<br>Er tallet mindre enn " + tall + "?  (n/j)";
+        svar = prompt("Er tallet mindre enn " + tall + "?  (n/j)")
+        if (svar === 'j') {
+            maks = tall - 1;
+            skriv.innerHTML += "<br>Ja";
+        }
+        else {
+            min = tall;
+            skriv.innerHTML += "<br>Nei";
+        }
+    }
+    if (maks < min) {
+            skriv.innerHTML+="Jeg tror du tuller med meg.";
+            ferdig = 1;
+    }
+}
+        </script>
+		
+	</body>
+</html>

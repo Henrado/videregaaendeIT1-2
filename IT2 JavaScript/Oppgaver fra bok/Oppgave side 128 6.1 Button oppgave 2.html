@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 117</title>
+        <style>
+            div {
+                text-align: center;
+                background-color: aqua;
+                display:flex;
+                flex-direction:row;
+                border: solid;
+                position: relative;
+            }
+            button {
+                width: 200px;
+            }
+            .inne {
+                background-color: gray;
+                width: 250px;
+                height: 200px;
+                font-size: 100px;
+                text-align: center;
+            }
+        
+        </style>
+	</head>
+	
+	<body>
+        <h1>Oppgave 2</h1>
+        <div id="oppgave2">
+            <button id="btnPluss" data-metode="+">+</button>
+            <div class="inne" id="tekst">0</div>
+            <button id="btnMinus" data-metode="-">-</button>
+        </div>
+        
+		<script>
+            //Oppgave 2
+            var btnPluss = document.getElementById("btnPluss");
+            var btnTekst = document.getElementById("tekst");
+            var btnMinus = document.getElementById("btnMinus");
+            var sum = 0;
+            
+            function regne(evt){
+                var knapp = evt.target;
+                var fortegn = knapp.getAttribute("data-metode");
+                if (fortegn == "+"){
+                    sum = sum+1;
+                    btnTekst.innerHTML=sum;
+                }
+                else if (fortegn == "-"){
+                    sum = sum-1;
+                    btnTekst.innerHTML=sum;
+                }
+                else{
+                    alert("OBS noe gikk galt");
+                }
+            }
+            
+            btnPluss.onclick = regne;
+            btnMinus.onclick = regne;
+            
+        </script>
+	</body>
+</html>

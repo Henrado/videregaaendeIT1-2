@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 144</title>
+        <style>
+            div {
+                text-align: center;
+                background-color: aqua;
+                display:flex;
+                flex-direction:row;
+                border: solid;
+            }
+            button {
+                width: 200px;
+            }
+        </style>
+	</head>
+	<h1>Oppgave 1</h1>
+    <h2>Vil du være med på en spørreundersøkelse???</h2>
+    <label><input type="radio" id="rbJa" name="svarValg" value="ja">Ja</label>
+    <label><input type="radio" id="rbNei" name="svarValg" value="nei">Nei</label>
+    <p id="info"></p>
+	<body>
+        <script>
+            var rbJa = document.getElementById("rbJa");
+            var rbNei = document.getElementById("rbNei");
+            var info = document.getElementById("info");
+            
+            function sjekkJaNei(){
+                if(rbJa.checked){
+                    info.innerHTML="Takk for at du vil delta!";
+                }
+                else{
+                    info.innerHTML="Takk for nå";
+                }
+            }
+            rbJa.onclick = sjekkJaNei;
+            rbNei.onclick = sjekkJaNei;
+        </script>
+	</body>
+</html>

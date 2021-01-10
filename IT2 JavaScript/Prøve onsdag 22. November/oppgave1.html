@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>IT2 prøve 22.11 Henrik</title>
+        <style>
+            p {
+                text-align: center;
+                background-color: chartreuse;
+                font-size: 80px;
+            }
+        </style>
+	</head>
+	<h1>Oppgave 1</h1>
+    <p id="tekst">Utenfor</p>
+	<body>
+        <script>
+            var tekst = document.getElementById("tekst"); //Deklarerer variabler
+            
+            tekst.onmouseover = function(){ //Når mus er over kjør funksjon
+                tekst.innerHTML = "Over";
+            }
+            tekst.onmouseout = function(){ //Når mus utenfor kjør funksjon
+                tekst.innerHTML = "Utenfor";
+            }
+        </script>
+	</body>
+</html>

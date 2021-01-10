@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 94</title>
+	</head>
+	
+	<body>
+        <h1>Oppgave 1</h1>
+        <p id="melding"></p>
+        
+		<script>
+            var melding = document.getElementById("melding");
+            var saldo = 7000;
+            
+            
+            function uttak(belop){
+                saldo = saldo - belop;
+                return"Du har tatt ut kr " + belop + " . Ny saldo er kr " + saldo;
+            }
+            melding.innerHTML= uttak(1500);
+        </script>
+		
+	</body>
+</html>

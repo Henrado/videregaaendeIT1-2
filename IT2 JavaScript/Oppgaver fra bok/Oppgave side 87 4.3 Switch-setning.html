@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 83</title>
+	</head>
+	
+	<body>
+        <h1>Oppgave 1</h1>
+        <p id="oppgave1"></p>
+        
+        <h1>Oppgave 2</h1>
+        <p id="oppgave2">Se oppgave 1</p>
+        
+        <h1>Oppgave 3</h1>
+        <p id="oppgave3"></p>
+        
+        <h1>Oppgave 4</h1>
+        <p id="oppgave4"></p>
+        
+		
+        <script>
+            //Oppgave 1
+            var oppgave1 = document.getElementById("oppgave1");
+            var mobil = prompt("Hvilken telefon vil du ha?");
+            var bakgrunn = document.body.style;
+            
+            switch (mobil) {
+                case "Samsung":
+                    oppgave1.innerHTML = "Samsung er bra!";
+                    bakgrunn.background = "blue";
+                break;
+                case"Apple":
+                    oppgave1.innerHTML="Apple er ikke bra";
+                    bakgrunn.background="red";
+                break;
+                case"HTC":
+                    oppgave1.innerHTML="HTC er rar";
+                    bakgrunn.background="green";
+                    break;
+                default:
+                    oppgave1.innerHTML=mobil + " har jeg aldri hørt om";
+                    bakgrunn.background="pink";
+                break;
+            }
+            
+            //Oppgave 2
+            var oppgave2 = document.getElementById("oppgave2");
+            
+            
+            //Oppgave 3
+            var oppgave3 = document.getElementById("oppgave3");
+            var rovdyr = prompt("Skriv inn et rovdyr");
+            rovdyr = rovdyr.toLowerCase();
+            
+            switch(rovdyr){
+                case "ulv":
+                    oppgave3.innerHTML="Det finnes 33 " + rovdyr + " i Norge!";
+                break;
+                case "jerv":
+                    oppgave3.innerHTML="Det finnes 343 " + rovdyr + " i Norge!";
+                break; 
+                case "bjørn":
+                    oppgave3.innerHTML="Det finnes 137 " + rovdyr + " i Norge!";
+                break;
+                case "gaupe":
+                    oppgave3.innerHTML="Det finnes 350 " + rovdyr + " i Norge!";
+                break;
+                default:
+                    oppgave3.innerHTML="Det rovdyret finnes ikke i Norge!";
+                break;
+                         }
+            
+            //Oppgave 4 
+            var oppgave4 = document.getElementById("oppgave4");
+            var kjop = prompt("Hvilken billet skal du kjøpe?");
+            kjop = kjop.toLowerCase();
+            
+            switch(kjop){
+                case "barn":
+                case "pensjonist":
+                    oppgave4.innerHTML="Det koster 20 kr for " + kjop;
+                break;
+                case "ungdom":
+                    oppgave4.innerHTML="Det koster 25 for en ungdomsbilett";
+                break;
+                case "voksen":
+                    oppgave4.innerHTML="Det koster 30 kr for en voksen";
+                break;
+                default:
+                    oppgave4.innerHTML="Det har skjedd en feil";
+                break;
+                       }
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 144</title>
+        <style>
+            
+        </style>
+	</head>
+	<body>
+        <h1>Sirkeldiagram</h1>
+        <canvas id="chart" width="300" height="300"></canvas>
+        <script>
+            var chart = document.getElementById("chart");
+            var ctx = chart.getContext("2d");
+            var data = [{stoff: "Nitrogen", prosent: 78.1, farge: "Green"}, 
+                        {stoff: "Oksygen", prosent: 20.9, farge: "Red"}, 
+                        {stoff: "Argon", prosent: 0.9, farge: "blue"}, 
+                        {stoff: "Karbondioksid", prosent: 0.038, farge: "pink"}
+                       ];
+            
+            function graderTilRadianer(grader) {
+                return Math.PI * grader / 180;
+            }
+            var sum = 0;
+            
+            for(var tall of data){
+                sum += tall.prosent;
+            }
+            
+            
+            
+            
+            var startvinkel = -90;
+            
+            for(var tall of data){
+                var vinkel = tall.prosent * 360 / sum; //Finner andelen denne kaken skal utgjøre
+                ctx.fillStyle = tall.farge; //Setter fillStyle til farge
+                ctx.beginPath(); //Begynner å trekke opp formen på kakestykket
+                ctx.moveTo(150, 150); //Til sentrum
+                ctx.arc(150, 150, 140, graderTilRadianer(startvinkel), graderTilRadianer(
+                startvinkel + vinkel)); 
+                ctx.closePath();
+                ctx.fill();
+                startvinkel += vinkel;
+            }
+        </script>
+	</body>
+</html>

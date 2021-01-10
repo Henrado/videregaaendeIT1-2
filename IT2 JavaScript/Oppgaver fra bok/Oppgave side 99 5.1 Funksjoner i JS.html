@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 94</title>
+	</head>
+	
+	<body>
+        <h1>Oppgave 1</h1>
+        <p id="oppgave1"></p>
+        
+        <h1>Oppgave 2</h1>
+        <p id="oppgave2">Word inneholder topptekst-, bunntekst-, forside- og tekstboksutforminger som utfyller hverandre, som du kan bruke til gjøre dokumentet mer profesjonelt.</p>
+        
+        <h1>Oppgave 3</h1>
+        <p id="oppgave3">Tror ikke jeg har det...</p>
+        
+        <h1>Oppgave 4</h1>
+        <p id="oppgave4">Hvis man skal kjøre samme komando flere ganger</p>
+        
+        <h1>Oppgave 6</h1>
+        <canvas id="canvas" width="500" height="500"></canvas>
+        
+		<script>
+            //Oppgave 1
+            function navn(){
+                document.getElementById("oppgave1").innerHTML += "Henrik <br>"; 
+            }
+            for(var i=0;i<3;i++){
+                navn();
+            }
+            //Oppgave 2
+            function endreStil(){
+                document.body.backgroundColor = "Red";
+                document.body.style.color = "Blue";
+                document.body.style.fontSize = "150%";
+            }
+            endreStil();
+            
+            //Oppgave 6
+            var x = 20;
+            var y = 20;
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            
+            function tegnSirkel(){
+                ctx.beginPath()
+                ctx.fillStyle="red";
+                ctx.arc (x,y,20,0,2*Math.PI); 
+                ctx.fill();
+                ctx.stroke();
+            }
+            function flytteY(){
+                y = y + 20;
+            }
+            function flytteX(){
+                x = x + 20;
+            }
+            for(var i = 0; i<30;i++){
+                tegnSirkel();
+                flytteX();
+                flytteY();
+            }
+            
+        </script>
+		
+	</body>
+</html>

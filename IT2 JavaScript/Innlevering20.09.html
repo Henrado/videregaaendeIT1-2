@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Innlevering Henrik</title>
+	</head>
+	
+	<body>
+        <h1>Areal eller omkrets av figur</h1>
+        <canvas id="figur" width="200" height="200"></canvas>
+        <p id="areal"></p>
+        <p id="omkrets"></p>
+        <p id="komentar"></p>
+        
+		<script>
+            var figur = prompt("Vil du regne med en sirkel eller et kvadrat?");
+            var tall = Number(prompt("Hvilket tall vil du regne med?"));
+            var areal = document.getElementById("areal");
+            var omkrets = document.getElementById("omkrets");
+            var komentar = document.getElementById("komentar");
+            var canvas = document.getElementById("figur");
+            var ctx = canvas.getContext("2d");
+            
+            if(figur === "sirkel" && tall > 0) {
+                var arealM = Math.PI*Math.pow(tall, 2);
+                var omkretsM = 2*Math.PI*tall;
+                
+                ctx.beginPath();
+                ctx.arc(100,100,tall*2,0,2*Math.PI);
+                ctx.stroke();
+                
+                areal.innerHTML="Arealet til sirkelen er: "+ arealM.toFixed(1);
+                omkrets.innerHTML="Omkrets til sirkelen er: " + omkretsM.toFixed(1);
+            }
+            else if(figur === "kvadrat" && tall >0) {
+                var arealM = Math.pow(tall, 2);
+                var omkretsM = 4*tall;
+                
+                ctx.fillRect(100,100,tall*2, tall*2)
+                
+                areal.innerHTML="Arealet til kvadratet er: "+ arealM.toFixed(1);
+                omkrets.innerHTML="Omkrets til kvadrated er: " + omkretsM.toFixed(1);
+            }
+            else {
+                alert("Dette programmet kan bare ha sirkler og rektangler med et positivt tall!!")
+            }
+            if(tall < 0) {
+                komentar.innerHTML="Du må ha et tall som er større enn 0"
+            }
+            else if(tall < 10){
+                komentar.innerHTML="Det var en liten figur";
+            }
+            else if(tall < 50){
+                komentar.innerHTML="Det var en middels stor figur";
+            }
+            else{
+                komentar.innerHTML="Det var en stor figur";
+            }
+		</script>
+		
+	</body>
+</html>

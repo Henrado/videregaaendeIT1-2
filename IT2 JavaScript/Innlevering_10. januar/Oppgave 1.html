@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 144</title>
+        <style>
+            #boks {
+                position: relative;
+                width: 900px;
+                height: 500px;
+                overflow: hidden;
+            }
+            .borte {
+                display: none;
+            }
+            img {
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+            #info {
+                position: absolute;
+                left: 300px;
+                top: 850;
+                font-size: 70px;
+            }
+            #fart {
+                position: absolute;
+                right: 10px;
+                bottom: 10px;
+                font-size: 20px;
+            }
+            input {
+                
+            }
+        </style>
+	</head>
+	<body>
+        <div id="boks">
+            <img id="bilde" src="VedleggV2014/60sone.png">
+            <audio src="#" autoplay id="lyd"></audio>
+            <h1 class="borte" id="info">Senk farten!</h1>
+            <input type="number" placeholder="Farten i km/t" id="fart">
+        </div>
+        
+        <script>
+            var imgBilde = document.getElementById("bilde");
+            var audioLyd = document.getElementById("lyd");
+            var inpFart = document.getElementById("fart");
+            var info = document.getElementById("info");
+            
+            inpFart.onchange = function(){
+                var fart = inpFart.value;
+                if (fart > 60){
+                    audioLyd.src = "VedleggV2014/Bil_Kolisjon.mp3";
+                }else {
+                    audioLyd.src = "VedleggV2014/BIL_fint.mp3";
+                }
+                info.style.display = "block";
+            }
+        </script>
+	</body>
+</html>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 253</title>
+        <style>
+            body {
+                background-color: aqua;
+                transition: 2s;
+                transform-origin: left center;
+                transform: rotate(0deg);
+            }
+        </style>
+	</head>
+	<body>
+        <input id="fargevelger" type="text" placeholder="Skriv inn farge">
+        <input id="fargevelger2" type="color">
+        <script>
+            var fargevelger = document.getElementById("fargevelger");
+            var fargevelger2 = document.getElementById("fargevelger2");
+            fargevelger.oninput = fargevelger2.onchange = function(){
+                document.body.style.backgroundColor = fargevelger.value;
+            }
+        </script>
+	</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Animasjon</title>
+        <style>
+            .bilder {
+                display: none;
+            }
+        </style>
+	</head>
+	<body>
+        <div id="innhold">
+            <img id="scream" src="enhjorningFull3.png" class="bilder">
+            <img id="gress" src="gress.png" class="bilder">
+            <img id="bakgrunn" src="bakgrunn.png" class="bilder">
+            <canvas id="myCanvas" width="1400" height="600"></canvas>
+        </div>
+        <script>
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            var bunn = 0;
+            var blokker = [1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
+            var hest = {
+                "xpos":30,
+                "ypos":30,
+                "xfart":3,
+                "yfart":3,
+                "xretning":0,
+                "yretning":0,
+                "gravitasjon": 0.05,
+                "gravitasjonFart": 0,
+                "iLuft": true,
+                "ga": false,
+                "vei": "hoyre"
+            }
+            window.onload = figur(); 
+            //window.onload = setInterval(figur, 1000); 
+            var tall = 0;
+            var aniBildeHoyde = 0;
+            function figur(){
+                var img = document.getElementById("scream");
+                var bakgrunn = document.getElementById("bakgrunn");
+                var gress = document.getElementById("gress");
+                //ctx.fillStyle="white";
+                //ctx.fillRect(0,0,c.width,c.height);
+                ctx.drawImage(bakgrunn,0,0,c.width,c.height)
+                
+                for(var i = 0; i < blokker.length; i++){
+                    if (blokker[i]===1){
+                        ctx.drawImage(gress,i*gress.height,c.height-gress.height)
+                    }
+                }
+                if(hest.ga){
+                    aniBildeHoyde = 600;
+                } else {
+                    aniBildeHoyde = 0;
+                }
+                if(hest.vei === "hoyre"){
+                    aniBildeHoyde += 0;
+                } else{
+                    aniBildeHoyde += 800;
+                }
+                //ctx.drawImage(img, hest.xpos, hest.ypos);
+                ctx.drawImage(img, tall, aniBildeHoyde, 200, 200, hest.xpos, hest.ypos, 200, 200);
+                
+                //hest.xfart += hest.xretning; 
+                hest.gravitasjonFart += hest.gravitasjon;
+                hest.xpos = hest.xpos+(hest.xretning*hest.xfart)
+                hest.ypos = hest.ypos+(hest.yfart*hest.gravitasjonFart);
+                tall += 200;
+                if (tall >= 2000){
+                    tall = 0;
+                }
+                
+                //for(var i = 0; i < blokker.length;i++){
+               /*     var hvilkenBlokk = Math.floor(hest.xpos/gress.height);
+                bunn = 0;
+                if(blokker[hvilkenBlokk] === 1){
+                    bunn = 100;
+                }
+                    
+                //bunn = gress.height;
+                    
+                    if((hest.ypos + 200) > c.height-bunn-100){
+                        hest.ypos = c.height-gress.height-bunn;
+                        hest.iLuft = true;
+                    }*/
+                    
+                    if ((hest.ypos + 200) > c.height-gress.height){
+                        hest.ypos = c.height-gress.height-200;
+                        hest.iLuft = true;
+                    }
+                //}
+                if ((hest.xpos + 200) > c.width){
+                    hest.xpos = c.width-200;
+                }
+                if ((hest.xpos) < 0){
+                    hest.xpos = 0;
+                }
+                //setTimeout(figur, 1000/6);
+                requestAnimationFrame(figur);
+            }
+            document.onkeydown = function(evt){
+                var tallkode = evt.keyCode;
+                console.log(tallkode);
+                if(tallkode === 39){
+                    hest.xretning = 1;
+                    hest.ga = true;
+                    hest.vei = "hoyre";
+                } 
+                if (tallkode === 37){
+                    hest.xretning = -1;
+                    hest.ga = true;
+                    hest.vei = "venste";
+                } 
+                if (tallkode === 38 && hest.iLuft){
+                    hest.gravitasjonFart = -3;
+                    hest.iLuft = false;
+                } 
+            }
+            document.onkeyup = function(){
+                hest.xretning = 0;
+                hest.yretning = 0;
+                hest.ga = false;
+                hest.xfart = 3;
+            }
+        </script>
+    </body>
+</html>

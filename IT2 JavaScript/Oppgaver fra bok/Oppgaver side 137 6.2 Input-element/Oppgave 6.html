@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 117</title>
+        <style>
+            #bilde{
+                transition: 0.5s;
+            }
+        </style>
+	</head>
+	
+	<body>
+        <h1>Oppgave 6</h1>
+        <div><span><input id="inpBredde" min="0" max="500" type="range" value="300"></span>
+        <span><input id="inpHoyde" min="0" max="600" type="range" value="400"></span>
+        </div>
+        <img id="bilde" src="Pokal.JPG" width="300" height="400">
+		<script>
+           var bilde = document.getElementById("bilde");
+            var bredde = document.getElementById("inpBredde");
+            var hoyde = document.getElementById("inpHoyde");
+            
+            bredde.onchange = function(){
+                bilde.style.width = bredde.value + "px";
+            }
+            hoyde.onchange = function(){
+                bilde.style.height = hoyde.value + "px";
+            }
+        </script>
+	</body>
+</html>

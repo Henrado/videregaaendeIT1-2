@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Prøve fredag 20. Oktober Kap1</title>
+        <style>
+            .div {
+                font-size: 14px;
+                color: red;
+                background-color: lightblue;
+                
+            }
+        
+        </style>
+	</head>
+	
+	<body>
+        <h1>Oppgave 1</h1>
+        <div id="svar" class="div"></div>
+        
+		<script>
+            var radius = 0;     //Deklarerer variabler
+			var radius = Number(prompt("Radius på sirkel"));
+            var omkrets = 0;
+            var areal = 0;
+            var svar = document.getElementById("svar");
+            
+            
+            function utregning(radius) {
+                omkrets = 2 * Math.PI * radius;      //Regner ut radius og omkrets
+                areal = Math.PI * Math.pow(radius, 2);
+                omkrets = omkrets.toFixed(2);
+                areal = areal.toFixed(2);
+			
+                svar.innerHTML += "<p>Omkretsen til sirkelen er <b>" + omkrets + "</b> meter</p>"; //Skriver ut 
+						
+                svar.innerHTML += "<p>Arealet til sirkelen er <b> " + areal + "</b> kvadratmeter</p>";
+            
+                if(radius < 50){
+                    svar.innerHTML += "<p>Du skrev inn et tall som er mindre en 50</p>";
+                }
+                else if(radius < 100){
+                    svar.innerHTML += "<p>Du skrev inn et tall mellom 50 og 100</p>";
+                }
+                else {
+                    svar.innerHTML += "<p>Du skrev inn " + radius + "</p>";
+                }
+            }
+            //Valgte å sette bakgrunn på div til lyseblå hvis body skulle være det så er det body {background-color: lightblue;}
+            
+            utregning(radius)
+        </script>
+		
+	</body>
+</html>

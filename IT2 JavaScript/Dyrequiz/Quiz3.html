@@ -1,0 +1,216 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 144</title>
+        <style>
+            .skrift {
+                font-size: 30px;
+            }
+            .sjul {
+                display: none;
+                
+            }
+            #laster {
+                width: 1%;
+                background-color: red;
+                text-align: center;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+            #laster2 {
+                width: 1%;
+                background-color: green;
+                text-align: center;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+            #info {
+                width: 100%;
+                border: solid;
+                position: relative;
+            }
+        </style>
+	</head>
+    <body>
+	<h1>Dyre Quiz</h1>
+        <div id="null">
+            <form id="person">
+                <input required type="text" id="navn" class="skrift">
+                <button id="knapp" type="submit">Angi svar</button>
+            </form>
+        </div>
+        <div id="en" class="sjul">
+            <b>1. Hvilket dyr er dette?</b><br>
+            <audio src="./Dyr/elefant.mp3" controls></audio>
+            <form id="lyd1">
+                <input type="radio" required name="dyr1" value="elefant"> Elefant<br>
+                <input type="radio" name="dyr1" value="ku"> Ku<br>
+                <input type="radio" name="dyr1" value="love">Løve<br>
+                <input type="radio" name="dyr1" value="gnu">Gnu<br>
+                <button id="knapp1" type="submit">Angi svar</button>
+            </form> 
+        </div>
+        <div id="to" class="sjul">
+            <b>2. Hvilket dyr er dette?</b><br>
+            <audio src="./Dyr/ku.mp3" controls></audio>
+            <form id="lyd2">
+                <input type="radio" required name="dyr1" value="elefant"> Elefant<br>
+                <input type="radio" name="dyr1" value="ku"> Ku<br>
+                <input type="radio" name="dyr1" value="love">Løve<br>
+                <input type="radio" name="dyr1" value="gnu">Gnu<br>
+                <button id="knapp2" type="submit">Angi svar</button>
+            </form>
+        </div>
+        <div id="tre" class="sjul">
+            <b>3. Hvilket dyr er dette?</b><br>
+            <audio src="./Dyr/love.mp3" controls></audio>
+            <form id="lyd3">
+                <input type="radio" required name="dyr1" value="elefant"> Elefant<br>
+                <input type="radio" name="dyr1" value="ku"> Ku<br>
+                <input type="radio" name="dyr1" value="love">Løve<br>
+                <input type="radio" name="dyr1" value="gnu">Gris<br>
+                <button id="knapp4" type="submit">Angi svar</button>
+            </form>
+        </div>
+        <div id="fire" class="sjul">
+            <b>4. Hvilket dyr er dette?</b><br>
+            <video src="./Dyr/Video1.mp4" controls></video>
+            <form id="vid4">
+                <input type="radio" required name="dyr1" value="elefant"> Pinnedyr<br>
+                <input type="radio" name="dyr1" value="sjiraff">Sjiraff<br>
+                <input type="radio" name="dyr1" value="okse">Okse<br>
+                <input type="radio" name="dyr1" value="gnu">Gnu<br>
+                <button id="knapp5" type="submit">Angi svar</button>
+            </form>
+        </div>
+        <div id="fem" class="sjul">
+            <b>5. Hvilket dyr er dette?</b><br>
+            <video src="Dyr/Video4.mp4" controls></video>
+            <form id="vid5">
+                <input type="radio" name="dyr1" value="elefant"> Elefant<br>
+                <input type="radio" name="dyr1" value="ku"> Ku<br>
+                <input type="radio" name="dyr1" value="love">Løve<br>
+                <input type="radio" name="dyr1" value="gnu">Gnu<br>
+                <button id="knapp6" type="submit">Angi svar</button>
+            </form>
+        </div>
+        <div id="resultat" class="sjul">
+            
+        </div>
+        <br>
+        <br>
+        <div id="info" class="bunntekst">
+            p
+            <div id="laster">0%</div>
+            <div id="laster2">0%</div>
+        </div>
+        <script>
+            var en = document.getElementById("en");
+            var to = document.getElementById("to");
+            var tre = document.getElementById("tre");
+            var fire = document.getElementById("fire");
+            var fem = document.getElementById("fem");
+            var resultat = document.getElementById("resultat");
+            var info = document.getElementById("info");
+            var laster = document.getElementById("laster");
+            
+            var lyd1 = document.getElementById("lyd1");
+            var lyd2 = document.getElementById("lyd2");
+            var lyd3 = document.getElementById("lyd3");
+            var vid4 = document.getElementById("vid4");
+            var vid5 = document.getElementById("vid5");
+            var person = document.getElementById("person");
+            var knapp = document.getElementById("knapp");
+
+            var poeng = 0;
+            var side = 0;
+            var prosent = 0;
+            
+            
+            person.onsubmit = function(evt){
+                evt.preventDefault();
+                person.style.display = "none";
+                en.style.display = "inline";
+                utregning();
+            }
+            
+            lyd1.onsubmit = function(evt){
+                evt.preventDefault();
+                en.style.display = "none";
+                to.style.display = "inline";
+                var knappTrykket = evt.target; //Finner hvilken knapp som ble trykket
+                if (lyd1.elements["dyr1"].value === "elefant"){
+                    poeng++;
+                }
+                utregning();
+            }
+            
+            lyd2.onsubmit = function(evt){
+                evt.preventDefault();
+                to.style.display = "none";
+                tre.style.display = "inline";
+                var knappTrykket = evt.target; //Finner hvilken knapp som ble trykket
+                if (lyd2.elements["dyr1"].value === "ku"){
+                    poeng++;
+                }
+                utregning();
+            }
+            
+            lyd3.onsubmit = function(evt){
+                evt.preventDefault();
+                tre.style.display = "none";
+                fire.style.display = "inline";
+                var knappTrykket = evt.target; //Finner hvilken knapp som ble trykket
+                if (lyd3.elements["dyr1"].value === "love"){
+                    poeng++;
+                }
+                utregning();
+            }
+            
+            vid4.onsubmit = function(evt){
+                evt.preventDefault();
+                fire.style.display = "none";
+                fem.style.display = "inline";
+                var knappTrykket = evt.target; //Finner hvilken knapp som ble trykket
+                if (vid4.elements["dyr1"].value === "sjiraff"){
+                    poeng++;
+                }
+                utregning();
+            }
+            
+            vid5.onsubmit = function(evt){
+                evt.preventDefault();
+                fem.style.display = "none";
+                resultat.style.display = "inline";
+                var knappTrykket = evt.target; //Finner hvilken knapp som ble trykket
+                if (vid5.elements["dyr1"].value === "gnu"){
+                    poeng++;
+                }
+                utregning();
+                
+                resultat.innerHTML = "Du fikk " + poeng + " av 5 mulige. ";
+                
+                if (poeng > 4){
+                    resultat.innerHTML += "Dette var veldig bra!";
+                }
+                else if (poeng >2){
+                    resultat.innerHTML += "Du klarte dette greit";
+                }
+                else {
+                    resultat.innerHTML += "Dette må du øve mere på";
+                }
+            }
+            
+            function utregning(){
+                side++;
+                prosent = 100*side/6;
+                laster.style.width = prosent + "%";
+                laster.innerHTML = prosent.toFixed(0) * 1 + "%";
+            }
+        </script>
+	</body>
+</html>

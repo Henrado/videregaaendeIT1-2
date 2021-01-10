@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver s. 60</title>
+	</head>
+	
+	<body>
+		<h1>Oppgave 1</h1>
+		<p id="antallVarer"></p>
+
+        <h1>Oppgave 2</h1>
+		<p id="moms"></p>
+		
+		<h1>Oppgave 3</h1>
+		<p id="pris"></p>
+        
+        <h1>Oppgave 4</h1>
+        <p id="array"></p>
+        
+        <h1>Oppgave 5</h1>
+        <p id="frukt"></p>
+		
+		<script>
+            var id = document.getElementById("antallVarer");
+        //Oppgave 1
+            var antallFrukt = 3;
+            var antallGronnsaker = 2;
+            
+            var antallVarer = antallFrukt + antallGronnsaker;
+            
+           id.innerHTML = "Du har " + antallVarer;
+            
+        //Oppgave 2 
+            var pris = Number(prompt("Pris uten moms"));
+            var moms = 1.25;
+            var med_moms = 0; 
+            var id =document.getElementById("moms")
+            
+            med_moms = pris * moms;
+            
+            id.innerHTML = "Prisen med moms blir " + med_moms; 
+            
+        //Oppgave 3 
+            var pris = 0;
+            var datamengde = Number(prompt("Datamengde"));
+            var antSamtaler = Number(prompt("Antall Samtaler"));
+            var ringetid = Number(prompt("Ringeminutter"));
+            var antSMS = Number(prompt("Antall SMSer"));
+            var antMMS = Number(prompt("Antall MMS"));
+            var id =document.getElementById("pris")
+            
+            pris = datamengde*10 + antSamtaler *0.89 + ringetid *0.39 + antSMS * 0.69 + antMMS *1.99;
+            
+            id.innerHTML = pris.toFixed(1);
+            
+        //oppgave 4
+            var array = ["Thea", "Emma", "Emilie", "Jesper", 18, 14, 40, 17];
+            var id =document.getElementById("array");
+            
+            id.innerHTML = array[7];
+            
+            var frukt1 = {navn: "eple", egenskaper: "Sur, Grønn, Sunn", pris: 20};
+            var frukt2 = {navn: "appelsin", egenskaper: "Sur", pris: 15};
+            var frukt3 = {navn: "banan", egenskaper: "Gul", pris: 10};
+            
+            frukt2.pris = 30;
+            
+            document.getElementById("frukt").innerHTML = "Den nye prisen er: " + frukt2.pris;
+            
+        </script>
+    </body>
+</html>

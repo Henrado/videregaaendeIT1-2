@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="stilark.css">
+		<title>Øveprøve til heldags 2017</title>
+        <style>
+            .tekst {
+                width: 100%
+            }
+        </style>
+	</head>
+	<body>
+    	<h1>Oppgave 4</h1>
+        <form id="form">
+        <table>
+            <tr>
+                <th>Antall personer</th>
+                <td><input class="tekst" type="number" required max="10" min="1" id="antallPersoner"></td>
+            </tr>
+            <tr>
+                <th>Antall middager</th>
+                <td><input type="number" class="tekst" required max="5" min="1" id="antallMiddager"></td>
+            </tr>
+            <tr>
+                <th>Type middag</th>
+                <td>
+                    <label><input type="radio" id="tyKlassisk" name="typeValg" required checked value="Klassisk">Klassisk</label>
+                    <label><input type="radio" id="tyOkologisk" name="typeValg" required value="Økologisk">Økologisk</label>
+                    <label><input type="radio" id="tyAsiatisk" name="typeValg" required value="Asiatisk">Asiatisk</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button class="tekst" type="submit">Bestill</button>
+                </td>
+            </tr>
+        </table>
+        </form>
+        <div id="info">
+        </div>
+        <script>
+            var antallPersoner = document.getElementById("antallPersoner");
+            var antallMiddager = document.getElementById("antallMiddager");
+            var tyKlassisk = document.getElementById("tyKlassisk");
+            var tyOkologisk = document.getElementById("tyOkologisk");
+            var tyAsiatisk = document.getElementById("tyAsiatisk");
+            var form = document.getElementById("form");
+            var info = document.getElementById("info");
+            
+            var prisPerson = 80;
+            var type = "";
+            
+            form.onsubmit = function(evt){
+                evt.preventDefault();
+                
+                if(antallPersoner.value>5){
+                    prisPerson = 70;
+                }
+                if(tyKlassisk.checked){
+                    type = tyKlassisk.value;
+                }
+                else if(tyOkologisk.checked){
+                    type = tyOkologisk.value;
+                }
+                else if(tyAsiatisk.checked){
+                    type = tyAsiatisk.value;
+                }
+                var sum = antallMiddager.value * antallPersoner.value * prisPerson;
+                
+                info.innerHTML = "<h3>Kvitering</h3><h5>Takk for at du kjøper matkasse fra oss!</h5><p>Antall personer: "+ antallPersoner.value +"</p><p>Pris per person: " + prisPerson + " kr </p><p>Antall middager: "+ antallMiddager.value + "</p><p>Type matkasse: " + type +"</p><p>Samlett pris: " + sum +" kr</p>"
+            }
+        </script>
+	</body>
+</html>

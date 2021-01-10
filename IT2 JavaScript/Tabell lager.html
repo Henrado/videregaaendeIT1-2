@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Tabell lager</title>
+        <style>
+        </style>
+	</head>
+	<body>
+        <label>Antall rader<input type="number" id="rader"></label>
+        <label>Antall kolonner<input type="number" id="kolonner"></label>
+        <button id="knapp">Lag tabell</button>
+        <br>
+        <code id="kode"></code>
+        <script>
+            var rader = document.getElementById("rader");
+            var knapp = document.getElementById("knapp");
+            var kolonner = document.getElementById("kolonner");
+            var kode = document.getElementById("kode");
+            
+            knapp.onclick = function(){
+                kode.innerHTML = "";
+                kode.innerHTML += "<br>";
+                kode.innerHTML = "<";
+                kode.innerHTML += "table>";
+                for (var i = 0; i < rader.value; i++){
+                    kode.innerHTML += "<br>";
+                    kode.innerHTML += "<";
+                    kode.innerHTML += "tr>";
+                    for (var j = 0; j < kolonner.value; j++){
+                        kode.innerHTML += "<br>";
+                        kode.innerHTML += "<";
+                        kode.innerHTML += "td>k</td>";
+                        kode.innerHTML += "</";
+                        kode.innerHTML += "td>";
+                    }
+                    kode.innerHTML += "<br>";
+                    kode.innerHTML += "</";
+                    kode.innerHTML += "tr>";
+                }
+                kode.innerHTML += "<br>";
+                kode.innerHTML += "</";
+                kode.innerHTML += "table>";
+            }
+        </script>
+	</body>
+</html>

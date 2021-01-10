@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 144</title>
+        <style>
+        </style>
+	</head>
+	<body>
+        <ol id="liste1"></ol>
+        <ol id="liste2"></ol>
+        <script>
+            var liste1 = document.getElementById("liste1");
+            var liste2 = document.getElementById("liste2");
+            
+            var matvarer = ["ost", "brød", "paprika", "kaviar"];
+
+            for (var mat of matvarer){
+                liste1.innerHTML += "<li>" + mat + "</li>";
+            }
+            
+            for (var i = 0; i < matvarer.length; i++){
+                liste2.innerHTML += "<li>" + matvarer[i] + "</li>";
+            }
+        </script>
+	</body>
+</html>

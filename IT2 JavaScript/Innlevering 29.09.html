@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Innlevering</title>
+	</head>
+	
+	<body>
+        <h1>Tilfelfige tall</h1>
+        <p id="tall">De tallene som blir brukt er: </p>
+        <p id="sumTekst">Summen av alle tallene er </p>
+        <p id="snittTekst">Gjennomsnittet av tallene er: </p>
+        <p id="hoyest">Det høyeste tallet er: </p>
+        <p id="lavest">Det laveste tallet er: </p>
+		<script>
+            var tall = document.getElementById("tall");
+            var sumTekst = document.getElementById("sumTekst");
+            var snittTekst = document.getElementById("snittTekst");
+            var hoyesteTekst = document.getElementById("hoyest");
+            var lavesteTekst = document.getElementById("lavest");
+            
+            var rekke = [];            
+            //rekke[i]=0 En annen måte å 
+                
+            for (var t=0; t <= 10; t++){
+                rekke.push(Math.round(Math.random()*100))
+            }
+            
+            var i = 0;
+            var sum = 0;
+            var snitt = 0;
+            var hoy = 0;
+            var lav = 0;
+            
+            while(i < rekke.length){
+                tall.innerHTML += rekke[i] + " ";
+                sum = sum + rekke[i];
+                i++
+            }
+            snitt = sum/rekke.length;
+            hoy = Math.max.apply(null, rekke);
+            lav = Math.min.apply(null, rekke);
+            
+            sumTekst.innerHTML += sum;
+            snittTekst.innerHTML += snitt.toFixed(2);
+            hoyesteTekst.innerHTML += hoy;
+            lavesteTekst.innerHTML += lav;
+		</script>
+		
+	</body>
+</html>

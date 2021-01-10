@@ -1,0 +1,48 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="stilark.css">
+		<title>Matteside</title>
+        <style>
+        </style>
+	</head>
+	<body>
+        <div id="innhold">
+            <h1 class="viktigTekst">Matteside!</h1>
+            <div id="meny">
+                <ul>
+                    <li><a href="index.html">Hva er geometri</a></li>
+                    <li><a href="figurer.html">Figurer</a></li>
+                    <li><a href="kontakt.html">Kontakt oss</a></li>
+                    <li><a href="figurspill.html">Figurspill</a></li>
+                </ul>
+            </div>
+            <div id="figurholder">
+                <div id="valgtFigur" class="ramme">
+                    <h2>Trykk på en figur og få info</h2>
+                </div>
+                <div id="alleFigurer">
+                
+                </div>
+            </div>
+        </div>
+        <script src="koder.js"></script>// Laster inn figurer
+        <script>
+            var figurer = document.getElementById("alleFigurer");
+            var valgtFigur = document.getElementById("valgtFigur");
+            for (var figur of imgKilde){ //Skriver ut alle figurene med id og onclick kjør funksjon finnFigur
+                figurer.innerHTML += "<div class='ramme' id='" + figur.navn + "' onclick='finnFigur(this.id)'><img class='imgListe' src='"+figur.kilde+"'><h2>"+figur.navn+"</h2></div>";
+            }
+            
+            function finnFigur(evt){
+                for (var valgt of imgKilde){ //Går gjennom array
+                    if(evt === valgt.navn){ //Når finner lik skriv ut info og valgt
+                        valgtFigur.innerHTML = "<h2>" + valgt.navn + "</h2>" + "<p>" + valgt.info +"</p>";
+                        break;
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

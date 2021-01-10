@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 152</title>
+        <style>
+            div {
+                text-align: center;
+                background-color: aqua;
+                display:flex;
+                flex-direction:column;
+                border: solid;
+            }
+            button {
+                width: 200px;
+            }
+            #info {
+                border: none;
+            }
+        </style>
+	</head>
+	<body>
+        <h1>Oppgave 4</h1>
+        <h2>Registrere personer</h2>
+        <form id="frmPerson">
+            <p><input id="fNavn" type="text" required placeholder="Fornavn"></p>
+            <p><input id="eNavn" type="text" required placeholder="Etternavn"></p>
+            <p><input id="epost" type="email" required placeholder="E-post"></p>
+            <p><input id="alder" type="number" required placeholder="Alder"  min="0" max="100"></p>
+            <p><button type="submit">Registrer deg her</button></p>
+        </form>
+        <ul id="info"></ul>
+        <script>
+            var frmPerson = document.getElementById("frmPerson")
+            var inpfNavn = document.getElementById("fNavn");
+            var inpeNavn = document.getElementById("eNavn");
+            var inpEpost = document.getElementById("epost");
+            var inpAlder = document.getElementById("alder");
+            var info = document.getElementById("info");
+            
+            frmPerson.onsubmit = function(evt){
+                evt.preventDefault();
+                info.innerHTML += "<li>Navn: " + inpfNavn.value + " " + inpeNavn.value + " Epost: " + inpEpost.value + " Alder: " + inpAlder.value + "</li>";
+                inpfNavn.value = "";
+                inpeNavn.value = "";
+                inpEpost.value = "";
+                inpAlder.value = "";
+            }
+        </script>
+	</body>
+</html>

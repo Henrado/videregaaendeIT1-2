@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Prosentvise høyder</title>
+        <style>
+            #diagram{
+                display: flex;
+                width: 600px;
+                height: 300px;
+                flex-direction: row;
+                align-items: flex-end;
+            }
+            #diagram > div {
+                background-color: darkorchid;
+                margin: 5px;
+                flex-grow: 1;
+                text-align: center;
+                color: aliceblue;
+                font-family: areal;
+            }
+        </style>
+	</head>
+	<body>
+        <div id="diagram"></div>
+        <script>
+            var diagram = document.getElementById("diagram");
+            var data = [1,2,3,4,5,6,7,8,9, 10];
+            
+            function finnMaks(){
+                var maks = -Infinity;
+                for (var ting of data){
+                    if(ting > maks){
+                        maks = ting;
+                    }
+                }
+                return maks;
+            }
+//            function myArrayMin(arr) {
+//                return Math.min.apply(null, arr);
+//            }
+            
+            function tegnStolper(){
+                var maks = finnMaks();
+                for (var ting of data){
+                    console.log("KJører")
+                    var prosent = ting/maks*100;
+                    diagram.innerHTML += '<div style="height:' + prosent +'%">'+ prosent +'</div>';
+                }
+            }
+            tegnStolper();
+        </script>
+	</body>
+</html>

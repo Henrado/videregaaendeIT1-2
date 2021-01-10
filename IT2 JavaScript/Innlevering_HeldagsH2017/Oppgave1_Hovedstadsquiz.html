@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Heldagsprøve IT2 11.12.2017</title>
+        <style>
+            .sporsmol {
+                height: 100px;
+                text-align: center;
+                border: solid;
+                background-color: aqua;
+                font-size: 40px;
+            }
+        </style>
+	</head>
+	<body>
+    <h1>Oppgave 1</h1>
+<!--        Lager divver der svarene er-->
+        <div><h2>Hva er hovedstaden i Burkina Faso?</h2></div>
+        <div class="sporsmol" id="london">London</div>
+        <div class="sporsmol" id="juba">Juba</div>
+        <div class="sporsmol" id="quadogou">Quadogogou</div>
+        <div class="sporsmol" id="bamako">Bamako</div>
+        
+        <script>
+            var london = document.getElementById("london"); //Deklarerer variabler
+            var juba = document.getElementById("juba");
+            var quadogou = document.getElementById("quadogou");
+            var bamako = document.getElementById("bamako");
+            
+            london.onclick=juba.onclick=quadogou.onclick=bamako.onclick = function(evt){ //Når divene blir trykket på så kjører man funksjonen
+                var knappTrykket = evt.target; //Finner hvilken knapp som ble trykket
+                if (knappTrykket.id==="quadogou"){
+                    quadogou.style.backgroundColor="green"; //Setter rikytig som grønn
+                }
+                else{
+                    knappTrykket.style.backgroundColor="red"; //Setter feil som rød
+                }
+            }
+        </script>
+	</body>
+</html>

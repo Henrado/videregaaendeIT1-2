@@ -1,0 +1,177 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="stilark.css">
+		<title>Matteside</title>
+        <style>
+        </style>
+	</head>
+	<body>
+        <div id="innhold">
+            <h1 class="viktigTekst">Matteside!</h1>
+            <div id="meny">
+                <ul>
+                    <li><a href="index.html">Hva er geometri</a></li>
+                    <li><a href="figurer.html">Figurer</a></li>
+                    <li><a href="kontakt.html">Kontakt oss</a></li>
+                    <li><a href="figurspill.html">Figurspill</a></li>
+                </ul>
+            </div>
+            <h2>Figurspill</h2>
+            <p id="info">Trykk på samme figur som vist over for å få poeng</p>
+            <div id="spill">
+                <p id="tidInfo"></p>
+                <div id="sporsmol">
+                    <form id="send">
+                        <input type="text" id="navn" placeholder="Skriv inn navn" required>
+                        <button type="submit">Start</button>
+                    </form>
+                </div>
+                <div id="svar">
+                
+                </div>
+            </div>
+        </div>
+        <audio src="ding.mp3" id="lyd"></audio>
+        <script src="koder.js"></script>
+        <script>
+            var sporsmol = document.getElementById("sporsmol"); //Deklarerer variabler 
+            var send = document.getElementById("send");
+            var navn = document.getElementById("navn");
+            var svar = document.getElementById("svar");
+            var info = document.getElementById("info");
+            var tidInfo = document.getElementById("tidInfo");
+            var lyd = document.getElementById("lyd");
+            var utTrekteFigurer = [];
+            var tilfeldig = 0;
+            var tid = 10000;
+            var startPANytt = 0;
+            var navnValue = "";
+            var poeng = 0;
+            var feil = 0;
+            
+            send.onsubmit = function(evt){
+                evt.preventDefault();
+                navnValue = navn.value; //Henter navn
+                start(); 
+                nedtelling();
+            }
+            function startIgjen(){
+                tid = 10000;
+                start(); //Starter kjør
+                nedtelling(); //Starter nedtelling
+            }
+            
+            function start(){
+                utTrekteFigurer = [];
+                sporsmol.innerHTML ="";//Tømmer diver
+                svar.innerHTML = "";
+                info.innerHTML = navnValue + " har " + poeng + " poeng og " + feil + " feil"; //Skriver ut poengsum og antall feil 
+                tilfeldig = Math.floor(Math.random()*imgKilde.length);
+                //console.warn(tilfeldig);
+                for (var i = 0; i < 4; i++){
+                    utTrekteFigurer.push(imgKilde[tilfeldig]);
+                    //console.log(imgKilde[tilfeldig].navn);
+                    tilfeldig++;
+                    //console.error("Tilfeldig " + tilfeldig)
+                    if(tilfeldig > imgKilde.length-1){
+                        //console.log("Nullstiller")
+                        tilfeldig = 0;
+                    }
+                }
+                tilfeldig = Math.floor(Math.random()*utTrekteFigurer.length);
+                //console.warn("Tilfeldig 2 " + tilfeldig);
+                
+                utTrekteFigurer.sort(function(a, b){return 0.5 - Math.random()}); //Fra w3
+                sporsmol.innerHTML = "<img style='transform:rotate("+ Math.random()*360 +"deg);' src='" + utTrekteFigurer[tilfeldig].kilde +"'>";
+                var j = 0;
+                for(var bilde of utTrekteFigurer){
+                    svar.innerHTML += "<div class='smaBilder' onclick='sjekkSvar("+ j +")'><img widt='100%' src='" + bilde.kilde +"'></div>";
+                    j++;
+                }
+            }
+            
+            function sjekkSvar(idTilTing){ //Blir kjørt pga. onclick i div med et tall (index til arrayet til utrekte figurer)
+                var alleMenClass = document.getElementsByClassName("smaBilder"); //Finner alle de fire figurene basert på classe 
+                if(idTilTing === tilfeldig){ //Hvis id er lik som tilfeldig er det riktig
+                    alleMenClass[idTilTing].style.backgroundColor = "green"; //Gjør bakgrunnen grønn
+                    tid = 10000; //Setter ny tid som 10 sekunder
+                    poeng++; //Legger til poeng 
+                    lyd.play();
+                    startPANytt = setTimeout(start, 500); //Starter på nytt etter et halvt sekund
+                }
+                else{ //Er de ikke lik så er det feil 
+                    alleMenClass[idTilTing].style.backgroundColor = "red"; //Setter rød bakgrunn på den diven som ble trykket 
+                    alleMenClass[idTilTing].animate([ //Får den også til å riste
+                        {transform: "rotate(20deg)"},
+                        {transform: "rotate(-20deg)"},
+                        {transform: "rotate(20deg)"},
+                        {transform: "rotate(-20deg)"},
+                        {transform: "rotate(0deg)"}
+                    ],{
+                        duration: 500,
+                        iterations: 1
+                    });
+                    tid = tid-2000; //Bruker får mindre tid
+                    poeng--; //Mindre poeng 
+                    feil++; //Mere feil 
+                    info.innerHTML = navnValue + " har " + poeng + " poeng og " + feil + " feil"; //Skriver ut resultatet, bruker går ikke videre før en har trykket riktig
+                }
+            }
+            
+            function nedtelling(){
+                tid = tid - 1000;
+                if (tid > 0){
+                    tidInfo.innerHTML = "Du har " + tid/1000 + " sekunder igjen";
+                    setTimeout(nedtelling, 1000);
+                }else{
+                    clearTimeout(startPANytt);
+                    sporsmol.innerHTML = "";
+                    //svar.innerHTML = "Gratulerer " + navnValue + " du fikk " + poeng;
+                    svar.innerHTML = "";
+                    lagrePoeng(navnValue, poeng, feil); //Kjører kunksjon for å hente lagre data
+                    hentePoeng(); //Henter og skriver ut data
+                }
+            }
+            
+            //Ideen herifra er hentet fra W3 men jeg har skrivd den selv
+            var myObj, myJSON, tekst, objekt = []; //Deklarerer varabler for lagring av data
+            
+            function lagrePoeng(JNavn, Jpoeng, JFeil){
+                //Storing data:
+                if(localStorage.poengsum){ //Sjekker om det finnes fra før
+                    //console.log("den finnes");
+                    tekst = localStorage.getItem("poengsum"); //Henter data fra nettleser 
+                    myObj = JSON.parse(tekst); //Gjør om til JS 
+                    myObj.push({"navnLagre":JNavn, "poengLagre":Jpoeng, "feilLagre":JFeil}); //Legger til enda et objekt
+                    objekt = myObj; 
+                    //OBS!!!!!
+                    //Det hender med Chrome at den ikke sjønner at den skal push det nye objektet måten å fikse dette på er å:
+                    //Trykke F12 --> Application -->Local Storage --> Høyre klikk og CLEAR
+                } else {
+                    console.warn("den finnes ikke"); //Sier ifra
+                    objekt.push({"navnLagre":JNavn, "poengLagre":Jpoeng, "feilLagre":JFeil}); //legger til 
+                }
+                myJSON = JSON.stringify(objekt); //Gjør om objekt til JSON
+                localStorage.setItem("poengsum", myJSON); //Lagrer i nettleser 
+            }
+            
+            function hentePoeng(){ 
+                tekst = localStorage.getItem("poengsum"); //Henter fra nettleser
+                objekt = JSON.parse(tekst); //Gjør om til JSON
+                tidInfo.innerHTML = ""; //Tømmer tid for info om tid
+                objekt.sort(sorter); //Sorterer basert på poeng 
+                objekt.reverse(); //Gjør at høyest kommer først
+                for(var u of objekt){ //Skriver ut alle resultatene 
+                    tidInfo.innerHTML += "<p>" + u.navnLagre + " har " + u.poengLagre + " poeng med " + u.feilLagre + " feil </p>";
+                }
+                tidInfo.innerHTML += "<p><button onclick=startIgjen()>Spill igjen med samme navn</button></p>"; //Lager en ny knapp for å starte på nytt
+            }
+            
+            function sorter(a, b){ //Sorterer 
+                return a.poengLagre - b.poengLagre;
+            }
+        </script>
+    </body>
+</html>

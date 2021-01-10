@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 117</title>
+        
+	</head>
+	
+	<body>
+        <h1>Oppgave 4</h1>
+        <span><input id="inpTall1" type="number"></span>
+        <span><input id="inpArt" list="art" type="text"></span>
+        <span><input id="inpTall2" type="number"></span>
+        <span id="svar1"></span>
+        
+        <datalist id="art">
+            <option value="+">
+            <option value="-">
+            <option value="*">
+            <option value="/">
+        </datalist>
+		<script>
+            var tall1 = document.getElementById("inpTall1");
+            var tall2 = document.getElementById("inpTall2");
+            var art = document.getElementById("inpArt");
+            var svar1 = document.getElementById("svar1");
+            
+            function regne(){
+                var t1 = Number(tall1.value);
+                var t2 = Number(tall2.value);
+                var sum = 0;
+                var regneart = art.value;
+                
+                if (regneart === "+"){
+                    sum = t1 + t2;
+                }
+                else if (regneart === "-"){
+                    sum = t1 - t2;
+                }
+                else if (regneart === "*"){
+                    sum = t1 * t2;
+                }
+                else if (regneart === "/"){
+                    sum = t1 / t2;
+                }
+                else if (regneart === ""){
+                    sum = "";
+                }
+                else {
+                    sum = "Kan bare regne med +,-,* og /" + " " + art;
+                }
+                svar1.innerHTML = sum;
+            }
+            tall1.oninput = regne;
+            tall2.oninput = regne;
+            art.oninput = regne;
+            art.onfocus = function() {
+                art.value = "";
+            }
+        </script>
+	</body>
+</html>

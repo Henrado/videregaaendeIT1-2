@@ -1,0 +1,54 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="stilark.css">
+		<title>Matteside</title>
+        <style>
+        </style>
+	</head>
+	<body>
+        <div id="innhold">
+            <h1 class="viktigTekst">Matteside!</h1>
+            <div id="meny">
+                <ul>
+                    <li><a href="index.html">Hva er geometri</a></li>
+                    <li><a href="figurer.html">Figurer</a></li>
+                    <li><a href="kontakt.html">Kontakt oss</a></li>
+                    <li><a href="figurspill.html">Figurspill</a></li>
+                </ul>
+            </div>
+            <h2>Kontakt oss</h2>
+            <h3>Ved å fylle ut dette sjemaet hjelper du oss med å bli bedre</h3>
+            <form id="sendInn">
+                <input class="heltUt" type="text" id="inpNavn" placeholder="Navn" required autofocus>
+                <br>
+                <br>
+                <input class="heltUt" type="email" id="inpEpost" placeholder="E-post" required>
+                <br>
+                <br>
+                <textarea class="heltUt" id="textArea"  placeholder="Hva vil du kontakte oss for" required></textarea>
+                <br>
+                <button type="submit">Send</button>
+            </form>
+            <div id="kvitering"></div>
+        </div>
+        <script>
+            var sendInn = document.getElementById("sendInn");
+            var inpNavn = document.getElementById("inpNavn");
+            var inpEpost = document.getElementById("inpEpost");
+            var textArea = document.getElementById("textArea");
+            var kvitering = document.getElementById("kvitering");
+            
+            sendInn.onsubmit = function(evt){ //Når submit samle innput og skriver det ut 
+                evt.preventDefault();
+                alert("Takk for tilbakemeldingen " + inpNavn.value); 
+                kvitering.innerHTML = "<h3>Forespørsel er sendt</h3>"; //Skriver ut kvitering
+                kvitering.innerHTML += "<p>Fra: " + inpNavn.value + "</p>";
+                kvitering.innerHTML += "<p>Epost: " + inpEpost.value + "</p>";
+                kvitering.innerHTML += "<p>Melding: " + textArea.value + "</p>";
+                kvitering.classList.add("kvitering");
+            }
+        </script>
+    </body>
+</html>

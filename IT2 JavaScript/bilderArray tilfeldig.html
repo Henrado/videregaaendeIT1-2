@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>   
+    <body>
+        <h1>Bildevisning</h1>
+        <img id="bilde">
+      
+        <script>
+            var bilde = document.getElementById("bilde");
+            
+            var bildeNavn = ["dag.jpg", "kveld.jpg", "mynt.jpg"]
+            
+            var tilfeldigTall = (Math.floor(Math.random()*3));
+            
+            bilde.src= "./media/"+bildeNavn[tilfeldigTall];
+        </script>
+        
+
+    </body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="stilark.css">
+		<title>Oppgaver side 253</title>
+        <style>
+            
+        </style>
+	</head>
+	<body>
+        <div id="innhold">
+            <div id="holder">
+            <form id="inpForm">
+                <div id="spmHolder">
+                </div>
+                <div id="knappHolder">
+                    <div><button type='button' class='knapp' id="forrige" onclick="nesteSPM(this.value)" value="-1">Forrige</button></div>
+                    <div><button type='button' class='knapp' id="neste" onclick="nesteSPM(this.value)" value="1">Neste</button></div>
+                </div>
+            </form>
+            </div>
+        </div>
+        <script>
+            var spmHolder = document.getElementById("spmHolder");
+            var knappHolder = document.getElementById("knappHolder");
+            var inpForm = document.getElementById("inpForm");
+            var forrige = document.getElementById("forrige");
+            var neste = document.getElementById("neste");
+            var poeng = 0;
+            var globalIndex = 0;
+            var muligePoeng = 0;
+            var valgt =0;
+            var viseSpm = 0;
+            var globalIndex = 0;
+            var kilde = [
+                [ 
+                    {NavnPaQuiz: "Amerikansk"},
+                    {sporsmol:"Hva betyr hello", svar:["Hei","på", "deg"], bilde:"enhj%C3%B8rning2.png", type:"radio", riktig: ["Hei"]}, //<----- Putter inn her type(må være med) enten bilde/video
+                    {sporsmol:"Hva betyr test", svar:["3","2", "1"], video:"Purify%20Reklamefilm%20vol%202.mp4", type:"checkbox", riktig:["2","1"]},
+                    {sporsmol:"Hva betyr #", svar:["4","6","5", "7"], type:"radio", riktig: ["5"]}
+                ],
+                [
+                    {NavnPaQuiz: ""},
+                    {sporsmol:"", svar:[""], type:"radio", riktig:[""]}, //Kan legge til video eller bilde
+                    {sporsmol:"", svar:[""], type:"radio", riktig:[""]},
+                    {sporsmol:"", svar:[""], type:"radio", riktig:[""]}
+                ]
+                
+            ];
+            
+            spmHolder.innerHTML += "<h1>Velg hvilken quiz du vil ha</h1>";
+            for (var i = 0; i < kilde.length; i++){
+                spmHolder.innerHTML += "<div class='sprakValg' id='" + i + "' onclick='start(this.id)'>" + kilde[i]["0"].NavnPaQuiz + "</div>";
+            }
+            
+            function start(index){
+                globalIndex = index;
+                //console.log(index);
+                spmHolder.innerHTML ="";
+                
+                spmHolder.innerHTML += "<h1>" + (kilde[index]["0"].NavnPaQuiz) + " quiz</h1>";
+                
+                for (var j = 1; j < kilde[index].length; j++){
+                    var div = document.createElement("div");
+                    div.setAttribute("class", "boks");
+                    div.setAttribute("id", "spm"+j);
+                    div.innerHTML += "<h2>" + (kilde[index][j].sporsmol) + "</h2>";
+                    if(kilde[index][j].bilde){
+                        div.innerHTML += "<img src='"+kilde[index][j].bilde+"'>";
+                    } else if (kilde[index][j].video){
+                        div.innerHTML += "<video controls src='"+kilde[index][j].video+"'></video>";
+                    };
+                    for (var k = 0; k < kilde[index][j].svar.length; k++){
+                        div.innerHTML += "<p><input id='svar1" + j + index +"' type='"+kilde[index][j].type+"' data-inhold='"+ kilde[index][j].svar[k] +"' class='spm' name='spm" + j + index +"'>" + (kilde[index][j].svar[k]) + "</p>";
+                    }
+                    spmHolder.appendChild(div);
+                };
+            //}
+                
+                
+                //spmHolder.innerHTML += "";
+                //spmHolder.innerHTML += "<div><button type='submit'>Send inn</button></div>";
+                knappHolder.style.display = "flex";
+                nesteSPM(0);
+                console.log("kjører neste")
+            }
+            
+            
+            function nesteSPM(evt){
+                var x = document.getElementsByClassName("boks");
+                viseSpm += Number(evt);
+                console.log(viseSpm);
+                if(viseSpm < 0){
+                    viseSpm = 0;
+                }
+                if(viseSpm > kilde[globalIndex].length-2){
+                    neste.type="submit";
+                }
+                for(var y = 0; y < x.length; y++){
+                    if(y === viseSpm){
+                        x[y].style.display="block";
+                    }
+                    else{
+                        x[y].style.display="none";
+                    }
+                }
+            }
+            
+            
+            inpForm.onsubmit = function(evt){
+                evt.preventDefault();
+                poeng = 0;
+                muligePoeng = 0;
+                var alleSvar = document.getElementsByClassName("spm");
+                
+                for(var u = 1; u < kilde[globalIndex].length; u++){
+                    for (var r = 0; r < kilde[globalIndex][u].riktig.length; r++){
+                        muligePoeng++;
+                        for(var t =0; t < alleSvar.length; t++){
+                            if(alleSvar[t].checked){                        
+                                if(alleSvar[t].getAttribute("data-inhold") === kilde[globalIndex][u].riktig[r]){
+                                    poeng++;
+                                }
+                            }
+                        }
+                    }
+                }
+                regnPoeng()
+            }
+            function regnPoeng(){
+                knappHolder.style.display = "none";
+                neste.disabled = true;
+                forrige.disabled = true;
+                /*
+                var table = document.createElement("table");
+                table.innerHTML+="<tr><th>Spørsmål</th><th>Fasit</th><th>Svar avgitt</th><th>Poeng</th>";
+                table.innerHTML+="</tr>"
+                for(var i =1; i < kilde[0].length;i++){
+                    table.innerHTML+="<tr>";
+                    table.innerHTML+="<td>"+kilde[0][i].sporsmol+"</td>";
+                    table.innerHTML+="<td>";
+                    for(var j = 0; j < kilde[0][i].riktig.length; j++){
+                        table.innerHTML+="<p>"+kilde[0][i].riktig[j]+"</p>";
+                    }
+                    table.innerHTML+="</td>";
+                    table.innerHTML+="</tr>";
+                }
+                spmHolder.appendChild(table);
+                */
+                spmHolder.innerHTML+="<h1>Du fikk " + poeng + " poeng av " + muligePoeng+" mulige poeng</h1>";
+            }
+        </script>
+	</body>
+</html>

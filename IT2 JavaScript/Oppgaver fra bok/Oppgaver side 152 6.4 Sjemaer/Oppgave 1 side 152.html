@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 152</title>
+        <style>
+            div {
+                text-align: center;
+                background-color: aqua;
+                display:flex;
+                flex-direction:column;
+                border: solid;
+            }
+            button {
+                width: 200px;
+            }
+            #info {
+                border: none;
+            }
+        </style>
+	</head>
+	<body>
+        <h1>Oppgave 1</h1>
+        <h2>Registrere en forfatter</h2>
+        <form id="frmBok">
+            <p><input id="fNavn" type="text" required placeholder="Forfatter fornavn"></p>
+            <p><input id="eNavn" type="text" required placeholder="Forfatter etternavn"></p>
+            <p><input id="boktittel" type="text" required placeholder="Boktittel"></p>
+            <p><button type="submit">Trykk her</button></p>
+        </form>
+        <div id="info"></div>
+        <script>
+            var frmBok = document.getElementById("frmBok")
+            var inpfNavn = document.getElementById("fNavn");
+            var inpeNavn = document.getElementById("eNavn");
+            var bokTittel = document.getElementById("boktittel");
+            var info = document.getElementById("info");
+            
+            frmBok.onsubmit = function(evt){
+                evt.preventDefault();
+                info.innerHTML += "<div>Forfatteren: " + inpfNavn.value + " " + inpeNavn.value + " Har skrevet " + bokTittel.value + "</div>";
+                inpfNavn.value = "";
+                inpeNavn.value = "";
+                bokTittel.value = "";
+            }
+        </script>
+	</body>
+</html>

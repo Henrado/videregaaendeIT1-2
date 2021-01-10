@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <title>Finn rute</title>
+        <style>
+            .innpakning{
+                width: 1200px; /*bredde på innpakningen*/ 
+                background-color:floralwhite; /*mørk grå*/
+                margin-left: auto;  /*midtstiller seg i forhld til nettsiden, siden både*/ 
+                margin-right: auto; /*høyre og venstre marg er satt til auto*/
+                display:flex; /*flexboks*/
+                flex-direction:row; /*bokser som plasseres i innpakningen, legger seg ved siden av hverandre*/
+                flex-wrap:wrap; /*Rader kan brytes*/
+            }
+            .topptekst{
+                flex-basis:100%; /*fyller innpakningens bredde*/
+                height:100px; /*høyde på feltet til toppteksten*/
+                background-color: #909090; /*lys grå*/
+                padding: 5px;  /*avstand mellom bokskant og innhold*/
+                margin: 5px; /*luft rundt topptekst, både på sidene, over og under*/
+            }
+            .part1{
+                flex-basis: 45%; /*blir aldri mindre enn 200px*/
+                height: 700px;
+               /* background-color: #f04605; /*oransje*/*/
+                padding:5px; /*avstand mellom bokskant og innhold*/
+                margin: 5px; /*luft rundt topptekst, både på sidene, over og under*/
+            }
+			.part2{
+                flex: 1; /*Fyller ut all ledig plass i bredden*/
+                height: 700px;
+              /*  background-color:#909090;  /*lys grå*/*/
+				padding:5px; /*avstand mellom bokskant og innhold*/
+                margin: 5px; /*luft rundt topptekst, både på sidene, over og under*/
+			}
+            select{
+                margin-top: 10px;
+            }
+            #divRute{
+                margin-top:30px;
+                padding: 5px;
+            }
+            
+            h1{
+                text-align: center;
+            }
+            #imgKart{
+                width: 400px;
+            }
+            .kartmerke{
+                position: absolute;
+                width: 15px;
+                height: 15px;
+                border-radius: 5px;
+                border-style: solid;
+                border-color: black;
+                border-width: 1;
+                background-color: red;
+                opacity: 0.5;
+                display: none;
+            }
+            #prikkFredrikstad{
+                top:420px;
+                left:210px;
+            }
+            #prikkAskim{
+                top:220px;
+                left:270px;
+            }
+            #prikkHalden{
+                top:480px;
+                left:300px;
+            }
+            #prikkØrje{
+                top:390px;
+                left:370px;
+            }
+            #prikkMoss{
+                top:290px;
+                left:100px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="divInnpakning" class="innpakning">
+            <div id="divTopptekst" class="topptekst">
+                <h1>På hjul i Østfold</h1>
+            </div>
+            <div id="divKart" class=part1>
+                <img id="imgKart" src="stortkartostfold.gif">
+                <div id="prikkAskim" class="kartmerke"></div>
+                <div id="prikkFredrikstad" class="kartmerke"></div>
+                <div id="prikkHalden" class="kartmerke" ></div>
+                <div id="prikkØrje" class="kartmerke"></div>
+                <div id="prikkMoss" class="kartmerke"></div>
+            </div>
+            <div id="divInnhold" class="part2">
+                <h2>Sett sammen din egen sykkelrute</h2>
+                <label for="velgBy">Velg byene du vil sykle innom  </label>
+                <select id="velgBy">
+                    <option value="">Velg by</option>
+                </select>
+                <div id="divRute" >
+                    <h3>Sykkelruta du har valgt</h3>
+                    <p id="pDist"></p>
+                    <ol id="listeByer"></ol>
+                </div> 
+            </div>     
+        </div>
+        
+    
+    </body>
+    <script>
+        var velgBy=document.getElementById("velgBy");
+        var divRute=document.getElementById("divRute");
+        var pDist=document.getElementById("pDist");
+        var listeByer=document.getElementById("listeByer");
+        var prikkHalden=document.getElementById("prikkHalden");
+        var prikkØrje=document.getElementById("prikkØrje");
+        var prikkFredrikstad=document.getElementById("prikkFredrikstad");
+        var prikkMoss=document.getElementById("prikkMoss");
+        var prikkAskim=document.getElementById("prikkAskim");
+        var forrigeByIndeks=-1;
+        var nesteByIndeks;
+        var distanse=0;        
+
+        //Array med byene og avstandene i mellom, og kartmerket
+        var byerTab=
+        [
+            ["Askim", 0,62.3,58.8,44.6, 33.2,prikkAskim],
+            ["Halden",62.3,0,37.9,65.3, 60.1,prikkHalden],
+            ["Fredrikstad", 58.8,37.9,0,40.5, 78.5,prikkFredrikstad],
+            ["Moss", 44.6,65.3,40.5,0, 77.6,prikkMoss],
+            ["Ørje", 33.2,60.1,78.5,77.6, 0,prikkØrje]
+        ];
+            
+  
+       //Fyller nedtrekkslista. Merk at tilsvarende by i tabByer har en indeks lavere 
+        for (var i=0;i<byerTab.length;i++){
+            velgBy.innerHTML+='<option value="'+byerTab[i][0] + '">' +byerTab[i][0] + '</option>';
+        }
+        
+        //Kalles når by velges. Legger by til i ruta, regner distanse og merker av på kart
+        velgBy.onchange=function(){
+            if(velgBy.selectedIndex!=0){
+                nesteByIndeks=velgBy.selectedIndex;  //Indeksen i nedtrekkslista
+                if (forrigeByIndeks!=-1){     //Hvis det er første by, så er forrigeByIndeks=-1
+                    distanse+=byerTab[forrigeByIndeks][nesteByIndeks]; //Øker distansen
+                }
+
+                nesteByIndeks-=1;  //Trekker fra en for at indeksen skal kunne brukes i byerTab
+                pDist.innerHTML="Sykkelturen er "+distanse.toFixed(1)+" km lang <br> Hvis du sykler i 20km/t, vil du bruke "+ (distanse/20).toFixed(1)+" timer";
+                
+               
+                listeByer.innerHTML+="<li>"+byerTab[nesteByIndeks][0]+"</li>"; //Legger valgt by til i sykkelruta 
+                byerTab[nesteByIndeks][byerTab[nesteByIndeks].length-1].style.display="block";//Viser på kart
+                forrigeByIndeks=nesteByIndeks; //Gjør klar til ny by ved å ta vare på indeksen til denne byen, som blir forrige by neste gang
+            }
+        }
+        
+            
+
+    
+    
+    </script>

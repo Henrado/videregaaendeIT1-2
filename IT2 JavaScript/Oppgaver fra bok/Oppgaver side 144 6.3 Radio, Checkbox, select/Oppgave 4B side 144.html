@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 144</title>
+        <style>
+            div {
+                text-align: center;
+                background-color: aqua;
+                display:flex;
+                flex-direction:row;
+                border: solid;
+            }
+            button {
+                width: 200px;
+            }
+        </style>
+	</head>
+	<body>
+        <select id="velgDag">
+            <option>Velg størrelse</option>
+            <option>XSmall</option>
+            <option>Small</option>
+            <option>Medium</option>
+            <option>Large</option>
+            <option>XLarge</option>
+        </select>
+        <p id="info"></p>
+        <script>
+            var ukedag = ["XSmall", "Small", "Medium", "Large", "XL"];
+            var velgDag = document.getElementById("velgDag");
+            var info = document.getElementById("info");
+            
+            velgDag.onchange = function(){
+                var tall = velgDag.selectedIndex - 1;
+                
+                if (tall < 1){
+                    info.innerHTML= "";
+                }
+                else{
+                    info.innerHTML= "Du har valgt: " + ukedag[tall];
+                }
+            }
+        </script>
+	</body>
+</html>

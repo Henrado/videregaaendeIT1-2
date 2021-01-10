@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	</head>
+	<body bgcolor="#FF00FF">
+
+		<p>Click the button to display a random number between 1 and 256.</p>
+
+		<button onclick="myFunction()">Bytt farge!</button>
+		<button onclick="myFunction2()">Bytt farge!</button>
+		<button onclick="myFunction3()">Bytt farge!</button>
+		
+		
+		
+		<p id="demo">Rød</p>
+		<p id="demo2">Grønn</p>
+		<p id="demo3">Blå</p>
+		
+		
+		
+		<script>
+			function myFunction() {
+				var x = document.getElementById("demo")
+				x.innerHTML = Math.floor((Math.random() * 256) + 1);
+			}
+		</script>
+		
+		<script>
+			function myFunction2() {
+				var x = document.getElementById("demo2")
+				x.innerHTML = Math.floor((Math.random() * 256) + 1);
+			}
+		</script>
+
+		<script>
+			function myFunction3() {
+				var x = document.getElementById("demo3")
+				x.innerHTML = Math.floor((Math.random() * 256) + 1);
+			}
+		</script>
+	</body>
+</html>

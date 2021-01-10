@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 83</title>
+	</head>
+	
+	<body>
+        <h1>Oppgave 1</h1>
+        <img id="oppgave1" src="">
+        
+        <h1>Oppgave 2</h1>
+        <img id="oppgave2" src="">
+        
+        <h1>Oppgave 3</h1>
+        <p id="oppgave3">Lage en if inne i en if</p>
+        
+        <h1>Oppgave 4</h1>
+        <p id="oppgave4"></p>
+        
+        <h1>Oppgave 5</h1>
+        <p id="oppgave5"></p>
+		
+        <script>
+            //Oppgave 1
+            var oppgave1 = document.getElementById("oppgave1");
+            var fugl = Math.floor(Math.random()*3+1);
+            if(fugl === 1){
+                oppgave1.src="./media/kjøttmeis.jpg";
+            }
+            else if(fugl === 2){
+                oppgave1.src="./media/rødstrupe.jpg";
+            }
+            else if(fugl === 3){
+                oppgave1.src="./media/kolibri.jpg";
+            }
+            else{
+                alert("Hva skjedde nå?");
+            }
+            
+            //Oppgave 2
+            var oppgave2 = document.getElementById("oppgave2");
+            var tilfeldig = Math.floor(Math.random()*6+1);
+            
+            if(tilfeldig ==1){
+                oppgave2.src="./media/Terning1.jpg";
+            }
+            else if(tilfeldig ==2){
+                oppgave2.src="./media/Terning2.jpg";
+            }
+            else if(tilfeldig ==3){
+                oppgave2.src="./media/Terning3.jpg";
+            }
+            else if(tilfeldig ==4){
+                oppgave2.src="./media/Terning4.jpg";
+            }
+            else if(tilfeldig ==5){
+                oppgave2.src="./media/Terning5.jpg";
+            }
+            else {
+                oppgave2.src="./media/Terning6.jpg";
+            }
+            
+            //Oppgave 4
+            var oppgave4 = document.getElementById("oppgave4");
+            
+            var ukedag = prompt("Hvilken ukedag er det i dag");
+            var dato = prompt("Hvilken dato er det i dag");
+            
+            if (ukedag.toLowerCase() === "fredag"){
+                if(dato == "13"){
+                    oppgave4.innerHTML="I dag er det fredag den 13. pass på!!!!!"
+                }
+                else{
+                    oppgave4.innerHTML="Endelig helg";
+                }
+            }
+            else{
+                oppgave4.innerHTML="En vanelig dag";
+            }
+            
+            //Oppgave 5 
+            var oppgave5 = document.getElementById("oppgave5");
+            
+            var tall1 = Number(prompt("Tall 1"));
+            var tall2 = Number(prompt("Tall 2"));
+            var regneart = prompt("Regneart");
+            var svar = 0;
+            
+            if (regneart === "+"){
+                svar = tall1 + tall2;
+            }else if (regneart === "-"){
+                svar = tall1 - tall2;
+            }else if (regneart === "-"){
+                svar = tall1 * tall2;
+            }else if (regneart === "-"){
+                svar = tall1 * tall2;
+            }else{
+                oppgave5.innerHTML="Denne kalkulatoren støtter bare +,-,*,/"
+            }
+            
+            oppgave5.innerHTML="Svaret er: " + svar;
+		</script>
+		
+	</body>
+</html>

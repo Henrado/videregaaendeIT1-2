@@ -1,0 +1,79 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="stilark.css">
+		<title>Matteside</title>
+        <style>
+        </style>
+	</head>
+	<body>
+        <div id="innhold">
+            <h1 class="viktigTekst">Matteside!</h1>
+            <div id="meny">
+                <ul>
+                    <li><a href="index.html">Hva er geometri</a></li>
+                    <li><a href="figurer.html">Figurer</a></li>
+                    <li><a href="kontakt.html">Kontakt oss</a></li>
+                    <li><a href="figurspill.html">Figurspill</a></li>
+                </ul>
+            </div>
+                <h2>Innhold</h2>
+                <div id="bildeHolder">
+                    <img id="bilde" src="#">
+                    <h1 id="infoImg"></h1>
+                    <div id="neste" data-verdi="1" class="knapp">&#10095;</div>
+                    <div id="forgje" data-verdi="-1" class="knapp">&#10094;</div>
+                </div>
+        </div>
+        <script src="koder.js"></script>
+        <script>
+            var bilde = document.getElementById("bilde");   //Deklarer variabler
+            var neste = document.getElementById("neste");
+            var forgje = document.getElementById("forgje");
+            var infoIng = document.getElementById("infoImg");
+            var nummer = -1;
+            var setTid;
+            var erTrykket = false;
+            
+            start();
+            
+            function start(){
+                nummer = nummer +1;
+                if (nummer > imgKilde.length - 1){  //Hvis nummeret er større enn lengden til imgKilde
+                    nummer = 0; //Sette nummer = 0
+                } else if (nummer < 0){
+                    nummer = imgKilde.length - 1; //For å starte på 0 igjen
+                }
+                bilde.src = imgKilde[nummer].kilde; //Setter kilden på bilde til bilde
+                infoIng.innerHTML = imgKilde[nummer].navn; //Skriver ut hvilken figur dt er 
+                //Setter ny kilde til bilde
+                setTid = setTimeout(start, 5000); //Starter på nytt om 5 sekunder
+            }
+            
+            neste.onclick = forgje.onclick = function(evt){
+                var knappTrykket = evt.target; //Finner hvilken knapp som blir trykket
+                clearTimeout(setTid); //Stopper at start skal kjøre igjen
+                erTrykket = true; //Setter at den er tykket
+                nummer = nummer + Number(knappTrykket.getAttribute("data-verdi")); //Finner ut om den skal 
+                nummer = Number(nummer);
+                if (nummer > imgKilde.length - 1){  //Hvis nummeret er større enn lengden til imgKilde
+                    nummer = 0; //Sette nummer = 0
+                } else if (nummer < 0){
+                    nummer = imgKilde.length - 1;
+                }
+                bilde.src = imgKilde[nummer].kilde;   //Setter ny kilde til bilde
+                infoIng.innerHTML = imgKilde[nummer].navn;//Setter nytt navn under bildet
+            }
+            bilde.onclick = function(){ //Når trykker på 
+                if(erTrykket){ //Sjekker om den er trykket
+                    setTimeout(start, 0); //Starter karusellen igjen 
+                    erTrykket = false; //Setter at den ikke er trykket 
+                }else{
+                    clearTimeout(setTid); //Stopper at de skal kjøre igjen 
+                    erTrykket = true; //Setter at knappen er trykket 
+                }
+            }
+        </script>
+	</body>
+</html>

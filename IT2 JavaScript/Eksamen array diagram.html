@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Øve eksamen</title>
+        <style>
+            #diagram > div {
+                background-color: darkgreen;
+                margin: 5px;
+                margin-bottom: 0;
+                flex-grow: 1;
+                text-align: center;
+            }
+            #diagram {
+                display: flex;
+                width: 100%;
+                height: 200px;
+                flex-direction: row;
+                align-items: flex-end;
+                padding: 5px;
+            }
+        </style>
+	</head>
+	<body>
+        <h1>Sjekk utviklingen innen promillekjøring</h1>
+        <label>Velg fra år
+            <select id="forste">
+                <option>2002</option>
+                <option>2003</option>
+                <option>2004</option>
+                <option>2005</option>
+                <option>2006</option>
+                <option>2007</option>
+            </select>
+        </label>
+        <label>Velg til år
+        <select id="andre">
+                <option>2002</option>
+                <option>2003</option>
+                <option>2004</option>
+                <option>2005</option>
+                <option>2006</option>
+                <option>2007</option>
+            </select>
+        </label>
+        <button id="knapp">Skjekk forskjell</button>
+        <p id="info"></p>
+        <h1>Sjekk lovbrudd over tid</h1>
+        <select id="type">
+            <option>Velg lovbrudstype</option>
+            <option>Promille</option>
+            <option>Hastighet</option>
+        </select>
+        <div id="diagram"></div>
+        <script>
+            var forste = document.getElementById("forste");
+            var andre = document.getElementById("andre");
+            var knapp = document.getElementById("knapp");
+            var info = document.getElementById("info");
+            var diagram = document.getElementById("diagram");
+            var type = document.getElementById("type");
+            var promilleKjoring = [9631, 8593, 8363, 8128, 8514, 8534];
+            var ulovligHastighet = [9863, 12217, 14920, 14929, 15425, 18010];
+            
+            //var dataAr = [{kjore: 9631, hastighet: 9863}, {kjore: 8593,hastighet: 12217}, {kjore: 8363,hastighet: 14920}, {kjore: 8128,hastighet: 14929}, {kjore: 8514,hastighet: 15425}, {kjore: 8534,hastighet: 18010}];
+            
+            var minPromille = Math.min.apply(Math, promilleKjoring); //Finner min i array
+            var maxPromille = Math.max.apply(Math, promilleKjoring);
+            
+            var minUHastighet = Math.min.apply(Math,ulovligHastighet);
+            var maxUHastighet = Math.max.apply(Math,ulovligHastighet);
+            
+            knapp.onclick = function(){
+                var forsteIndex = forste.selectedIndex;
+                var andreIndex = andre.selectedIndex;
+                if(forsteIndex === andreIndex){ //Hvis du velger det samme året vil du få opp en feilmelding
+                    alert("Dette er ikke lov");
+                }else {
+                    var diff = promilleKjoring[andreIndex]-promilleKjoring[forsteIndex]; //Finner differansen mellom den første og den andre 
+                    
+                    if(diff<0){ //Hvis det er en positiv utvikling er differansen større enn 0
+                        info.innerHTML = "Det er en positiv utvikling med " + diff*(-1) + " færre ulykker";
+                    }else{ //Eller så er den negativ
+                        info.innerHTML = "Det er en negativ utvikling med " + diff + " flere ulykker"; //Ganger med -1 for at ikke man skal få et negativt tall
+                    }
+                }
+            }
+            type.onchange = function(){ //Når man forandrer kjører funksjonen
+                var valgtIndex = type.selectedIndex;
+                diagram.innerHTML = ""; //Nullstiller inner diagram 
+                if(valgtIndex === 1){
+                    for (var aar of promilleKjoring){
+                        diagram.innerHTML += "<div style='height:" + aar/maxPromille*100 + "%'>"+ aar + "</div>"; //
+                    }
+                }else if(valgtIndex === 2){
+                    for (var aar of ulovligHastighet){
+                        diagram.innerHTML += "<div style='height:" + aar/maxUHastighet*100 + "%'>"+ aar + "</div>"
+                    }
+                }else{
+                }
+            }
+        </script>
+	</body>
+</html>

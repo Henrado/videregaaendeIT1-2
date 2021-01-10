@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 347</title>
+        <style>
+            .bilder {
+                display: none;
+            }
+        </style>
+	</head>
+	<body>
+        <div id="innhold">
+            <img id="pil" src="pil.png" class="bilder">
+            <img id="hjerte" src="hjerte2.png" class="bilder">
+            <canvas id="myCanvas" width="1800" height="900"></canvas>
+            <input id="inpRadius" value="10" style="font-size: 30px" type="number">
+            <p id="info"></p>
+        </div>
+        <script>
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            var info = document.getElementById("info");
+            var inpRadius = document.getElementById("inpRadius");
+            var alleSirkler = [];
+            var i = 0;
+            
+            window.onload = figur()
+            
+            function figur(){
+                ctx.fillStyle="black";
+                ctx.fillRect(0,0,c.width,c.height);
+                
+                for(var i =0; i < alleSirkler.length; i++){
+                    ctx.beginPath();
+                    ctx.fillStyle = "red";
+                    
+                    ctx.arc(alleSirkler[i].xposL, alleSirkler[i].yposL, alleSirkler[i].radiusL, 0 , 2*Math.PI);
+                    ctx.stroke();
+                    ctx.fill();
+                }
+                
+                requestAnimationFrame(figur);
+            }
+            
+            c.onclick = function(evt){
+                var x = evt.clientX;
+                var y = evt.clientY;
+                var radius = inpRadius.value;
+                
+                alleSirkler.push({xposL: x, yposL:y, radiusL:radius});
+                console.log(alleSirkler);
+                info.innerHTML += "{xposL: "+alleSirkler[i].xposL+", yposL: "+ alleSirkler[i].yposL + ", radiusL: "+ alleSirkler[i].radiusL+"} <br>";
+                i++;
+            }
+        </script>
+	</body>
+</html>

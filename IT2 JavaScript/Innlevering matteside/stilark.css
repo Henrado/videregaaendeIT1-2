@@ -1,0 +1,136 @@
+body {
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    background-color: darkgrey;
+    background-image: url(bakgrunn.jpg);
+    background-repeat: repeat;
+    background-size: auto;
+}
+#innhold{
+    display: flex;
+    margin: auto;
+    flex-basis: 1;
+    width:80%;
+    flex-direction:column;
+    background-color: brown;
+    padding-bottom:20px;
+}
+#bildeholder > img {
+    width: 70%;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+#bildeHolder {
+    width: 60%;
+    margin: auto;
+    position: relative;
+    border: solid;
+    background-color: darkgreen;
+    background-image: url(rammebakgrunn.jpg);
+    background-position: center;
+}
+.knapp {
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    border: solid;
+    margin-top: -22px;
+    border-radius: 3px;
+}
+.knapp:hover {
+    background-color: white;
+}
+#neste {
+    right: 0;
+}
+#alleFigurer, #svar{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+#valgtFigur {
+    height: 150px;
+}
+#figurholder {
+    flex-direction: column;
+}
+.ramme {
+    border: solid;
+    border-radius: 20px;
+    flex-grow: 1;
+    margin: 10px;
+    padding: 10px;
+    background-color:gray;
+    background-image: url(rammebakgrunn.jpg);
+    background-repeat: repeat;
+    background-position: center;
+}
+.ramme > img {
+    width: 200px;
+}
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    margin: auto
+}
+
+li {
+    float: left;
+    margin: auto;
+    width: 25%;
+}
+
+li a {
+    display: block;
+    color: white;
+    margin: auto;
+    text-align: center;
+    padding: 15px 20px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
+.kvitering {
+    border: solid;
+    border-radius: 10px;
+    background-color: aqua;
+    width: 50%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+.heltUt {
+    width: 50%;
+}
+
+.smaBilder {
+    flex: 1;
+    margin: 10px;;
+    padding: 20px;
+    border: solid;
+    border-radius: 20px;
+}
+.smaBilder > img{
+    width: 100%;
+}
+#svar {
+    flex-wrap: nowrap;
+    display: flex;
+}
+#spill {
+    padding: 20px;
+}
+#sporsmol {
+    padding: 40px;
+}
+#sporsmol > img {
+}

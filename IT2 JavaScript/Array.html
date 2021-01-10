@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Array og objekt</title>
+	</head>
+	
+	<body>
+		<h1>Oppgave 1</h1>
+		<p id="navn"></p>
+
+        <h1>Oppgave 2</h1>
+		<p id="ting"></p>
+		
+		<h1>Oppgave 3</h1>
+		<p id=""></p>
+        
+        <h1>Oppgave 4</h1>
+        <p id=""></p>
+        
+        <h1>Oppgave 5</h1>
+        <p id=""></p>
+		
+		<script>
+            
+            var navn = ["Henrik", "Ingvild", "Frøydis", 5];
+            //Du kan bruke kommandoen navn.push("navn"); for å legge til ett navn i array
+            document.getElementById("navn").innerHTML = navn[0] + " " + navn[3];
+            
+            var objekt = {test:"Henrik", hobby:"ting"};
+            
+            document.getElementById("ting").innerHTML = objekt.test + " " + objekt.hobby;
+            
+            var regn = true;
+        </script>
+    </body>
+</html>

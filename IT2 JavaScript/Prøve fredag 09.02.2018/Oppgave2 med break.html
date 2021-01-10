@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Prøve 09.02.2018 Henrik</title>
+        <style>
+            body {
+                background-color: cornsilk;
+            }
+            #alt {
+                display: flex;
+                flex-direction: column;
+                background-color: aquamarine;
+                padding: 10px;
+                flex-basis:1;
+                flex-wrap: wrap;
+                position: relative;
+                max-width: 1000px;
+                margin: auto;
+                align-items: center;
+                border: solid;
+                margin: auto;
+                padding: auto;
+            }
+            div {
+                width: 50%;
+                padding: 20px;
+                margin: auto;
+            }
+            #info {
+                background-color: aquamarine;
+                padding: 10px;
+                flex-basis:1;
+                flex-wrap: wrap;
+                max-width: 50%;
+                margin: auto;
+                align-items: center;
+                border: solid;
+            }
+        </style>
+	</head>
+	<body>
+        <div id="alt">
+            <h2>Søk om fjellet finnes</h2>
+            <span>
+                <input type="text" id="inpFjell" list="listFjell" placeholder="Fjell">
+                <button id="knapp">Sjekk fjellet</button>
+            </span>
+            <datalist id="listFjell">
+            </datalist>
+            <br>
+            <div id="info"></div>
+            <h3>Liste over alle registrerte fjell</h3>
+            <ul id="liste"></ul>
+        </div>
+        <script>
+            var inpFjell = document.getElementById("inpFjell"); //Deklarer vriabler
+            var listFjell = document.getElementById("listFjell");
+            var knapp = document.getElementById("knapp");
+            var liste = document.getElementById("liste");
+            var info = document.getElementById("info");
+            var data = ["Galdgøpiggen", "Glittertind", "Storen", "Besseggen", "Austbotntind"]; //Setter standar data
+            
+            function leggTilList(){
+                listFjell.innerHTML = ""; //Nullstiller for hver gang
+                for(var fjellet of data){ //Legger til alle fjelle i datalisten, så mange som det er i array
+                    listFjell.innerHTML += "<option value=" + fjellet + "></option>";
+                }
+            }
+            leggTilList(); //KJører legg til liste for å legge ting i datalist
+            
+            knapp.onclick = function(){
+                var funnet = false; //Settter at den ikke er funnet
+                for(var fjellet of data){ //Går gjennom alle navnene i array
+                    //if(!funnet){ //Hvis den ikke er funnet skal den kjøre (hadde vert bedre å ha kommando for å stoppe løkken når funnet men ca. return men bare løkken, men, men dette funker)
+                        //
+                        if(inpFjell.value === fjellet){ //Når en finner det samme i array som i input så svriver ut
+                            info.innerHTML= "Fjellet " + inpFjell.value + " finnes siden den er registrert";
+                            funnet = true; //Skriver ut om funnet 
+                            break;
+                        }
+                        else if (inpFjell.value === ""){//Hvis den er tom
+                            info.innerHTML = ""; 
+                            funnet = true; //Er her for at ikke man skal legge inn hull i array som ""
+                            break;
+                        
+                        }
+                        else{
+                            info.innerHTML = "Fjellet " + inpFjell.value + " finnes ikke fra før.<br> Fjellet " + inpFjell.value + " er nå registrert";
+                        }
+                    //}
+                    
+                }
+                if(!funnet){
+                    data.push(inpFjell.value); //hvis den ikke er funnet selv om den har gått gjennom allt i array
+                }
+                console.log(data); //Hjelp for meg :)
+                lagListe(); //Lager liste med alle fjell
+                leggTilList(); //Lager ny liste
+            }
+            
+            function lagListe(){ //Lager liste med alle fjellene 
+                liste.innerHTML = "";
+                for(var ting of data){
+                    liste.innerHTML += "<li>"+ ting +"</li>";
+                }
+            }
+        </script>
+	</body>
+</html>

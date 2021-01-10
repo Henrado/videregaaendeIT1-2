@@ -1,0 +1,76 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Matteside</title>
+        <style>
+            #innhold {
+                display: flex;
+                margin: auto;
+                width: 80%;
+                background-color: gray;
+            }
+            #kart {
+                position: relative;
+                width: 800;
+                height: 650;
+                flex-shrink: 0;
+                background-image: url(Flaske%20som%20suger%201.png);
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+            #kart > img {
+            }
+            #kart > div {
+                position: absolute;
+                border-radius: 20px;
+                border: solid;
+                height: 20px;
+                width: 20px;
+                left: 0;
+                right: 0;
+                border-color: red;
+            }
+            #valgMuligheter {
+                width: 100%;
+            }
+        </style>
+	</head>
+	<body>
+        <div id="innhold">
+            <div id="kart">
+            </div>
+            <div id="valgMuligheter"></div>
+        </div>
+        <script>
+            var valgMuligheter = document.getElementById("valgMuligheter");
+            var kvitering = document.getElementById("kvitering");
+            var kart = document.getElementById("kart");
+            var kortRute = [
+                {attraksjon: "Saftpresse", x:10,y:190},
+                {attraksjon: "Skattejakt", x:50,y:95},
+                {attraksjon: "Elvelangs Glomma",x:90,y:165},
+                {attraksjon: "Mini Cruise", x:80,y:145},
+                {attraksjon: "Klatre", x:300,y:195},
+                {attraksjon: "Pilegrimsveien", x:450,y:60}
+            ];
+            
+            for (var i = 0; i < kortRute.length; i++){
+                valgMuligheter.innerHTML += '<p>'+kortRute[i].attraksjon+'<input class="valg" type="radio" name="ting" data-x="'+kortRute[i].x+'" value="'+i+'"></p>';
+            }
+            
+            var alleKnapper = document.getElementsByClassName("valg");
+            
+            
+            for (var i =0; i < alleKnapper.length; i++){
+                alleKnapper[i].addEventListener("click", finnKnapp)
+            }
+            
+            function finnKnapp(evt){
+                var tall = evt.target.value;
+                kart.innerHTML = "<div style='left:"+kortRute[tall].x+"px; top:"+kortRute[tall].y+"px;'></div>"
+            }
+        </script>
+    </body>
+</html>

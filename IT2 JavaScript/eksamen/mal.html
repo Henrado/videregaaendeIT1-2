@@ -1,0 +1,126 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Matteside</title>
+        <style>
+            #innhold {
+                border: solid;
+                border-radius: 10px;
+                background-color: white;
+                margin: auto;
+                width: 80%;
+                padding: 20px;
+                align-items: center;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+            }
+            body {
+                background-color: gray;
+            }
+            #meny {
+                width: 100%;
+                border-radius: 10px;
+                background-color: #333;
+            }
+            #infoBoks {
+                width: 100%;
+            }
+            #alleBilerHolder {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
+            #alleBilerHolder > div {
+                flex-basis: 1;
+/*                border: solid;*/
+                flex-grow: 1;
+                margin: 20px;
+            }
+            #alleBilerHolder > div > img {
+                height: 200px;
+            }
+            .hovedInnhold {
+                background-color: aqua;
+                display: flex;
+                flex-direction: column;
+            }
+            .hovedInnhold {
+                width: 100%;
+                flex-basis: 1;
+                border-radius: 10px;
+            }
+            .steng {
+                background-color: gray;
+                border-radius: 10px;
+                font-size: 20px;
+                font-weight: bold;
+                cursor: pointer;
+                text-align: center;
+                padding: 20px;
+            }
+            ul {
+                list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    margin: auto
+}
+
+li {
+    float: left;
+    margin: auto;
+    width: 25%;
+}
+
+li a {
+    display: block;
+    color: white;
+    margin: auto;
+    text-align: center;
+    padding: 15px 20px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
+        </style>
+	</head>
+	<body>
+        <div id="innhold">
+            <div id="meny"></div>
+            <h1>Overskrift</h1>
+            <div id="alleBilerHolder"></div>
+            <div id="infoBoks"></div>
+        </div>
+        <script src="slett_meg.js"></script>
+        <script>
+            var alleBilerHolder = document.getElementById("alleBilerHolder");
+            var infoBoks = document.getElementById("infoBoks");
+            var bilde = document.getElementById("bilde");
+            
+            var bilder = ["*","*","*","*"];
+            
+            lagMeny()
+            
+            for(var i = 0; i < bilder.length; i++){ //Skriver ut alle som diver som kjører funksjonen (med argumentet index) finnSport når de blir trykket på 
+                alleBilerHolder.innerHTML += "<div id='div"+i+"' onclick='finn("+i+")'><img src='"+bilder[i]+"'><h1>TEkst</h1></div>";
+            }
+            
+            function finn(tall){
+                infoBoks.innerHTML = "";
+                var div = document.createElement("div");
+                div.setAttribute("class", "hovedInnhold");
+                div.innerHTML = "<div class='steng' onclick='slett(this.parentElement)'>Trykk for å lukke</div>";
+                div.innerHTML += "En verdi***";
+                infoBoks.appendChild(div);
+            }
+        </script>
+    </body>
+</html>

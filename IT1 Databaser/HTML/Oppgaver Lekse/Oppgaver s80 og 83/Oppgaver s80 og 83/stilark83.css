@@ -1,0 +1,38 @@
+
+.innpakning {
+	width:70%;
+	margin:auto;
+	background-color:#888888;
+	display:flex;
+	flex-direction: column;
+}
+.meny {
+	margin:5px;
+	padding:5px;
+	background-color:#FF00FF;
+}
+.innhold {
+	margin:5px;
+	padding:5px;
+	background-color:#ffff00;
+}
+.topp {
+	margin:5px;
+	padding:5px;
+	background-color:#FF8000;
+}
+.undertekst {
+	margin:5px;
+	padding:5px;
+	background-color:#FF800F;
+}
+a {
+	display:block;
+	color:#0000FF;
+	background-color:#FFF000;
+	margin:5px;
+	padding:5px;
+}
+a hover {
+	color:#00FF00;
+}

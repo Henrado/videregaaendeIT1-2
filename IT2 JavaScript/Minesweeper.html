@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Animasjon</title>
+        <style>
+            #innhold {
+                display: flex;
+                background-color: gray;
+                flex-wrap: nowrap;
+            }
+            .boks {
+                width: 98px;
+                height: 98px;
+                border-style: solid;
+                border-width: 1px;
+                background-color: green;
+                font-size: 100px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+    <div id="innhold">
+    </div>
+    <script>
+        var innhold = document.getElementById("innhold");
+        
+        var antHor = 10;
+        var antVert = 10;
+        
+        /*for (var i = 0; i < 100; i++){
+            innhold.innerHTML+= "<div class='boks'>"+i+"</div>";
+        }*/
+        
+        var nett = [];
+        var linje = [];
+        var tekst = "";
+        
+        for(var i = 0; i < antHor; i++){
+            linje = [];
+            for (var j = 0; j < antVert; j++){
+                linje.push(Math.round(Math.random()))
+            }
+            nett.push(linje);
+        }
+        
+        for(var i = 0; i < antVert; i++){
+            tekst += "<div>"; 
+            for (var j = 0; j < antHor; j++){
+                tekst += "<div id='"+i+j+"' onclick='finnBoks(this)' data-xakse='"+i+"' data-yakse='"+j+"' class='boks'></div>";
+            }
+            tekst += "</div>";
+        }
+        innhold.innerHTML = tekst;
+        //console.log(nett);
+        
+        function finnBoks(boks){
+            var x = Number(boks.getAttribute("data-xakse"));
+            var y = Number(boks.getAttribute("data-yakse"));
+            console.log(x + " " + y);
+            var referanse = document.getElementById(x.toString()+y.toString());
+            referanse.innerHTML = nett[x][y];
+            if (nett[x][y]==1){
+                referanse.style.backgroundColor="red";
+                return;
+            }else{
+                referanse.style.backgroundColor="blue";
+            }
+            var antBomb = 0;
+            /*for(var i = (x-1); i < (x+3);i++){
+                for(var j = (y-1); j < (y+3);i++){
+                    if()
+                    antBomb += nett[x][y]
+                }
+            }*/
+            referanse.innerHTML = antBomb
+        }
+    </script>
+    </body>
+</html>

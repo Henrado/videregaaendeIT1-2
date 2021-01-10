@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Regler</title>
+        <style>
+        </style>
+	</head>
+    <body>
+	<h1>Eksempel side 123</h1>
+    
+    <canvas id="1" width="100" height="100"></canvas>
+    <canvas id="2" width="100" height="100"></canvas>
+    <canvas id="3" width="100" height="100"></canvas>
+    <canvas id="4" width="100" height="100"></canvas>
+    <canvas id="5" width="100" height="100"></canvas>
+    <canvas id="6" width="100" height="100"></canvas>
+    <canvas id="7" width="100" height="100"></canvas>
+    <canvas id="8" width="100" height="100"></canvas>
+    
+    <button id="btn1" data-knapp="knapp1">Trykk her</button>
+    <button id="btn2" data-knapp="knapp2">Trykk her</button>
+    
+    <input id="inp">
+    
+    <input type="radio" id="rJa" name="test" value="Ja">
+    <input type="radio" id="rNei" name="test" value="Nei">
+    
+    <select id="velg">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select>
+    
+    <form id="sjema">
+        <input type="number" id="number">
+        <button type="submit">Send</button>
+    </form>
+        <script>
+            var canvas1 =document.getElementById("1");
+            var canvas2 =document.getElementById("2");
+            var canvas3 =document.getElementById("3");
+            var canvas4 =document.getElementById("4");
+            var canvas5 =document.getElementById("5");
+            var canvas6 =document.getElementById("6");
+            var canvas7 =document.getElementById("7");
+            var canvas8 =document.getElementById("8");
+            
+            var ctx1 = canvas1.getContext("2d");
+            var ctx2 = canvas2.getContext("2d");
+            var ctx3 = canvas3.getContext("2d");
+            var ctx4 = canvas4.getContext("2d");
+            var ctx5 = canvas5.getContext("2d");
+            var ctx6 = canvas6.getContext("2d");
+            var ctx7 = canvas7.getContext("2d");
+            var ctx8 = canvas8.getContext("2d");
+            
+            ctx1.rect(20,20,20,20)
+            ctx1.stroke();
+            //ctx1.rect(x,y,w,h);
+            ctx2.ellipse(20,20,30,40,0,2*Math.PI,20);
+            ctx2.stroke();
+            //ctx2.ellipse(x,y,w,h);
+            ctx3.arc(20,20,40,0,2*Math.PI);
+            ctx3.stroke();
+            
+            var btn1 = document.getElementById("btn1");
+            var btn2 = document.getElementById("btn2");
+            var inp = document.getElementById("inp"); 
+            var rJa = document.getElementById("rJa");
+            var velg = document.getElementById("velg");
+            var sjema = document.getElementById("sjema");
+            var number = document.getElementById("number");
+                
+            btn1.onclick;
+            btn2.onmouseover;
+            inp.onfocus;
+            inp.oninput;
+            inp.onkeyup;
+            inp.onchange;
+            
+            inp.value;
+            inp.onkeyup;
+            //Se side 131 for attributter
+            //Se side 135 for alle inputelementer 
+            rJa.checked;
+            
+            velg["indeks"]
+            
+            sjema.onsubmit = function(evt){
+                evt.preventDefault();
+            }
+            number.value;
+            
+            //.push
+
+
+
+
+            //                sum.sort(function(a, b){ //Hentet fra w3 for å sorteren strings (trengs ikke)
+//                    var x = a.matvare.toLowerCase();
+//                    var y = b.matvare.toLowerCase();
+//                    if (x < y) {return -1;}
+//                    if (x > y) {return 1;}
+//                    return 0;
+//                }); 
+
+//finne min
+function myArrayMin(arr) {
+    return Math.min.apply(null, arr);
+}
+        </script>
+        <a href="https://www.w3schools.com/jsref/jsref_obj_array.asp">link</a>
+	</body>
+</html>

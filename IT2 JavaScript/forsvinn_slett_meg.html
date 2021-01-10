@@ -1,0 +1,33 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Matteside</title>
+        <style>
+        </style>
+	</head>
+	<body>
+        <div id="boks1">
+            <p onclick="slett(this.parentElement)">X</p>
+            <h1>En del tekst med ting</h1>
+        </div>
+        <script>
+            function slett(boks){
+                boks.animate(animasjon, kontrollobjekt);
+                setTimeout(function(){boks.style.display='none'}, 1000);
+            }
+            
+            var animasjon = [
+                {opacity:1},
+                {opacity:0}
+            ];
+            
+            var kontrollobjekt = {
+                duration: 1000,
+                easing:'ease',
+                fill:'forwards'
+            }
+        </script>
+    </body>
+</html>

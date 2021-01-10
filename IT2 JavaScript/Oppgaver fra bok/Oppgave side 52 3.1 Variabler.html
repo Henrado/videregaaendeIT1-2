@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver s. 60</title>
+	</head>
+	
+	<body>
+		<h1>Oppgave 4</h1>
+		<p id="velkommen"></p>
+		
+		<h1>Oppgave 5</h1>
+		<p id="innvitasjon"></p>
+		
+		<h1>Oppgave 6</h1>
+		<p id="historie"></p>
+		
+		<script>
+			
+            //Oppgave 4
+			var velkommennavn = "0";
+			
+			velkommennavn = prompt("Skriv inn et navn");
+			
+			document.getElementById("velkommen").innerHTML = "Velkommen " + velkommennavn;
+			
+			
+            //Oppgave 5
+			var innvitasjon ="";
+			
+			innvitasjon = prompt("Skriv inn et navn");
+			
+			document.getElementById("innvitasjon").innerHTML = "Velkommen " + innvitasjon + " til min fest!!";
+			
+            
+            //Oppgave 6 
+						
+			var adjek_1 = prompt("Skriv inn adjektiv 1");
+			var adjek_2 = prompt("Skriv inn adjektiv 2");
+			var adjek_3 = prompt("Skriv inn adjektiv 3");
+			var adjek_4 = prompt("Skriv inn adjektiv 4");
+			var adjek_5 = prompt("Skriv inn adjektiv 5");
+			var adjek_6 = prompt("Skriv inn adjektiv 6");
+			
+			document.getElementById("historie").innerHTML = adjek_1 + " Anne hadde invitert til sommergrilling. Først av alle kom " + adjek_2 + " Petter, han hadde med en flaske " + adjek_3 + " rødvin. Deretter kom den " + adjek_4 + " familien Blomkvist, der den " + adjek_5 + " Geir hadde glemt å fylle bensin på den " + adjek_6 + " bilen, så de kom fem " + adjek_2 + " minutter for sent.";
+		</script>
+		
+	</body>
+</html>

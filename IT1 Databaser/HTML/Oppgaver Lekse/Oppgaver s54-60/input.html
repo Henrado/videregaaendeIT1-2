@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="stilark.css">
+		<title>Oppgaver s. 54-60</title>
+	</head>
+	
+	<body>
+		<h1>Her kan du mene det du vil!</h1>
+		<form method="GET">
+			<p>Farge 
+			<input type="text" name="farge"></p>
+			
+			<p>Din alder:
+			<input type="number" step="1" size="3" name="alder"></p>
+			
+			<p>Ditt passord:
+			<input type="password" name="passord"></p>
+			
+			<input type="submit" name="sendinn" value="send inn">
+		</form>
+		<button onclick="farge()">Change text</button>
+
+			<script>
+			function farge() {
+			document.getElementById("myHeader").innerHTML = "Have a nice day!";
+			}
+</script>
+	</body>
+	
+	
+	
+</html>

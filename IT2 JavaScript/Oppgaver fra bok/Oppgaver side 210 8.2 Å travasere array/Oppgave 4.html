@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 144</title>
+        <style>
+        </style>
+	</head>
+	<body>
+        <script>
+            var elevene = [{navn: "A", alder: 14}, {navn: "B", alder: 13}, {navn: "Daniel", alder: 18}];
+            
+            elevene.sort(function(a,b){
+                return a.alder - b.alder;
+            })
+            
+            elevene.reverse();
+            
+            for(var elev of elevene){
+                document.write(elev.navn + " " + elev .alder + "<br>");
+            }
+        </script>
+	</body>
+</html>

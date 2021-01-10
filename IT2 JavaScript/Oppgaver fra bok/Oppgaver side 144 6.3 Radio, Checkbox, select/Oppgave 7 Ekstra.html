@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 144</title>
+        <style>
+            div {
+                text-align: center;
+                background-color: aqua;
+                display:flex;
+                flex-direction:row;
+                border: solid;
+            }
+            button {
+                width: 200px;
+            }
+        </style>
+	</head>
+	<body>
+        <p>Fornavn <input id="fNavn" type="text" required></p>
+        <p>Etternavn <input id="eNavn" type="text" required></p>
+        <span>
+            Kjønn:
+            <label for="mann">Mann</label>
+            <input id="mann" type="radio" name="kjonn" data-kjonn="mann">
+            <label for="kvinne">Kvinne</label>
+            <input id="kvinne" type="radio" name="kjonn" data-kjonn="kvinne">
+        </span>
+        <p>Alder <input id="alder" type="number" required></p>
+        <p><button id="btnKnapp" type="submit">Trykk her</button></p>
+        <p id="info"></p>
+        <script>
+            var inpfNavn = document.getElementById("fNavn");
+            var inpeNavn = document.getElementById("eNavn");
+            var inpMann = document.getElementById("mann");
+            var inpKvinne = document.getElementById("kvinne");
+            var inpAlder = document.getElementById("alder");
+            var btnKnapp = document.getElementById("btnKnapp");
+            var info = document.getElementById("info");
+            
+            
+            btnKnapp.onclick = function(){
+                if (inpMann.checked){
+                    var kjonn = "mann";
+                }
+                else if (inpKvinne.checked){
+                    var kjonn = "kvinne";
+                }
+                else {
+                    var kjonn = "udefinert"
+                }
+                info.innerHTML = "Hei " + inpfNavn.value + " " + inpeNavn.value + ". " + "Du er " + inpAlder.value + " år og ditt kjønn er " + kjonn;
+            }
+        </script>
+	</body>
+</html>

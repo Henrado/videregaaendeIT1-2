@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 152</title>
+        <style>
+            #bilderamme {
+                width: 475px;
+                height: 320px;
+                border: 1px solid dimgrey;
+                overflow: hidden;
+                margin: 50px auto;
+            }
+            #imgPing {
+                cursor: zoom-in;
+                width: 475px;
+            }
+        </style>
+	</head>
+	<body>
+        <h1>Oppgave 3</h1>
+        <div id="bilderamme">
+            <img id="imgPing" src="Pingviner%201900%20px%20bred.jpg">
+        </div>
+        <script>
+            var imgPing = document.getElementById("imgPing");
+            var bilderamme = document.getElementById("bilderamme");
+            imgPing.onmousemove = function(evt){
+                imgPing.style.width = "1900px";
+                imgPing.style.marginLeft=3*(-evt.clientX+bilderamme.offsetLeft) + "px";
+                imgPing.style.marginTop=3*(-evt.clientY+bilderamme.offsetTop) + "px";
+            }
+            imgPing.onmouseout = function(evt){
+                imgPing.style.width = "475px";
+                imgPing.style.marginTop=0;
+                imgPing.style.marginLeft=0;
+            }
+            
+        </script>
+	</body>
+</html>

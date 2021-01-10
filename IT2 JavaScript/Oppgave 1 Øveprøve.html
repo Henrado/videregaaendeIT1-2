@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Øveprøve oppgave 1</title>
+        <style>
+            .div{
+                width: 200px;
+            }
+        
+        </style>
+	</head>
+	
+	<body>
+        <h1>DIV elementer</h1>
+        <div id="div1" class="div">Dette er første del av en tekst</div>
+        <div id="div2" class="div">Dette er andre del av en tekst</div>
+        <div id="div3" class="div"></div>
+        
+		<script>
+            var tekst1 =""; //Deklarerer variabler
+            var tekst2 ="";
+            var tekst3 ="";
+            
+            tekst1 = document.getElementById("div1").innerHTML; //Henter ut tekst
+            tekst2 = document.getElementById("div2").innerHTML; //Henter ut tekst
+            
+            tekst3 = prompt("Her kan du skrive inn en tekst"); //Får inn brukerdata
+            
+            document.getElementById("div3").innerHTML=tekst1+"<br>"+tekst2 + "<br>" + tekst3; // Skriver ut i div3
+            
+            document.getElementById("div3").style.backgroundColor="red"; //Skifter farge på div3 til rød
+        </script>
+		
+	</body>
+</html>

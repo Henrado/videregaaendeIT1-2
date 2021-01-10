@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Canvas oppgaver side 72</title>
+	</head>
+	
+	<body>
+       
+        <canvas id="canvas" width="500" height="400"></canvas>
+		
+        <script>
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            var farge = ["red", "green","blue", "pink", "yellow", "#666699", "Lime", "#00ccff", "#ff00bf", "#ff8000"]
+            var bredde = window.innerWidth;
+            var hoyde = window.innerHeight;
+            
+            canvas.width=bredde;
+            canvas.height=hoyde;
+            
+            for(var i =1;i<=100;i++){
+            
+            var radius = Math.round(Math.random()*bredde/2+1);
+            var posBredde = Math.round(Math.random()*bredde);
+            var posHoyde = Math.round(Math.random()*hoyde);
+            var fargeNr = Math.round(Math.random()*9);
+            
+            ctx.beginPath()
+            ctx.fillStyle=farge[fargeNr];
+            ctx.arc(posBredde,posHoyde,radius/2,0,2*Math.PI);   
+            ctx.fill();
+            ctx.stroke();
+            }
+		</script>
+		
+	</body>
+</html>

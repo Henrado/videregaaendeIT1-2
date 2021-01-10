@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 117</title>
+        
+	</head>
+	
+	<body>
+        <h1>Oppgave 4</h1>
+        <span><input id="inpTall1" type="number"></span>
+        <span id="svar1"></span>
+        
+		<script>
+            var tall1 = document.getElementById("inpTall1");
+            var svar1 = document.getElementById("svar1");
+            
+            function regne(){
+                var t1 = Number(tall1.value);
+                var sum = 0;
+                 
+                sum = t1 * 3.6;
+                svar1.innerHTML = sum + "km/h";
+            }
+            tall1.oninput = regne;
+        </script>
+	</body>
+</html>

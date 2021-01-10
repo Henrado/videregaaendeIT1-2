@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Heldagsprøve IT2 11.12.2017</title>
+        <style>
+            body {
+                background-color: cornflowerblue;
+            }
+            #alt {
+                display: flex;
+                flex-direction: row;
+                
+            }
+            .div {
+                width: 33%;
+                padding: 10px;
+                text-align: center;
+            }
+            .smaBilder {
+                width: 250px;
+            }
+            #info {
+                background-color: aquamarine;
+                padding: 10px;
+                flex-basis:1;
+                flex-wrap: wrap;
+                position: relative;
+                max-width: 1000px;
+                margin: auto;
+                align-items: center;
+            }
+            #stortBilde {
+                width: 100%;
+            }
+            video {
+                width: 100%;
+            }
+            span {
+                font-weight: bold;
+            }
+            #bildeTekst {
+                position: absolute;
+                left: 20px;
+                top: 10px;
+                color:crimson;
+                padding: 20px;
+                font-size: 25px;
+            }
+        </style>
+	</head>
+	<body>
+    <h1>Oppgave 2</h1>
+        <h2>Trykk på en hund får å få info om rasen</h2>
+        <div id="alt">
+            <div class="div"><img class="smaBilder" src="./media/belgiskFaarehund.JPG" id="faarehund"></div>
+            <div class="div"><img class="smaBilder" src="./media/mops.JPG" id="mops"></div>
+            <div class="div"><img  class="smaBilder"src="./media/shetlandSheepdog.JPG" id="shetlandDog"></div>
+        </div>
+        <div id="info"></div>
+        <h2>Her er en video som handler om hundetrening</h2>
+        <video src="media/hundevideo.mp4" controls></video>
+        <script>
+            var faarehund = document.getElementById("faarehund");
+            var shetlandDog = document.getElementById("shetlandDog");
+            var mops = document.getElementById("mops");
+            var info = document.getElementById("info");
+            var innhold = 0;
+            
+            faarehund.onclick = function(){ //Kjører en hendelssestyrt funksjon som aktiveres i det brukeren trykker på bildet. 
+                if (innhold === "faarehund"){ //Bruker true/false metoden for å skille mellom hvilket bilde som er oppe. Dette for å kunne gå mellom de 
+                    innhold = "";
+                    info.innerHTML= "";
+                }
+                else {
+                    innhold = "faarehund";
+                    info.innerHTML = "<img src='media/belgiskFaarehund.JPG' id='stortBilde'><span id='bildeTekst'>Den belgiske fårehunden kommer, som navnet tilsier, fra Belgia. Det er en aktiv brukshund, og brukes blant annet av politi og forsvaret. Hvis den skal fungere godt som familiehund, så trenger den arbeidsoppgaver å bryne seg på så den får brukt hodet</span>";
+                }
+            }
+            shetlandDog.onclick = function(){
+                if (innhold === "shetlandDog"){
+                    innhold = "";
+                    info.innerHTML = "";
+                }
+                else {
+                    innhold = "shetlandDog";
+                    info.innerHTML = "<img src='media/shetlandSheepdog.JPG' id='stortBilde'><span id='bildeTekst'>Hjemlandet til Shetland Sheepdog er England, men den kommer opprinnelig fra Shetlandsøyene. Sheltien er ofte myk i væremåten. Et lite kremt kan være nok til at den forstår at den har gjort noe galt. Sheltien er lærenem og kvikk, og egner seg godt til å trene lydighet og agility. Den egner seg godt som familiehund.</span>";
+                }
+            }
+            mops.onclick = function(){
+                if (innhold === "mops"){
+                    innhold = "";
+                    info.innerHTML ="";
+                }
+                else {
+                    innhold ="mops";
+                    info.innerHTML = "<img src='media/mops.JPG' id='stortBilde'><span id='bildeTekst'>Mopsen er en gammel kinesisk rase. I hjemlandet var denne såkalte happa-hunden folks hushund. Mopsen er en godmodig hund med en stødig karakter. Den egner seg derfor godt som familiehund</span>";
+                }
+            }
+        </script>
+	</body>
+</html>

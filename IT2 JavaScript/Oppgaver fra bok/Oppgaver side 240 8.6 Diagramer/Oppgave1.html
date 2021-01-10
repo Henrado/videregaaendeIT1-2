@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 144</title>
+        <style>
+            #diagram >div{
+                height: 20px;
+                background-color: aqua;
+                padding: 5px;
+                margin-bottom: 15px;
+            }
+            div {
+                border: solid;
+            }
+            #diagram2 {
+                display: flex;
+                width: 100%;
+                height: 100%;
+                flex-direction: row;
+                align-items: flex-end;
+            }
+            #diagram2 > div {
+                background-color: darkgreen;
+                margin: 5px;
+                flex-grow: 1;
+            }
+        </style>
+	</head>
+	<body>
+        <h1>Kilo utgåtte matvarer</h1>
+        <div id="diagram"></div>
+        <br>
+        <div id="diagram2"></div>
+        <script>
+            var diagramDiv = document.getElementById("diagram");
+            var data = [2.1,1.7,2.4,0.2];
+            
+            for (var kilo of data){
+                diagramDiv.innerHTML += "<div style='width:" + kilo*200 + "px'>"+ kilo + "</div>"
+            }
+            
+            
+            var diagram2 = document.getElementById("diagram2");
+            for (var kilo of data){
+                diagram2.innerHTML += "<div style='height:" + kilo*100 + "px'>"+ kilo + "</div>"
+            }
+        </script>
+	</body>
+</html>

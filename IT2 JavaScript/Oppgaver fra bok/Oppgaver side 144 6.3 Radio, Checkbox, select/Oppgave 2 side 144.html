@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 144</title>
+        <style>
+            div {
+                text-align: center;
+                background-color: aqua;
+                display:flex;
+                flex-direction:row;
+                border: solid;
+            }
+            button {
+                width: 200px;
+            }
+        </style>
+	</head>
+	<h1>Oppgave 2</h1>
+    <label><input type="radio" id="fargeBilSvart" name="valgBil" data-bilde="Terning1.jpg">Svart</label>
+    <label><input type="radio" id="fargeBilHvit" name="valgBil" data-bilde="Terning2.jpg">Hvit</label>
+    <label><input type="radio" id="fargeBilGronn" name="valgBil" data-bilde="Terning3.jpg">Grønn</label>
+    <img id="imgBil" src="../media/#">
+    <p id="info"></p>
+	<body>
+        <script>
+            var fargeBilSvart = document.getElementById("fargeBilSvart");
+            var fargeBilHvit = document.getElementById("fargeBilHvit");
+            var fargeBilGronn = document.getElementById("fargeBilGronn");
+            var info = document.getElementById("info");
+            var imgBil = document.getElementById("imgBil");
+            
+            function sjekkFarge(evt){
+                var rb = evt.target;
+                var bilBilde = rb.getAttribute("data-bilde");
+                imgBil.src = "../media/" + bilBilde;
+            }
+            fargeBilSvart.onclick = fargeBilGronn.onclick = fargeBilHvit.onclick = sjekkFarge;
+        </script>
+	</body>
+</html>

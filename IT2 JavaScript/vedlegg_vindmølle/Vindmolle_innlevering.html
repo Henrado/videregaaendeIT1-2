@@ -1,0 +1,186 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 267</title>
+        <style>
+            #verden {
+                height: 600px;
+                width: 960px;
+                position: relative;
+            }
+            body {
+                background-color: aqua;
+                background-image: url(windows_xp.jpg);
+                background-size:cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                overflow: hidden;
+            }
+            #molle {
+                left: 150px;
+                position: relative;
+                height: 685px;;
+                width: 354px;
+                
+            }
+            #stang {
+                width: 354px;
+                height: 685px;
+                background-image: url(vindmolle_stolpe.png);
+                position: absolute;
+            }
+            #rotor {
+                width: 354px;
+                height: 410px;
+                background-image: url(vindmolle_rotor.png);
+                position: absolute;
+            }
+            .tre {
+                width: 150px;
+                height: 270px;
+                position: absolute;
+                background-image: url(standard_bjoerk.png);
+                background-repeat: no-repeat;
+                background-size: 250px;
+            }
+            .blader1, .blader2 {
+                position: absolute;
+                background-image: url(standard_bjoerk.png);
+                width: 30px;
+                height: 40px;
+                background-size: 70px;
+                background-position: right bottom;
+                left: 80px;
+                bottom: 220px;
+            }
+            #tre1 {
+                bottom: 30px;
+                left: 10px;
+            }
+            #tre2 {
+                bottom: 40px;
+                left: 800px;
+            }
+            #tre3 {
+                bottom: 80px;
+                left: 550px;
+                background-size: 180px;
+                width: 100px;
+            }
+        </style>
+	</head>
+	<body>
+        <div id="verden">
+            <span>
+                <select id="inpVind"></select><span id="info">Test</span>
+            </span>
+                <div class="blader1"></div>
+                <div class="blader1"></div>
+                <div class="blader1"></div>
+                <div class="blader1"></div>
+                <div class="blader1"></div>
+                <div class="blader1"></div>
+                <div class="blader1"></div>
+                <div class="blader1"></div>
+                <div class="blader2"></div>
+                <div class="blader2"></div>
+                <div class="blader2"></div>
+                <div class="blader2"></div>
+                <div class="blader2"></div>
+                <div class="blader2"></div>
+                <div class="blader2"></div>
+                <div class="blader2"></div>
+                <div class="blader2"></div>
+            <div class="tre" id="tre1"></div>
+            <div class="tre" id="tre2"></div>
+            <div class="tre" id="tre3"></div>
+            <div id="molle">
+                <div id="stang"></div>
+                <div id="rotor"></div>
+            </div>
+        </div>
+        <audio id="lyd" src="sommervind.mp3" loop></audio>
+        <script>
+            var verden = document.getElementById("verden");//Deklarer variabler 
+            var inpVind = document.getElementById("inpVind");
+            var vinder = document.getElementById("vinder");
+            var rotor = document.getElementById("rotor");
+            var indo = document.getElementById("info");
+            var lyd = document.getElementById("lyd");
+            
+
+            var valgtIndex = 0;
+            
+            var data = [
+                {navn:"Stille", styrke:"0-0.2", roter:1}, //Alle verdier 
+                {navn:"Lett bris", styrke:"3.4-5.4", roter:2},
+                {navn:"Stiv kuling", styrke:"13.9-17.1", roter:3},
+                {navn:"Orkan", styrke:"3.7 -++", roter:9}
+            ];
+            
+            
+            for (var vindNavn of data){
+                inpVind.innerHTML+= "<option>" + vindNavn.navn + "</option>"; //Lager option verdier 
+            };
+            
+            verden.style.height = window.innerHeight + "px";
+            verden.style.width = window.innerWidth + "px";
+            console.log(window.innerHeight);
+            console.log(window.innerWidth);
+            
+            snurr(); //kjører funksjonen snurr fra starten av
+            
+            inpVind.onchange = function(){ //når man bytter vind starter man funksjonen på nytt
+                snurr();
+            }
+            
+            function snurr(){ //Funksjonen som gjør at ting skjer
+                var valgtIndex = inpVind.selectedIndex; //Finner hvilken vind som er valgt
+                
+                indo.innerHTML = "Vinden har en hastighet på: " + data[valgtIndex].styrke + " m/s"; //Skriver ut hvilken vind
+                console.log(valgtIndex); //Logg for meg
+                
+                rotor.animate([ //Roterer vindmøllen 
+                    {transform:"rotate(0deg)"},
+                    {transform:"rotate("+ data[valgtIndex].roter*360 + "deg)"} //360 grader ganger vindstyrke som skal gjørs på 5 sekunder 
+                ],{
+                    duration: 5000,
+                    iterations: Infinity
+                })
+                var pikserVenstre = 60; //Er hvor mye til venstre det første treret er 
+                var bladerClass = document.getElementsByClassName("blader1"); //Refererer til alle bladene med class="blader1" (til tre 1)
+                
+                for (var j = 0; j < 2; j++){ //Er her siden det er to trær som skal ha løv
+                    if(j === 1){ //når det første treet er ferdig skal man sette det neste
+                        pikserVenstre = 860;
+                        bladerClass = document.getElementsByClassName("blader2");
+                    }
+                    for(var i = 0; i < bladerClass.length; i++){ //går gjennom alle bladene og setter setter en animasjon 
+                        console.log("KJører blad animasjon");
+                        var tilfeldig = Math.random()+1; //Lager et tilfeldig nummer som gjør at ikke alle er helt like
+                        console.log(tilfeldig);
+                        console.log("kjører" + i);
+                        bladerClass[i].animate([
+                            {transform:"rotate(0deg)", left: pikserVenstre + "px", bottom: 220*tilfeldig/2+"px"},//Startposisjon 
+                            {transform: "rotate(" + 40*data[valgtIndex].roter + "deg)"}, //Løvet skal snurre litt
+                            {transform: "rotate(" + (-40)*data[valgtIndex].roter + "deg)"},
+                            {transform: "rotate(" + 50*data[valgtIndex].roter + "deg)", left: pikserVenstre+50*tilfeldig*data[valgtIndex].roter + "px", bottom: 50*tilfeldig/2+"px"} //Der løvet skal lande 
+                        ],{
+                            duration: 5000, 
+                            iterations: Infinity,
+                            easing: "ease-in-out",
+                            delay: (Math.random()*8000)//Så ikke alle bladene skal falle på likt
+                        })
+                    }
+                }
+                if(valgtIndex > 0){
+                    lyd.play(); //ER vinden sterkere enn stille skal lyd spille 
+                }else{
+                    lyd.pause();
+                }
+            }
+        </script>
+	</body>
+</html>

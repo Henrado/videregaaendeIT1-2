@@ -1,0 +1,114 @@
+.Main {
+	width: 80%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+    margin: auto;
+	background-color:;
+}
+
+body {
+	background-image: url("./bilder/background.png");
+	background-repeat: no-repeat;
+	background-color:#031323;
+}
+
+.Banner1{
+	flex-basis: 100%;    /*Til banner div*/
+	order: 1;
+}
+.allmeny {
+	flex:1;
+	order:2;
+	flex-wrap: wrap;
+	flex-direction: row;
+	background-color:#FFFFFF;
+	height:;
+	border:solid;
+}
+.Banner img{
+	height:200px;
+	width:100%;
+}
+.Banner{				/*Til banner image*/
+	display: block;
+	width: auto;
+	margin: 0 auto;
+	text-indent: -9999px;
+	/*background-image: url("../bilder/banner.png");*/
+	background-repeat: no-repeat;
+	background-position: left bottom;
+	background-size:100%;
+	background-position: center;
+	border-bottom-style: groove;
+	border-bottom-width: 3px;
+}
+ul {
+    list-style-type: none; /* fjerner kulepunkter */
+    margin: 20px; /* fjerner alle mellomrom */
+    padding: 0; /* fjerner alle mellomrom */
+}
+ul li {
+    display: inline; /* gjør listepunktene til inline */
+	
+}
+ul a {
+    padding: 10px 30px; /* avstand mellom bokskant og innhold, topp/bunn 10px og sider 30px */
+    color: #000000; /* mørk grå tekst */
+    font-weight: bold; /* fet tekst */
+    text-decoration: none; /* fjerner understrek */
+    background-color: #ff4605; /* oransje */
+}
+ul a:hover {
+    background-color: #ebe584; /* lys gul */
+}
+
+.Innhold {
+	background-color: #6CB9EE;
+	order: 4;
+	flex-basis: 100%;
+	height: 65%;
+	float: left;
+	border-top: solid groove;
+}
+.Bunntekst{
+	background-color: lightgoldenrodyellow;
+	order: 5;
+	width: 100%;
+	height: 5%;
+}
+table {
+	border-color: #000000;
+	border-collapse:collapse;
+	width:100%;
+}
+th {
+	background-color: #0540DE;
+	border: 1px solid;
+}
+td {
+	background-color: #135DF4;
+	border: 1px solid;
+}
+
+.ting {
+	border:;
+	flex-basis:1;
+	flex-direction:row;
+	display:flex;
+	padding:5px;
+	color:black;
+}
+.link1 {
+	text-decoration: none;
+}
+.p-bilde {
+	flex-basis:1;
+}
+.p-text {
+	flex-basis:40%;
+}
+.p-pris {
+	text-align:right;
+	flex:1;
+}

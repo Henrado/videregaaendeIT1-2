@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Øveprøve til heldags 2017</title>
+        <style>
+        </style>
+	</head>
+	<body>
+        <h1>Oppgave 3</h1>
+        <h2>1.</h2>
+        <div id="oppgave1"></div>
+        
+        <h2>2.</h2>
+        <div id="oppgave2"></div>
+        
+        <h2>3.</h2>
+        <div id="oppgave3"></div>
+        
+        <h2>4.</h2>
+        <div id="oppgave4"></div>
+        <script>
+            //Den 1. oppgaven
+            var tall = [8,1,12,17,-21,34,-5,7,-9,51];
+            var oppgave1 = document.getElementById("oppgave1");
+            
+            for(var i=0;i<tall.length;i++){
+                oppgave1.innerHTML += "<p>"+ tall[i] + "</p>";
+            }
+            
+//            for(var tall of tall){
+//                oppgave1.innerHTML += "<p>"+ tall + "</p>";
+//            }
+            
+            //Den 2. oppgaven
+            var oppgave2 = document.getElementById("oppgave2");
+            var sum = 0;
+            
+            for(var i=0;i<tall.length;i++){
+                sum = sum + tall[i];
+            }
+            oppgave2.innerHTML += "<p>Summen av alle tallene er: "+ sum + "</p>";
+            
+            //Den 3. oppgaven
+            var oppgave3 = document.getElementById("oppgave3");
+            
+            for(var i=0;i<tall.length;i++){
+                sum = sum + tall[i];
+            }
+            sum = sum/tall.length;
+            
+            oppgave3.innerHTML += "<p>Gjennomsnittet av alle tallene er: "+ sum + "</p>";
+            
+            //Den 4. 
+            
+            var oppgave4 = document.getElementById("oppgave4");
+            
+            for(var i=0;i<tall.length;i++){
+                if(tall[i]>4){
+                    oppgave4.innerHTML += "<p>"+ tall[i] +"</p>";
+                }
+            }
+        </script>
+	</body>
+</html>

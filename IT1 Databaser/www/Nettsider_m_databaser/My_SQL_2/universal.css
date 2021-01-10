@@ -1,0 +1,65 @@
+table {
+border: solid;
+}
+
+table th {
+color: #FF0000;
+border: solid;
+border-color:#00FF00;
+}
+
+table td {
+color: #0000FF;
+}
+
+input[type="text"] {         
+	width: 220px; /* tekstfeltets bredde */
+	padding: 5px; /* avstand mellom bokskant og innhold */
+	color: #666666; /* grå tekst */
+	border: none; /* ingen kantlinje */
+	border-radius: 4px; /* avrunder kantlinjer */
+	margin-bottom: 10px; /* luft nedenfor tekstfelt */
+}
+
+input[type="submit"] {        
+	padding: 8px 15px;  /* avstand mellom bokskant og innhold */
+	font-weight: bold; /* fet tekst */
+	color: #444444; /* mørkegrå tekst */
+	border: none; /* ingen kantlinje */
+	background-color: #888888; /* grå */
+}
+.innpakning {
+	border:solid;
+	display:flex;
+	flex-direction:row;
+	height:200px;
+}
+
+.en {
+	width:25%;
+	text-align:center;
+	font-size:30px;
+	background-color:red;
+}
+
+.to {
+	background-color:pink;
+	font-size:30px;
+	text-align:center;
+	width:25%;
+}
+
+.tre {
+	background-color:yellow;
+	font-size:30px;
+	text-align:center;
+	width:25%;
+}
+
+.fire {
+	background-color:green;
+	font-size:30px;
+	text-align:center;
+	flex:1;
+}
+

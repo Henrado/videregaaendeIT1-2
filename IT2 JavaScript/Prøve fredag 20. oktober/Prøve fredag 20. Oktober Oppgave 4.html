@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Prøve fredag 20. Oktober Kap1</title>
+	</head>
+	
+	<body>
+        <h1>Oppgave 4</h1>
+        <canvas id="canvas" width="500" height="400"></canvas>
+		
+        <script>
+            var canvas = document.getElementById("canvas"); //Deklarerer variabler som skal brukes senere
+            var ctx = canvas.getContext("2d");
+            var farge = ["red", "green","blue", "pink", "yellow", "#666699", "Lime", "#00ccff", "#ff00bf", "#ff8000", "red"]; 
+            var bredde = window.innerWidth; //Finner bredden og lengden av vinduet
+            var hoyde = window.innerHeight;
+            
+            canvas.width=bredde; //Setter bredden og lengden på canvaset like langt som vinduet
+            canvas.height=hoyde;
+            
+            var radius = Math.round(Math.random()*100+100); //Lager radius
+            var posBredde = Math.round(Math.random()*bredde); //Lager lengde og bredde
+            var posHoyde = Math.round(Math.random()*hoyde);
+            //var fargeNr = Math.round(Math.random()*farge.length); //Hvis du vil ha farger kan du fjerne kommentarstrekene
+            var fargeNr = 0; //Eller beholde denne for å bare for å bare ha rød
+            
+            ctx.beginPath()     //Tegner sirkel
+            ctx.fillStyle=farge[fargeNr];
+            ctx.strokeStyle = "blue";
+            ctx.lineWidth = "5";
+            ctx.arc(posBredde,posHoyde,radius/2,0,2*Math.PI);   
+            ctx.fill();
+            ctx.stroke();
+            
+        </script>
+		
+	</body>
+</html>

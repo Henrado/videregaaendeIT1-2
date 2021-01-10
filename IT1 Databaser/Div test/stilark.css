@@ -1,0 +1,36 @@
+h1 {
+
+}
+h2 {
+	
+}
+
+body {
+	
+}
+
+#banner {
+	border-style: dashed;
+	width: 100%;
+	height: 250px;
+}
+#meny {
+	border-style: dashed;
+	width: 19%;
+	height: 900px;
+	float: left;
+}
+#innhold {
+	border-style: dashed;
+	width: 80%;
+	height: 900px;
+	float: right;
+}
+/*Koder CSS:
+background-color:	;
+font-family:	;	Skrift
+font-size:	;
+font-style:	; px
+color:	;
+
+*/

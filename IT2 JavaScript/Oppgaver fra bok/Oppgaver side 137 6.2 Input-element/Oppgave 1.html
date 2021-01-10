@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 117</title>
+        
+	</head>
+	
+	<body>
+        <h1>Oppgave 1</h1>
+        <label for="oppgave1">Input</label>
+        <span><input id="oppgave1" type="text"></span>
+        <span id="tekst"></span>
+        
+		<script>
+            var oppgave1 = document.getElementById("oppgave1");
+            var tekst = document.getElementById("tekst");
+            
+            function hendelse(){
+                tekst.innerHTML = oppgave1.value;
+            }
+            
+            oppgave1.oninput = hendelse;
+            
+            oppgave1.onfocus = function(){
+                oppgave1.value = "";
+            }
+        </script>
+	</body>
+</html>

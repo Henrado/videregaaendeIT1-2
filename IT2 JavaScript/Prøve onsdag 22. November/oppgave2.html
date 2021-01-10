@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>IT2 prøve 22.11 Henrik</title>
+        <style>
+            p {
+                text-align: center;
+                font-size: 20px;
+            }
+            div {
+                background-color: aqua;
+                padding: 20px;
+                border: solid;
+            }
+            #tekst {
+                color:deeppink;
+            }
+        </style>
+	</head>
+	<h1>Oppgave 2</h1>
+    <div>
+        <h2>Registrer deg her!</h2>
+        <form id="person">
+            <p>Fornavn <input type="text" id="fornavn" placeholder="Fornavn" required></p>
+            <p>Etternavn <input type="text" id="etternavn" placeholder="Etternavn" required></p>
+            <p>Alder <input type="number" id="alder" placeholder="Alder" required></p>
+            <p>Land <select id="land">
+                <option>Spania</option>
+                <option>Norge</option>
+                <option>Sverige</option>
+                <option>Danmark</option>
+                <option>Finnland</option>
+            </select></p>
+            <p><button type="submit">Registrer</button></p>
+        </form>
+    </div>
+    <p id="tekst"></p>
+	<body>
+        <script>
+            var byer = ["Madrid", "Oslo", "Stockholm", "Kjøbenhavn", "Helsinki"];
+            var formPerson = document.getElementById("person");
+            var fornavn = document.getElementById("fornavn");
+            var etternavn = document.getElementById("etternavn");
+            var alder = document.getElementById("alder");
+            var land = document.getElementById("land");
+            var tekst = document.getElementById("tekst");
+            
+            formPerson.onsubmit = function(evt){
+                evt.preventDefault();
+                
+                if (alder.value <= 18){ //Sjekker tall under eller lik 18
+                    var i = "du er virkelig ung. "
+                }
+                else if (alder.value <= 69){ //Sjekker om det kommer tall under 69
+                    var i = "du er midt i livet. "
+                }
+                else if (alder.value > 69){ //Sjekker om det kommer tall over 69
+                    var i = "du har nådd pensjonisttilværelsen. "
+                }
+                else {
+                    var i = ""; //Sjekker om det kommer inn noe som ikke er ett tall 
+                }
+                tekst.innerHTML= "Hei " + fornavn.value + " " + etternavn.value + ", " + i + "Du valgte " + land.value + " som har hovedstaden " + byer[land.selectedIndex]; //bruker land.selectedIndex for å vinne index tallet til select
+            }
+        </script>
+	</body>
+</html>

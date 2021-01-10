@@ -1,0 +1,72 @@
+body{
+    background-color: gainsboro;
+}
+#innhold {
+    display: flex;
+    flex-basis:auto;
+    width: 900px;
+    padding: 20px;
+    margin: auto;
+    border: solid;
+    background-color: #F8B912;
+}
+#holder{
+    width: 100%;
+/*    border: solid;*/
+    background-color: #F8B912;
+}
+.boks{
+/*    border: solid;*/
+/*    display: none;*/
+}
+.sprakValg {
+    background-color: aqua;
+    margin: auto;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+#spmHolder {
+    flex-direction: column;
+    padding: 40px;
+/*    border: solid;*/
+}
+.boks > img {
+    width: 50%;
+}
+.boks > video {
+    width: 100%;
+}
+.boks > p {
+    font-size: 30px;
+}
+#knappHolder{
+/*    background-color: aqua;*/
+    padding: 10px;
+    display: none;
+    flex-direction: row;
+}
+#knappHolder > div {
+    margin: auto;
+}
+.knapp {
+    width: 300px;
+    background-color: #4CAF50; /* Green */
+    border: 2px solid #4CAF50;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.knapp:hover {
+    background-color: white; 
+    color: black; 
+}
+.spm {
+    width: 30px;
+    height: 30px;
+}
+

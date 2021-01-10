@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Heldagsprøve IT2 27.04.18</title>
+        <style>
+            #innhold {
+                border: solid;
+                border-radius: 10px;
+                background-color: white;
+                margin: auto;
+                width: 80%;
+                padding: 20px;
+                align-items: center;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+            }
+            body {
+                background-color: gray;
+            }
+            #divOvelser {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            #divOvelser > div {
+                flex-basis: 1;
+            }
+            #divOvelser > div > img {
+                height: 200px;
+            }
+            .absolute {
+                position: relative;
+                overflow: hidden;
+                width: 100%;
+            }
+            .absolute > #aniBilde {
+                width: 400px;
+            }
+            #infoBoks {
+                width: 100%;
+                overflow: hidden;
+            }
+        </style>
+	</head>
+	<body>
+        <div id="innhold">
+            <h1>De forskjellige sportene</h1>
+            <div id="divOvelser"></div>
+            <div id="infoBoks"></div>
+        </div>
+        <script>
+            var ovelser = [//Setter de forskjellige øvelsene og bilder, noen har også video eller animasjon. Dette er for å forhåpentligvi gjøre koden mere dynamisk 
+                {navn:"Hopp", bilde:"./hopp.jpg", video:"./hoppklippRedigert.mp4"}, 
+                {navn:"Skiskyting", bilde:"./skiskyting.jpg"},
+                {navn:"Skøyter", bilde:"./skoyter.jpg", animasjon:["./skoyteloper.jpg", "skoytelyd.wav"]}, //Egentlig skal man hunne legge in hvilke animasjon man også skal ha men da ble det feilmeldinger 
+                {navn:"Snowbord", bilde:"./snowBord.jpg"},
+                {navn:"Hokkey", bilde:"./hokkey.jpg"}
+            ];
+            
+            var divOvelser = document.getElementById("divOvelser");
+            var infoBoks = document.getElementById("infoBoks");
+            
+            var aniSkoyter = [ //Setter en animasjon 
+                {marginLeft:"-2000px"},
+                {marginLeft:"2000px"}
+            ];
+            
+            var kontrollobjekt = { //Setter et kontrollobjekt (info om animasjonen)
+                duration: 6000,
+                //direction:"alternate", //Valgfritt om man/du vil ha denne tenkte at man går i sirkel på en bane men oppgaven sier fram og tilbake
+                iterations: Infinity,
+                easing: 'ease'
+            };
+            
+            for(var i = 0; i < ovelser.length; i++){ //Skriver ut alle øvelsene som diver som kjører funksjonen (med argumentet index) finnSport når de blir trykket på 
+                divOvelser.innerHTML += "<div onclick='finnSport("+i+")'><img src='"+ovelser[i].bilde+"'><h3>"+ovelser[i].navn+"</h3></div>";
+            }
+            
+            function finnSport(tall){
+                infoBoks.innerHTML = "<h2>"+ovelser[tall].navn+"</h2>";
+                if(ovelser[tall].video){ //Sjekker om valgt sport har en video
+                    infoBoks.innerHTML += "<video src='"+ovelser[tall].video+"' controls autoplay></video>"; //Hvis ja spill av videoen i en tag
+                } else if(ovelser[tall].animasjon){ //Sjekker om valgt sport har en animasjon 
+                    var div = document.createElement("div"); //Forbreder å lage div
+                    div.setAttribute("class", "absolute"); //Setter class
+                    div.setAttribute("id", "animasjonBoks"); //Setter id
+                    div.innerHTML = "<img id='aniBilde' src='"+ovelser[tall].animasjon[0]+"'>"; //Legger til et bilde med id=anibilde
+                    div.innerHTML += "<audio loop src='"+ovelser[tall].animasjon[1]+"' autoplay></audio>"; //Legger til lyd
+                    infoBoks.appendChild(div); //Lager div (barnet og setter det inne i infoBoks)
+                    
+                    var aniBilde = document.getElementById("aniBilde"); //Refererer til bildet som nettopp ble laget 
+                    
+                    aniBilde.animate(aniSkoyter,kontrollobjekt); //Animerer bildet 
+                }
+            }
+        </script>
+	</body>
+</html>

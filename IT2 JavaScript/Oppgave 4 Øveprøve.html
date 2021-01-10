@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Øveprøve oppgave 2</title>
+	</head>
+	
+	<body>
+        <h1>Øveprøve oppgave 3</h1>
+        <p id="makspuls"></p>
+        
+		<script>
+            var tall = 220;
+            var maksPuls = 0;
+            var alder = 0;
+            var tekst = document.getElementById("makspuls");
+            
+            alder = Number(prompt("Hvor gammel er du?"));
+            
+            if(alder < 5){ //Finner ut hvor gammel personen er og svarer deretters
+                tekst.innerHTML= "Du er for ung til å måle pulsen på denne måten";
+            }
+            else if(alder <= 99){
+                maksPuls = tall - alder;
+                tekst.innerHTML= "Din makspuls er: " + maksPuls + " slag per minutt"
+            }
+            else{
+                tekst.innerHTML="Du er litt for gammel til å ta denne testen";
+            }
+            
+        </script>
+		
+	</body>
+</html>

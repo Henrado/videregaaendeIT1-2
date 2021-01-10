@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>2</title>
+        <style>
+            #boks {
+                width: 50px;
+                height: 50px;
+                background-color: aquamarine;
+                transition: 0;
+            }
+        </style>
+	</head>
+	<body>
+        <div id="boks">
+            test
+        </div>
+        <script>
+            var boks = document.getElementById("boks");
+            var mousePosX = 0;
+            var mousePosY = 0;
+            var musTrykket = false;
+            
+            boks.onmousedown = function(e){
+                if(musTrykket){
+                    musTrykket = false;
+                }
+                else{
+                    musTrykket = true;
+                    mousePosX = e.clientX;
+                    mousePosY = e.clientY;
+                    console.log("Finner x yu")
+                }
+            }
+            window.onmouseup = function(e){
+                musTrykket = false;
+            }
+            
+            window.onmousemove = function(evt){
+                var xPos = evt.clientX;
+                var yPos = evt.clientY;
+                
+                
+                
+                if(musTrykket){
+                    var skalarX = (xPos-mousePosX)/10;
+                    boks.style.transform ="scale(" + skalarX + ")";
+                }else{
+                    //kan putte det inn her
+                }
+                    var bredde = xPos-(25);
+                    var hoyde = yPos-25;
+                
+                    boks.style.marginLeft = bredde + "px";
+                    boks.style.marginTop = hoyde + "px";
+                
+                
+            }
+            
+            
+            
+            
+            
+//            window.onmousedown = function(e){
+//                musTrykket = true;
+//            }
+//            window.onmouseup = function(e){
+//                musTrykket = false;
+//            }
+//            
+//                window.onmousedown = function(e){
+//                    if (musTrykket){
+//                    var mousePosX = e.clientX;
+//                    var mousePosY = e.clientY;
+//                    console.log("Kjører")
+//                    boks.style.transform ="scale(" + mousePosY/100 + ")";
+//                }
+//            }
+//            boks.onmousedown = function(e){
+//                var mousePosX = e.clientX;
+//                var mousePosY = e.clientY;
+//                
+////                window.onmousemove = function(evt){
+////                    var xPos = evt.clientX;
+////                    var yPos = evt.clientY;
+////                    
+////                    var skalarX = (xPos-mousePosX)/10;
+////                    boks.style.transform ="scale(" + skalarX + ")";
+////                    return;
+////                }
+//                if(window.onmouseup){
+//                        console.log("stop")
+//                        return;
+//                    }
+//                
+//            }
+        </script>
+	</body>
+</html>

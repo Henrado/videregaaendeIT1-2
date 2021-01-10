@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 253</title>
+        <style>
+        </style>
+	</head>
+	<body>
+        <form id="tabell">
+        <table>
+            <tr>
+                <th>Klokke</th><th>Vindstyrke</th>
+            </tr>
+                <td>Kl. 2-8</td>
+                <td>
+                    <input type="number" id="inpEN" required placeholder="Skriv inn vindstyrke i m/s">
+                </td>
+            <tr>
+                <td>Kl. 8-14</td>
+                <td>
+                    <input type="number" id="inpTO" required placeholder="Skriv inn vindstyrke i m/s">
+                </td>
+            </tr>
+            <tr>
+                <td>Kl. 14-20</td>
+                <td>
+                    <input type="number" id="inpTRE" required placeholder="Skriv inn vindstyrke i m/s">
+                </td>
+            </tr>
+            <tr>
+                <td>Kl. 20-2</td>
+                <td>
+                    <input type="number" id="inpFIRE" required placeholder="Skriv inn vindstyrke i m/s">
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2"><button>Sjekk</button></th>
+            </tr>
+        </table>
+        </form>
+        <p id="info"></p>
+        <script>
+            var tabell = document.getElementById("tabell");
+            var inpEN = document.getElementById("inpEN");
+            var inpTO = document.getElementById("inpTO");
+            var inpTRE = document.getElementById("inpTRE");
+            var inpFIRE = document.getElementById("inpFIRE");
+            var info = document.getElementById("info");
+            var watt = 0;
+            var sumWatt = 0;
+            var timerPerPeriode =0;
+            
+            tabell.onsubmit = function(evt){
+                evt.preventDefault();
+                sumWatt =0;
+                //var vind = inpVind.value;
+                var vinder = [];
+                vinder.push(inpEN.value, inpTO.value, inpTRE.value, inpFIRE.value)
+                timerPerPeriode = 24/(vinder.length);
+                
+                for(var i =0; i < vinder.length; i++){
+                    sumWatt += vindWatt(vinder[i]);
+                    console.log("summen er " + sumWatt)
+                }
+                info.innerHTML = "Vindmøllen produserer tilsammen " + sumWatt + " watt i løpet av døgnet";
+            }
+            
+            function vindWatt(vind){
+                if(vind <= 2.5 || vind > 15){
+                    console.log("utenfor");
+                    watt = 0;
+                } else if (vind < 3.4){
+                    watt = 2;
+                } else if (vind < 5.5){
+                    watt = 10;
+                } else if (vind < 8){
+                    watt = 60;
+                } else if (vind < 10.8){
+                    watt = 150;
+                } else if (vind < 13.9){
+                    watt = 400;
+                } else if (vind < 17.2){
+                    watt = 500;
+                }
+                watt = watt*timerPerPeriode;
+                return watt;
+            }
+        </script>
+	</body>
+</html>

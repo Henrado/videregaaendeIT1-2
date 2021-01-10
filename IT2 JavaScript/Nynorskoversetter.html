@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Nynorsk</title>
+        <style>
+        </style>
+	</head>
+	<body>
+        <textarea id="inpTekst"></textarea>
+        <button id="knapp">Trykk</button>
+        <p id="nynorsk"></p>
+        <script>
+            var inpTekst = document.getElementById("inpTekst");
+            var knapp = document.getElementById("knapp");
+            var nynorsk = document.getElementById("nynorsk");
+            var ordGamle = ["en", "to", "tre"];
+            var ordNye = ["første", "andre", "tredje"];
+            var i = 0;
+            
+            knapp.onclick = function(){
+                var tekst = inpTekst.value;
+                var nyTekst = tekst;
+                var res = tekst.split(".");
+                alert(res);
+                for(var ord of res){
+                    for(var u = 0;u < ordGamle.length;u++){
+                        if(ord == ordGamle[u]){
+                            nyTekst = nyTekst.replace(ord, ordNye[u]);
+                        }
+                    }
+                }
+                nynorsk.innerHTML = nyTekst;
+            }
+            
+        </script>
+	</body>
+</html>

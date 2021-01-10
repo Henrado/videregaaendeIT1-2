@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>If</title>
+	</head>
+	
+	<body>
+        <p id="utskrift"></p>
+		<script>
+            var utskrift = document.getElementById("utskrift");
+            
+            var navn = prompt("Navn");
+            var alder = Number(prompt("Alder"));
+            
+            if(navn === "Henrik" || navn ==="Henrik Mellum") {
+                utskrift.innerHTML = "Velkommen Henrik";
+            }
+            else{
+                utskrift.innerHTML = "Du er ikke henrik";
+            }
+            if(alder <= 18){
+                utskrift.innerHTML+=" men du er ikke myndig"
+            }
+            else{
+                utskrift.innerHTML+=" og du er myndig"
+            }
+		</script>
+		
+	</body>
+</html>

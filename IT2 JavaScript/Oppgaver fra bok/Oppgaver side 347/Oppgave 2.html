@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 347</title>
+        <style>
+        </style>
+	</head>
+	<body>
+        <script>
+            class Film {
+                constructor(tittel, ar, hovedrolle, produsent){
+                    this.tittel = tittel;
+                    this.ar = ar;
+                    this.hovedrolle = hovedrolle;
+                    this.produsent = produsent;
+                }
+                get info(){
+                    return "<p>"+this.tittel + " "+ this.ar+ " "+ this.hovedrolle + " " + this.produsent +"</p>"
+                }
+            }
+            var Ailien = new Film("Ailien", 1980, "Redely", "Universal")
+            var InfinityWar = new Film("Infinety War", 2018, "Maaaange", "Marvel")
+            
+            document.write(Ailien.info);
+            document.write(InfinityWar.info);
+            
+            
+            class Grunnstoff {
+                constructor(navn, atomnummer, periode, gruppe){
+                    this.navn = navn;
+                    this.atomnummer = atomnummer;
+                    this.periode = periode;
+                    this.gruppe = gruppe;
+                }
+                
+            }
+        </script>
+	</body>
+</html>

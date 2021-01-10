@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Innlevering</title>
+	</head>
+	
+	<body>
+		<h1>Oppgave 1</h1>
+		<p id="addisjon">Summen av tallene er: </p>
+        <p id="subtraksjon">Differansen av tallene er: </p>
+        <p id="multiplikasjon">Produktet av tallene er: </p>
+        <p id="divisjon">Deling av tallene er: </p>
+
+        <h1>Oppgave 2</h1>
+		<p id="arryA"></p>
+		<p id="fotballspiller"></p>
+		
+		<script>
+            var ida =document.getElementById("addisjon");
+            var ids =document.getElementById("subtraksjon");
+            var idm =document.getElementById("multiplikasjon");
+            var idd =document.getElementById("divisjon");
+            
+            var tall1 = Number(prompt("Tall 1"));
+            var tall2 = Number(prompt("Tall 2"));
+            
+            var sum = tall1 + tall2;
+            var diff = tall1 - tall2;
+            var prod = tall1 * tall2;
+            var dele = tall1 / tall2;
+            
+            ida.innerHTML += sum.toFixed(2);
+            ids.innerHTML += diff.toFixed(2);
+            idm.innerHTML += prod.toFixed(2);
+            idd.innerHTML += dele.toFixed(2);
+            
+            
+            var arryA = [8, 4, 3, 5];
+            document.getElementById("arryA").innerHTML = arryA[1] + " " + arryA[2];
+			
+			var fotballspiller = {navn:"Lionel Messi", posisjon:"Spiss", draktnummer:"10"};
+			
+			document.getElementById("fotballspiller").innerHTML = fotballspiller.navn + " " + fotballspiller.posisjon + " " + fotballspiller.draktnummer;
+        </script>
+    </body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 117</title>
+        <style>
+            #bilde{
+                transition: 0.5s;
+            }
+        </style>
+	</head>
+	
+	<body>
+        <h1>Oppgave 5</h1>
+        <div><span><input id="inpRoter" min="0" max="360" type="range" value="0"></span>
+            <span><input id="inpFarge" type="color"></span>
+        </div>
+        <img id="bilde" src="Pokal.JPG">
+		<script>
+           var bilde = document.getElementById("bilde");
+            var rotasjon = document.getElementById("inpRoter");
+            var farge = document.getElementById("inpFarge");
+            
+            farge.onchange = function(){
+                document.body.style.background = farge.value;
+            }
+            rotasjon.onchange = function(){
+                bilde.style.transform = "rotate(" + rotasjon.value + "deg)";
+            }
+        </script>
+	</body>
+</html>

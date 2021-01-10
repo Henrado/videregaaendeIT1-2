@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 144</title>
+        <style>
+            #innhold {
+                padding: 20px;
+                margin: auto;
+                width: 90%;
+                background-color: aqua;
+                text-align: center;
+                height: 600px;
+            }
+            img {
+                width: 100%;
+            }
+            #bildeHolder {
+                width: 70%;
+                margin: auto;
+                position: relative;
+                border: solid;
+            }
+            .knapp {
+                position: absolute;
+                top: 50%;
+                width: auto;
+                padding: 16px;
+                border: solid;
+                margin-top: -22px;
+                border-radius: 3px;
+            }
+            .knapp:hover {
+                background-color: blue;
+            }
+            #neste {
+                right: 0;
+            }
+        </style>
+	</head>
+	<body>
+        <div id="innhold">
+            <h1>Bildevisning</h1>
+            <div id="bildeHolder">
+                <img id="bilde" src="./VedleggV2014/Flaske1.png">
+                <div id="neste" data-verdi="1" class="knapp">&#10095;</div>
+                <div id="forgje" data-verdi="-1" class="knapp">&#10094;</div>
+            </div>
+        </div>
+        <script>
+            var bilde = document.getElementById("bilde");   //Deklarer variabler
+            var neste = document.getElementById("neste");
+            var forgje = document.getElementById("forgje");
+            var nummer = 0;
+            var imgKilde = ["./VedleggV2014/Flaske1.png", "./VedleggV2014/Flaske3.png", "./VedleggV2014/Flaske2.png"]; //Setter de forskjellige kildene 
+            
+            imgKilde.sort(sammenlignTekst);
+            
+            neste.onclick = forgje.onclick = function(evt){
+                var knappTrykket = evt.target;
+                
+                nummer = nummer + Number(knappTrykket.getAttribute("data-verdi"));
+                nummer = Number(nummer);
+                if (nummer > imgKilde.length - 1){  //Hvis nummeret er større enn lengden til imgKilde
+                    nummer = 0; //Sette nummer = 0
+                } else if (nummer < 0){
+                    nummer = imgKilde.length - 1;
+                }
+                bilde.src = imgKilde[nummer];   //Setter ny kilde til bilde
+            }
+            
+            function sammenlignTekst(a,b){
+                a = a.toUpperCase();
+                b = b.toUpperCase();
+                return b<a;
+            }
+        </script>
+	</body>
+</html>

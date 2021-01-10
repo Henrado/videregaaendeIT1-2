@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 94</title>
+	</head>
+	
+	<body>
+        <h1>Oppgave 1</h1>
+        <canvas id="canvas" width="500" height="400"></canvas>
+        
+		<script>
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            
+            var side = Number(prompt("Skriv inne lengden stil en side"));
+            
+            ctx.fillStyle=("red");
+            ctx.fillRect(250,200,side,side);
+        </script>
+		
+	</body>
+</html>

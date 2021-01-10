@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 117</title>
+        
+	</head>
+	
+	<body>
+        <h1>Oppgave 2</h1>
+        <span><input id="inpText" list="dag" type="text"></span>
+        <datalist id="dag">
+            <option value="Mandag">
+            <option value="Tirsdag">
+            <option value="Onsdag">
+            <option value="Torsdag">
+            <option value="Fredag">
+            <option value="Lørdag">
+            <option value="Søndag">
+        </datalist>
+        
+        <span id="tekst"></span>
+        
+		<script>
+            var oppgave1 = document.getElementById("inpText");
+            var tekst = document.getElementById("tekst");
+            
+            function hendelse(){
+                tekst.innerHTML = oppgave1.value;
+            }
+            
+            oppgave1.oninput = hendelse;
+            
+            oppgave1.onfocus = function(){
+                oppgave1.value = "";
+            }
+        </script>
+	</body>
+</html>

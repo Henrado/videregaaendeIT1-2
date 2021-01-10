@@ -1,0 +1,165 @@
+.Main {
+	width: 80%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+    margin: auto;
+	background-color:;
+}
+
+body {
+	background-image: url("./bilder/background.png");
+	background-repeat: no-repeat;
+	background-color:#031323;
+}
+.registrer a{
+	display: inline-block;
+	color: black;
+	text-decoration: none;
+	background-color:#6CB9EE;
+	padding:10px;
+}
+.registrer a:hover {
+	background-color:yellow;
+}
+
+.kjop {
+	display: inline-block;
+	color: black;
+	text-align: center;
+	padding: 14px 70px;
+	text-decoration: none;
+	width:50px;
+	background-color:red;
+}
+
+.kjop:hover, .dropdown:hover .dropbtn {
+	background-color: yellow;
+}
+
+.Banner1{
+	flex-basis: 100%;    /*Til banner div*/
+	order: 1;
+}
+.allmeny {
+	flex:1;
+	order:2;
+	flex-wrap: wrap;
+	flex-direction: row;
+	background-color:#FFFFFF;
+}
+
+.Banner{				/*Til banner image*/
+	display: block;
+	width: auto;
+	margin: 0 auto;
+	text-indent: -9999px;
+	height: 200px;
+	background-image: url("./bilder/Fiskebutikk logo.png");
+	background-repeat: no-repeat;
+	background-position: left bottom;
+	background-size: 200px;
+	background-position: center;
+	border-bottom-style: groove;
+	border-bottom-width: 3px;
+}
+ul {
+	margin: auto;
+	color: black;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	color: black;
+	display:inline;
+}
+li a, .dropbtn {
+	display: inline-block;
+	color: black;
+	text-align: center;
+	padding: 14px 70px;
+	text-decoration: none;
+	width:100px;
+	background-color: #ffffff;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+	background-color: #135DA4;
+}
+
+.dropdown {
+	display: inline-block;
+}
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+}
+
+.dropdown-content a {
+	color: black;
+	padding: 12px 70px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+}
+
+.dropdown-content a:hover {
+	background-color: #8BCDF8;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+.Innhold {
+	background-color: #6CB9EE;
+	order: 4;
+	flex-basis: 100%;
+	height: 65%;
+	float: left;
+	border-top: solid groove;
+}
+.Bunntekst{
+	background-color: lightgoldenrodyellow;
+	order: 5;
+	width: 100%;
+	height: 5%;
+}
+table {
+	border-color: #000000;
+	border-collapse:collapse;
+	width:100%;
+}
+th {
+	background-color: #0540DE;
+	border: 1px solid;
+}
+td {
+	background-color: #135DF4;
+	border: 1px solid;
+}
+
+.ting {
+	border:;
+	flex-basis:1;
+	flex-direction:row;
+	display:flex;
+	padding:5px;
+	color:black;
+}
+.link1 {
+	text-decoration: none;
+}
+.p-bilde {
+	flex-basis:1;
+}
+.p-text {
+	flex-basis:40%;
+}
+.p-pris {
+	text-align:right;
+	flex:1;
+}

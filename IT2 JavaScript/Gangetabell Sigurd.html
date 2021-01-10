@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Øveprøve oppgave 2</title>
+	</head>
+	
+	<body>
+        <h1>DIV elementer</h1>
+        <div id="div1" class="div">Dette er første del av en tekst</div>
+        <div id="div2" class="div">Dette er andre del av en tekst</div>
+        <div id="div3" class="div"></div>
+        
+		<script>
+            var sideLenge = 0;
+            
+            sideLenge = prompt("Hvor lange er hvær side?");
+
+             function gangetabell(n) {//Gir en tekstvariabel som ved å skrives ut gir en gangetabell på n rader og n kolonner
+var tabell = '<table>';
+
+for(var k = 1; k<=n; k++) {
+tabell += ('<tr>');
+for(var r = 1; r<=n; r++) {
+tabell += ('<td>'+k*r+'</td>');
+}
+tabell += ('</tr>');
+}
+
+tabell += '</table>';
+
+return tabell;
+}
+
+function getRndInteger(min, max) {//Tilfeldig heltallgenerator
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function losPolynom(a,b,c) {//Funksjon som returnerer en array med løsningene for likningen a x^2 + b x + c = 0
+var x_1 = (- b + Math.sqrt(b**2 - 4*a*c)) / (2*a);
+var x_2 = (- b - Math.sqrt(b**2 - 4*a*c)) / (2*a);
+console.log('x_1: '+x_1+', x_2: '+x_2);
+return [x_1, x_2];
+}
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            
+            
+            
+            var primtall = document.getElementById("primtall");
+            var tall = Number(prompt("Skriv inn et tall"));
+            var ikkePrim = false;
+            
+            for(var i = tall;i > 1; i--){
+                for(var j = i-1;j>1;j--){
+                    if(i%j === 0){
+                        ikkePrim = true;
+                        break;
+                    }
+                }
+                if (ikkePrim === false){
+				    primtall.innerHTML += "<p> Tallet " + i + " er et primtall </p>";
+				}
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            function gangetabell(n) {//Gir en tekstvariabel som ved å skrives ut gir en gangetabell på n rader og n kolonner
+                var tabell = '<table>';
+
+                for(var k = 1; k<=n; k++) {
+                    tabell += ('<tr>');
+                    for(var r = 1; r<=n; r++) {
+                        tabell += ('<td>'+k*r+'</td>');
+                    }
+                    tabell += ('</tr>');
+                }
+                
+                tabell += '</table>';
+
+                return tabell;
+            }
+            gangetabell(9);
+        </script>
+		
+	</body>
+</html>

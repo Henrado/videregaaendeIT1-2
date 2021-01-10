@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Animasjon</title>
+        <style>
+            .bilder {
+                display: none;
+            }
+            body {
+                overflow: hidden;
+            }
+        </style>
+	</head>
+	<body>
+        <div id="innhold">
+            <img id="pil" src="pil.png" class="bilder">
+            <img id="hjerte" src="hjerte2.png" class="bilder">
+            <canvas id="myCanvas" width="1800" height="900"></canvas>
+            <p id="info"></p>
+        </div>
+        <script>
+            var pil = document.getElementById("pil");
+            var hjerte = document.getElementById("hjerte");
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            var info = document.getElementById("info");
+            var poeng = 0;
+            var liv = 3;
+            var ball = {
+                "xpos":50,
+                "ypos":50,
+                "xfart":0,
+                "yfart":5,
+                "xretning":0,
+                "yretning":0,
+                "gravitasjon": 0.05,
+                "radius": 15,
+                "sprett": 1,
+                "gravitasjonFart": 0
+            };
+            
+            var level = [
+                    [
+                        {xposL: 1700, yposL:700, radiusL:20, farge: "green"},
+                        {xposL: 900, yposL:900, radiusL:200}
+                    ],
+                    [
+                        {xposL: 1700, yposL:100, radiusL:20, farge: "green"},
+                        {xposL: 700, yposL:10, radiusL:150},
+                        {xposL: 700, yposL:800, radiusL:150},
+                        {xposL: 1700, yposL:800, radiusL:150}
+                    ],
+                    [
+                        {xposL: 1700, yposL:700, radiusL:20, farge: "green"},
+                        {xposL: 1400, yposL:300, radiusL:40},
+                        {xposL: 900, yposL:400, radiusL:50},
+                        {xposL: 360, yposL:330, radiusL:200},
+                        {xposL: 690, yposL:800, radiusL:70}
+                    ],
+                    [
+                        {xposL: 1700, yposL:450, radiusL:20, farge:"green"},
+                        {xposL: 500, yposL:250, radiusL:130},
+                        {xposL: 1600, yposL:100, radiusL:130},
+                        {xposL: 200, yposL:750, radiusL:30},
+                        {xposL: 700, yposL:850, radiusL:30},
+                        {xposL: 1500, yposL:850, radiusL:100},
+                        {xposL: 900, yposL:350, radiusL:130}
+                    ],
+                    [
+                        {xposL: 1700, yposL:450, radiusL:20, farge:"green"},
+                        {xposL: 450, yposL:300, radiusL:20},
+                        {xposL: 1650, yposL:300, radiusL:20},
+                        {xposL: 650, yposL:800, radiusL:20},
+                        {xposL: 150, yposL:600, radiusL:20},
+                        {xposL: 950, yposL:700, radiusL:20},
+                        {xposL: 876, yposL:200, radiusL:20},
+                        {xposL: 345, yposL:326, radiusL:20},
+                        {xposL: 650, yposL:274, radiusL:20},
+                        {xposL: 1050, yposL:300, radiusL:20},
+                        {xposL: 1450, yposL:700, radiusL:20},
+                        {xposL: 1700, yposL:600, radiusL:20},
+                        {xposL: 350, yposL:400, radiusL:20}
+                    ],
+                    [
+                        {xposL: 1100, yposL:700, radiusL:20, farge: "green"},
+                        {xposL: 800, yposL:500, radiusL:200},
+                        {xposL: 1300, yposL:500, radiusL:200},
+                        {xposL: 800, yposL:800, radiusL:30},
+                        {xposL: 1400, yposL:800, radiusL:40}
+                    ],
+                    [
+                        {xposL: 1100, yposL:700, radiusL:20, farge: "green"},
+                        {xposL: 1300, yposL:420, radiusL:130},
+                        {xposL: 0, yposL:0, radiusL:0}
+                    ],
+                    [
+                        {xposL: 0, yposL:0, radiusL:0}
+                    ]
+                
+                ];
+            
+            //console.log(level);
+            
+            window.onload = figur(); 
+            //window.onload = setInterval(figur, 1000); 
+            function figur(){
+                ctx.fillStyle="black";
+                ctx.fillRect(0,0,c.width,c.height);
+                info.innerHTML = "Du har " + poeng + " poeng og " + liv + " liv";
+                
+                for(var i = 0; i < liv; i++){
+                    ctx.drawImage(hjerte,50*i+20*i+20, 60);
+                }
+                
+                //ctx.drawImage(img, hest.xpos, hest.ypos);
+                
+                for(var i =0; i < level[poeng].length; i++){
+                    ctx.beginPath();
+                    ctx.fillStyle = "red";
+                    if(level[poeng][i].farge){
+                        ctx.fillStyle = level[poeng][i].farge;
+                    }
+                    ctx.arc(level[poeng][i].xposL, level[poeng][i].yposL, level[poeng][i].radiusL, 0 , 2*Math.PI);
+                    ctx.stroke();
+                    ctx.fill();
+                }
+                for(var i =0; i < level[poeng].length; i++){
+                    var lengde = Math.sqrt(Math.pow((level[poeng][i].xposL-ball.xpos), 2) + Math.pow((level[poeng][i].yposL-ball.ypos),2));
+                    if(lengde < (level[poeng][i].radiusL+ball.radius)){
+                        if (level[poeng][i].farge){
+                            poeng++;
+                            liv++;
+                        } else {
+                            liv--;
+                        }
+                        neste();
+                    }
+                }
+                //console.error(level[0][0].radiusL)
+                ctx.beginPath();
+                ctx.fillStyle = "blue";
+                ctx.arc(ball.xpos, ball.ypos, ball.radius,0,2*Math.PI);
+                ctx.stroke();
+                ctx.fill();
+                
+                ball.xfart += (ball.xretning*0.1);
+                ball.gravitasjonFart += ball.gravitasjon;
+                ball.xpos = ball.xpos+(ball.xfart)
+                ball.ypos = ball.ypos+(ball.yfart*ball.gravitasjonFart);
+                    
+                if ((ball.ypos + ball.radius) > c.height){
+                    ball.ypos = c.height-ball.radius;
+                    ball.xfart += ball.xfart*(-0.02);
+                    ball.gravitasjonFart = -(ball.gravitasjonFart * ball.sprett);
+                }
+                
+                if ((ball.ypos + ball.radius) < 0){
+                    ctx.drawImage(pil, ball.xpos-pil.width/2, 0);
+                }
+                
+                if (ball.xfart > 30){
+                    ball.xfart = 30;
+                }
+                
+                if (ball.xfart < (-30)){
+                    ball.xfart = (-30);
+                }
+                //}
+                if ((ball.xpos + ball.radius) > c.width){
+                    ball.xpos = c.width-ball.radius;
+                    ball.xfart = -(ball.xfart * ball.sprett)
+                }
+                if ((ball.xpos) < ball.radius){
+                    ball.xpos = ball.radius;
+                    ball.xfart = -(ball.xfart * ball.sprett)
+                }
+                //setTimeout(figur, 1000/6);
+                if(liv > 0){
+                    requestAnimationFrame(figur);
+                }
+                else {
+                    alert("GAME OVER du fikk " + poeng + " poeng")
+                }
+            }
+            
+            function neste(){
+                ball.xpos = 50;
+                ball.ypos = 50;
+                ball.xfart = 0;
+                ball.yfart = 5;
+                ball.gravitasjonFart = 0;
+            }
+            
+            document.onkeydown = function(evt){
+                var tallkode = evt.keyCode;
+                //console.log(tallkode);
+                if(tallkode === 39){
+                    ball.xretning = 1.5;
+                } 
+                if (tallkode === 37){
+                    ball.xretning = -1.5;
+                } 
+                if (tallkode === 38){
+                    ball.gravitasjonFart += -0.06;
+                } 
+                if (tallkode === 40){
+                    ball.gravitasjonFart += 0.1;
+                }
+            }
+            document.onkeyup = function(){
+                ball.xretning = 0;
+                ball.yretning = 0;
+            }
+        </script>
+    </body>
+</html>

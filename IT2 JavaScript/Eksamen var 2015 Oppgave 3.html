@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 253</title>
+        <style>
+        </style>
+	</head>
+	<body>
+        <form id="form">
+            <select id="fraBy" required>
+                <option>Velg vilken by du vil starte fra</option>
+            </select>
+            <select id="tilBy" required>
+                <option value="1">Velg fra by først</option>
+            </select>
+            <button id="btnLeggtil">Legg til</button>
+        </form>
+        <script>
+            
+            var form = document.getElementById("form");
+            var fraBy = document.getElementById("fraBy");
+            var tilBy = document.getElementById("tilBy");
+            var btnLeggtil = document.getElementById("btnLeggtil");
+            var data = [
+                {fra: "Askim", andre: [62.3, 58.8, 44.6, 33.2]},
+                {fra: "Halden", andre: [62.3, 37.9, 65.3, 60.1]},
+                {fra: "Fredrikstad", andre: [58.8,37.9, 40.5, 78.5]},
+                {fra: "Moss", andre: [44.6, 65.3, 40.5, 77.6]},
+                {fra: "Ørje", andre: [33.2, 60.1, 78.5, 77.6]}
+            ];
+            var sumTur = [];
+            
+            for(var i = 0; i < data.length; i++){
+                fraBy.innerHTML += "<option>"+data[i].fra+"</option>";
+            }
+            
+            fraBy.onchange = function(){
+                var valgtFraBy = fraBy.selectedIndex-1;
+                tilBy.innerHTML = "<option>Velg til by</option>";
+                for (var i =0; i < data.length; i++){
+                    if(valgtFraBy !== i){
+                        tilBy.innerHTML += "<option>"+data[i].fra+"</option>"
+                    }
+                }
+            }
+            
+            form.onsubmit = function(evt){
+                evt.preventDefault();
+                var valgtFraBy = fraBy.selectedIndex-1;
+                var valgtTilBy = tilBy.selectedIndex -1;
+                if(valgtFraBy === -1 || valgtTilBy === -1){
+                    alert("stop");
+                    return;
+                }
+                console.log(valgtFraBy);
+                console.log(valgtTilBy);
+                //sumTur.push(data[valgtFraBy].andre[valgtTilBy]);
+                sumTur.push({fraByLi: data[valgtFraBy].fra, tilByLi: data[valgtTilBy+1].fra, avstand: data[valgtFraBy].andre[valgtTilBy]});
+                console.warn(sumTur);
+            }
+        </script>
+	</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 253</title>
+        <style>
+        </style>
+	</head>
+	<body>
+        <canvas id="mittCanvas" height="500" width="500"></canvas>
+        <script>
+            var c = document.getElementById("mittCanvas");
+            var ctx = c.getContext("2d");
+            var width = 500;
+            var height = 500;
+            
+            var Walker = function() {
+                this.x = width/2;
+                this.y = height/2;
+            };
+
+            Walker.prototype.display = function() {
+                ctx.stroke(0, 0, 0);
+                ctx.fill(128, 122, 37);
+                ctx.noStroke();
+                ctx.ellipse(this.x, this.y,10,10);
+            };
+
+            // Randomly move right, left, down, or up
+            Walker.prototype.walk = function() {
+                var choice = floor(random(4));
+                if (choice === 0) {
+                //move right
+                    this.x+=5;
+                } else if (choice === 1) {
+                //move left
+                    this.x-=5;
+                } else if (choice === 2) {
+                //move down
+                    this.y+=5;
+                } else {
+                //move up
+                    this.y-=5;
+                } 
+            };
+
+            var w = new Walker();
+            
+            draw = function() {
+                w.walk();
+                w.display();
+            };
+
+        </script>
+	</body>
+</html>

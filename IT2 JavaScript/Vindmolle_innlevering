@@ -1,0 +1,51 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 267</title>
+        <style>
+            @keyframes flytt {
+                0%{left: -900px;top:;}
+                30%{left: 300px;top:;}
+                60%{left: 300px;top:;}
+                100%{left: 1700px;top:;}
+            }
+            @keyframes rull {
+                0%{transform: rotate(0deg)}
+                30%{transform: rotate(720deg)}
+                60%{transform: rotate(720deg)}
+                100%{transform: rotate(2300deg)}
+            }
+            #boks {
+                background-image: url(trilleb%C3%A5r.png);
+                width: 848px;
+                height: 565px;
+                background-repeat: no-repeat;
+                position: relative;
+                animation: flytt 10s;
+            }
+            #hjul {
+                background-image: url(hjul%20trilleb%C3%A5r.png);
+                background-repeat: no-repeat;
+                width: 175px;
+                height: 187px;
+                position: absolute;
+                left: 487px;
+                top: 348px;
+                animation: rull 10s;
+                
+            }
+            body {
+                overflow: hidden;
+            }
+        </style>
+	</head>
+	<body>
+        <div id="boks">
+            <div id="hjul"></div>
+        </div>
+        <script>
+        </script>
+	</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="stilark.css">
+		<title>Oppgaver side 253</title>
+        <style>
+            
+        </style>
+	</head>
+	<body>
+        <div id="innhold">
+            <div id="holder">
+            <form id="inpForm">
+                <div id="spmHolder">
+                    
+                </div>
+                <div id="knappHolder">
+                    <div><button type='button' class='knapp' id="forrige">Forrige</button></div>
+                    <div><button type='button' class='knapp' id="neste" >Neste</button></div>
+                </div>
+            </form>
+            </div>
+        </div>
+        <script>
+            var spmHolder = document.getElementById("spmHolder");
+            var inpForm = document.getElementById("inpForm");
+            var forrige = document.getElementById("forrige");
+            var neste = document.getElementById("neste");
+            var poeng = 0;
+            var valgt =0;
+            var globalIndex = 0;
+            var kilde = [
+                [ 
+                    {NavnPaQuiz: "Amerikansk"},
+                    {sporsmol:"Hva betyr hello", svar:["Hei","på", "deg"], riktig: "Hei"},
+                    {sporsmol:"Hva betyr test", svar:["3","2", "1"], riktig: "2"},
+                    {sporsmol:"Hva betyr #", svar:["4","6","5", "7"], riktig: "5"}
+                ],
+                [
+                    {NavnPaQuiz: "Spansk"},
+                    {sporsmol:"Hva betyr hola", svar:["","", ""], riktig: ""},
+                    {sporsmol:"Hva beter caminar", svar:["","", ""], riktig: ""},
+                    {sporsmol:"Hva", svar:["","", ""], riktig: ""}
+                ]
+                
+            ];
+            
+            spmHolder.innerHTML += "<h1>Velg hvilken quiz du vil ha</h1>";
+            for (var i = 0; i < kilde.length; i++){
+                spmHolder.innerHTML += "<div class='sprakValg' id='" + i + "' onclick='start(this.id)'>" + kilde[i]["0"].NavnPaQuiz + "</div>";
+            }
+            
+            function start(index){
+                //console.log(index);
+                spmHolder.innerHTML ="";
+                
+                spmHolder.innerHTML += "<h1>" + (kilde[index]["0"].NavnPaQuiz) + "</h1>";
+                
+                for (var j = 1; j < kilde[index].length; j++){
+                    var div = document.createElement("div");
+                    div.setAttribute("class", "boks");
+                    div.setAttribute("id", "spm"+j);
+                    div.innerHTML += "<h2>" + (kilde[index][j].sporsmol) + "</h2>";
+                    for (var k = 0; k < kilde[index][j].svar.length; k++){
+                        div.innerHTML += "<p><input id='svar1" + j + index +"' type='radio' data-inhold='"+ kilde[index][j].svar[k] +"' class='spm' name='spm" + j + index +"'>" + (kilde[index][j].svar[k]) + "</p>";
+                    }
+                    spmHolder.appendChild(div);
+                }
+            //}
+                spmHolder.innerHTML += "";
+                //spmHolder.innerHTML += "<div><button type='submit'>Send inn</button></div>";
+                nesteSPM(1);
+                console.log("kjører neste")
+            }
+            
+            neste.onclick = nesteSPM(1);
+                
+            function nesteSPM(evt){
+                var x = document.getElementsByClassName("boks");
+                console.log(x);
+                x[valgt].style.display = "block";
+                x[valgt-1].style.display = "block";
+                valgt++;
+            }
+            
+            
+            inpForm.onsubmit = function(evt){
+                evt.preventDefault();
+                poeng = 0;
+                var alleSvar = document.getElementsByClassName("spm");
+                for(var t =0; t < alleSvar.length; t++){
+                    if(alleSvar[t].checked){
+                        for(var u = 1; u < kilde[0].length; u++){
+                            if(alleSvar[t].getAttribute("data-inhold") === kilde[0][u].riktig){
+                                poeng++;
+                            }
+                        }
+                    }
+                }
+                regnPoeng()
+            }
+            function regnPoeng(){
+                alert("Du fikk " + poeng + " poeng av " + (kilde[0].length-1));
+            }
+        </script>
+	</body>
+</html>

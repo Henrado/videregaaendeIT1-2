@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 117</title>
+	</head>
+	
+	<body>
+        <span><input id="inpFigur" list="figur" type="text"></span>
+        <datalist id="figur">
+            <option value="Sirkel">
+            <option value="Kvadrat">
+            <option value="Trekant">
+        </datalist>
+        <span><input id="tall" type="number"></span>
+        <br>
+        <p id="tekst"></p>
+        <br>
+        <canvas id="canvas" width="500" height="500"></canvas>
+        <script>
+            var figur = document.getElementById("inpFigur");
+            var tall = document.getElementById("tall");
+            var tekst = document.getElementById("tekst");
+            var areal = 0;
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            
+            function regne(){
+                ctx.clearRect(0,0,canvas.width,canvas.height);
+                if (figur.value === "Sirkel"){
+                    ctx.beginPath();
+                    ctx.arc(canvas.width/2,canvas.height/2,tall.value,0,2*Math.PI);
+                    ctx.stroke();
+                    areal = Math.PI*Math.pow(tall.value, 2)
+                    tekst.innerHTML = "Arealet for sirkelen er: " + areal.toFixed(2);
+                }
+                else if (figur.value === "Kvadrat"){
+                    ctx.beginPath();
+                    ctx.strokeRect(canvas.width/2-tall.value/2,canvas.height/2-tall.value/2,tall.value,tall.value);
+                    areal = tall.value * tall.value;
+                    tekst.innerHTML = "Arealet for kvadratet er: " + areal.toFixed(2); 
+                }
+                else if (figur.value === "Trekant"){
+                    ctx.font = "30px Arial";
+                    ctx.fillText("Trekanter støttes ikke enda",10,50); 
+                    areal = (tall.value * tall.value) / 2;
+                    tekst.innerHTML = "Arealet for trekanten er: " + areal.toFixed(2);
+                }
+                else {
+                    tekst.innerHTML = "Velg en figur";
+                }
+            }
+            figur.oninput = regne;
+            tall.oninput = regne;
+        </script>
+	</body>
+</html>

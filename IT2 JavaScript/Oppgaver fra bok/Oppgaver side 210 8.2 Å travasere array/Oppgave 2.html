@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 144</title>
+        <style>
+        </style>
+	</head>
+	<body>
+        <ol id="liste"></ol>
+        <script>
+            var liste = document.getElementById("liste");
+            
+            var boker = ["Lord", "Star wars", "Olympys", "Dracula"];
+            
+            boker.sort(function(a,b){
+                a = a.toUpperCase();
+                b = b.toUpperCase();
+                return b < a;
+            });
+            
+            for (var bok of boker){
+                liste.innerHTML += "<li>" + bok + "</li>";
+            }
+        </script>
+	</body>
+</html>

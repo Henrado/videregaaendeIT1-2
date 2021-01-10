@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 117</title>
+	</head>
+	
+	<body>
+        <h1>Oppgave 1</h1>
+        <p id="oppgave1"></p>
+        
+        <h1>Oppgave 2</h1>
+        <p id="oppgave2"></p>
+        
+        <h1>Oppgave 3</h1>
+        <p id="oppgave3"></p>
+        
+        <h1>Oppgave 4</h1>
+        <ul id="oppgave4"></ul>
+        
+		<script>
+            //Oppgave 1
+            var oppgave1 = document.getElementById("oppgave1");
+            function siHei(navn){
+                return "Hei på deg, " + navn + "<br>";
+            }
+            oppgave1.innerHTML += siHei("Henrik");
+            oppgave1.innerHTML += siHei("Ingvild");
+            oppgave1.innerHTML += siHei("Andreas");
+            oppgave1.innerHTML += siHei("Jonas");
+            
+            //Oppgave 2
+            var oppgave2 = document.getElementById("oppgave2");
+            var number = Math.round(Math.random()*20-10);
+            
+            function svar(tall){
+                if (tall < 0){
+                    return "Tallet er mindre enn 0";
+                }
+                else if (tall === 0){
+                    return "Tallet er 0";
+                }
+                else if (tall > 0){
+                    return "Tallet er større enn 0";
+                }
+                else{
+                    return "Hva skjedde nå?";
+                }
+            }
+            oppgave2.innerHTML += svar(number);
+            
+            //Oppgave 3 
+            var oppgave3 = document.getElementById("oppgave3");
+            
+            var saldo = 10000; //Setter saldo
+            
+            function uttak(belop){
+                if(saldo < belop){ //Sjeker om man skal ta ut mere enn det man har
+                    return "Du har ikke nok penger på konton for å ta ut så mye <br>";
+                }
+                saldo = saldo - belop; //Regner ut
+                return "Du har tatt ut kr " + belop + " Ny saldo er kr " + saldo + "<br>"; //Returnerer tekst
+            }
+            oppgave3.innerHTML += uttak(1500);//Kaller på funksjoner
+            oppgave3.innerHTML += uttak(20000);
+            oppgave3.innerHTML += uttak(382);
+            
+            //Oppgave 4
+            var oppgave4 = document.getElementById("oppgave4");
+            
+            function liste(film){
+                return "<li>" + film + "</li>";
+            }
+            
+            oppgave4.innerHTML += liste("Star Wars");
+            oppgave4.innerHTML += liste("Dødslekene");
+            oppgave4.innerHTML += liste("The sircel");
+        </script>
+	</body>
+</html>

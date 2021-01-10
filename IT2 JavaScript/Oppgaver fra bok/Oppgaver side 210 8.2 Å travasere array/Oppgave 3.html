@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 144</title>
+        <style>
+        </style>
+	</head>
+	<body>
+        <h1 id="dagerUnder">Antall dager med temperartur under 5: </h1>
+        <script>
+            var dagerUnder = document.getElementById("dagerUnder");
+            var temperaturer = [3,4,5,6,5,5,6,4,4,5];
+            
+            temperaturer.sort();
+            
+            var antallDagerUnder = 0;
+            var sum = 0;
+            
+            for(var temp of temperaturer){
+                if(temp < 5){
+                    antallDagerUnder++;
+                }
+                sum = sum + temp;
+            }
+            var snitt = sum/temperaturer.length;
+            dagerUnder.innerHTML += antallDagerUnder + " Og snittet er: " + snitt;
+        </script>
+	</body>
+</html>

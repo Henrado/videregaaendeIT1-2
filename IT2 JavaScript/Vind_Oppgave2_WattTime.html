@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 253</title>
+        <style>
+        </style>
+	</head>
+	<body>
+        <span><input type="number" id="inpVind" placeholder="Skriv inn vindstyrke i m/s">m/s</span>
+        <p id="info"></p>
+        <script>
+            var inpVind = document.getElementById("inpVind");
+            var info = document.getElementById("info");
+            
+            inpVind.onchange = function(){
+                var vind = inpVind.value;
+                var watt = 0;
+                
+                if(vind <= 2.5 || vind > 15){
+                    console.log("utenfor");
+                    watt = "Du er utenfor område";
+                } else if (vind < 3.4){
+                    watt = 2;
+                } else if (vind < 5.5){
+                    watt = 10;
+                } else if (vind < 8){
+                    watt = 60;
+                } else if (vind < 10.8){
+                    watt = 150;
+                } else if (vind < 13.9){
+                    watt = 400;
+                } else if (vind < 17.2){
+                    watt = 500;
+                }
+                
+                info.innerHTML = "Du produserer " + watt + " watt i timen";
+            }
+        </script>
+	</body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 105</title>
+	</head>
+	
+	<body>
+        <h1>Oppgave 1</h1>
+        <p id="oppgave1"></p>
+        
+        <h1>Oppgave 2</h1>
+        <p id="oppgave2"></p>
+        
+        <h1>Oppgave 3 A</h1>
+        <p id="oppgave3A"></p>
+        
+        <h1>Oppgave 3 B</h1>
+        <p id="oppgave3B"></p>
+        
+        <h1>Oppgave 4</h1>
+        <div id="oppgave4"></div>
+        
+        <h1>Oppgave 5</h1>
+        <button onclick="byttStil('green','grey')">Bytt stil</button>
+        <div id="oppgave5">En del tekst</div>
+        
+		<script>
+        //Oppgave 1
+            var oppgave1 = document.getElementById("oppgave1");
+            
+            function boksideFunction(bokside){
+                oppgave1.innerHTML += "Lekse på side: " + bokside + "<br>";
+            }
+        for(var i=0; i<5 ; i++) {
+            boksideFunction(Math.round(Math.random()*100+1));
+        }
+            
+        //Oppgave 2
+            var oppgave2 = document.getElementById("oppgave2");
+            
+            function nyKontakt(fornavn, etternavn, telefon){
+                oppgave2.innerHTML += "Fornavn: " + fornavn + " Etternavn: " + etternavn + " Telefonnummer" + telefon + "<br>"
+            }
+            
+            nyKontakt("Henrik", "Mellum", "9938232");
+            nyKontakt("Test", "tast", "8848383");
+        //Oppgave 3 A
+            var oppgave3A = document.getElementById("oppgave3A");
+            var x = 0;
+            
+            function f(x){
+                oppgave3A.innerHTML += "Funksjon f(x)= " + (3 * x) + " Når x er " + x;
+            }
+            f(Math.round(Math.random()*100+1));
+            
+        //Oppgave 3 B 
+            var oppgave3B = document.getElementById("oppgave3B");
+            
+            function finnAreal(w, h){
+                var Areal = w * h;
+                oppgave3B.innerHTML += "Arealet av firkanten er " + Areal + " Med en bredde på " + w + " og en høyde på " + h; 
+            }
+            finnAreal(Math.round(Math.random()*100+1),Math.round(Math.random()*100+1));
+            
+        //Oppgave 4 
+            var oppgave4 = document.getElementById("oppgave4");
+            
+            function lagDiv(tekst, bredde, bakgrunnsfarge, tekstfarge){
+                oppgave4.style.backgroundColor = bakgrunnsfarge;
+                oppgave4.style.color = tekstfarge;
+                oppgave4.style.width = bredde;
+                oppgave4.innerHTML += tekst; 
+            }
+            
+            lagDiv("Hei", "100px", "red", "green");
+            
+        //Oppgave 5
+            var oppgave5 = document.getElementById("oppgave5");
+            
+            function byttStil(bakgrunnsfarge, tekstfarge){
+                oppgave5.style.backgroundColor = bakgrunnsfarge;
+                oppgave5.style.color = tekstfarge;
+            }
+            
+		</script>
+		
+	</body>
+</html>

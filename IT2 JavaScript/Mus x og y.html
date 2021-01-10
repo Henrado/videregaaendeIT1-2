@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 94</title>
+	</head>
+	
+	<body>
+        <p id="flytte">Litt tekst</p>
+        
+		<script>
+            var flytte = document.getElementById("flytte");
+            window.onmousemove = function(evt){
+                var X = evt.clientX;
+                var Y = evt.clientY;
+                var xPos = evt.clientX + "px";
+                var yPos = evt.clientY + "px";
+                
+                flytte.style.marginLeft = xPos;
+                flytte.style.marginTop = yPos;
+                
+                var bakgrunn = "rgb("+X+","+Y+","+ (20) + ")";
+                
+                document.body.style.backgroundColor=bakgrunn;
+                //document.write(bakgrunn);
+            }
+        </script>
+		
+	</body>
+</html>

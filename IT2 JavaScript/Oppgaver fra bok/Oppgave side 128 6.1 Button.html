@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 128</title>
+        <style>
+            div {
+                text-align: center;
+                background-color: aqua;
+                display:flex;
+                flex-direction:row;
+                border: solid;
+            }
+            button {
+                width: 200px;
+            }
+            .inne {
+                background-color: gray;
+                width: 200px;
+                height: 200px;
+                font-size: 200px;
+                text-align: center;
+            }
+        
+        </style>
+	</head>
+	
+	<body>
+        <h1>Oppgave 1</h1>
+        <p id="oppgave1">Trykk på meg!!</p>
+        
+        <h1>Oppgave 2</h1>
+        <div id="oppgave2">Se annen fil</div>
+        
+        <h1>Oppgave 3</h1>
+        <button id="oppgave3">Trykk her</button>
+        <img id="img3">
+        
+        <h1>Oppgave 4</h1>
+        <p id="oppgave4"></p>
+        
+        <h1>Oppgave 5</h1>
+        <button id="btnKoala" data-bilde="./media/koala.jpg">Koala</button>
+        <button id="btnKolibri" data-bilde="./media/kolibri.jpg">Kolibri</button>
+        <br>
+        <img id="bilde">
+		<script>
+            //Oppgave 1
+            document.getElementById("oppgave1").onclick = function() {oppgave1()};
+
+            function oppgave1() { document.getElementById("oppgave1").innerHTML = "Du trykket på meg!";
+                                  }
+            //Oppgave 3
+            document.getElementById("oppgave3").onclick = function() {
+                document.getElementById("img3").src= "media/Koala.jpg";
+            }
+            //Oppgave 4
+            
+            //Oppgave 5
+            var btnKoala = document.getElementById("btnKoala");
+            var btnKolibri = document.getElementById("btnKolibri");
+            var bilde = document.getElementById("bilde");
+            
+            btnKoala.onclick = btnKolibri.onclick = function(evt){
+                var knapp = evt.target;
+                var bytte = knapp.getAttribute("data-bilde");
+                bilde.src = bytte;
+            }
+        </script>
+	</body>
+</html>

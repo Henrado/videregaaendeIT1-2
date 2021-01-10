@@ -1,0 +1,65 @@
+#innpakning {
+    width: 800px; /* innpakningens bredde */
+    background-color: #404040; 
+    margin: auto; 
+    display: flex; 
+    flex-direction: column; 
+}
+#topptekst {
+    height: 182px; 
+    background-color: #909090; 
+}
+#meny {
+    border:solid;
+	background-color: #909090; 
+    padding: 5px; 
+    margin: 5px; 
+}
+#innhold {
+    background-color: #909090;
+    margin: 5px; 
+	padding:5px; /* Oppgave 3 */
+
+}
+#innhold img{
+	
+	background-color:#444444;	/* Oppgave 2 Grå ramme*/
+	display: block;
+	padding:20px;
+}
+
+ul {
+    list-style-type: none; 
+    margin: 0; 
+    padding: 0; 
+	
+}
+ul li {
+    display: inline; 
+	
+}
+ul a {
+    padding: 5px 30px;
+    color: #333333; 
+    font-weight: bold; 
+    text-decoration: none; 
+    background-color: #9BA6B8; 
+}
+ul a:hover {
+    background-color: #BCC4D1; /* lys grå */
+}
+
+#innhold li {
+	background-color: #5555FF; /* Oppgave 2 liste med farger*/
+    padding:  5px;
+	margin:5px;
+	list-style-type: ; 
+}
+
+h1 {
+	color:#2222FF;	/* Oppgave 3 */
+	font-size:;
+}
+ol {
+	width:50%; /*For at ikke fargen skal gå så langt!!!*/
+}

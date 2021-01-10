@@ -1,0 +1,21 @@
+.innpakning {
+	border:solid;
+	width:80%;
+	margin:30px auto;
+	display:flex;
+	flex-direction: row-reverse;
+	flex-wrap:wrap;
+}
+.boks {
+	width:20%;
+	border:dashed;
+	height:100px;
+}
+/*Koder CSS:
+background-color:	;
+font-family:	;	Skrift
+font-size:	;
+font-style:	; px
+color:	;
+
+*/

@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Øveprøve til heldags 2017</title>
+        <style>
+            img {
+                width: 250px;
+            }
+            .div {
+                width: 33%;
+                padding: 10px;
+                text-align: center;
+            }
+            #alt {
+                display: flex;
+                flex-direction: row;
+            }
+            #info {
+                background-color: gray;
+                padding: 10px;
+                flex-basis:1;
+                flex-wrap: wrap;
+            }
+            #stortBilde {
+                width: 100%;
+            }
+            video {
+                width: 100%;
+            }
+        </style>
+    </head>
+	<body>
+        <h1>Oppgave 1</h1>
+        <div id="alt">
+            <div class="div"><img src="../media/vedleggheldags/newyork_250.jpg" id="newYork"></div>
+            <div class="div"><img src="../media/vedleggheldags/roma_250.jpg" id="roma"></div>
+            <div class="div"><img src="../media/vedleggheldags/stPet_250.jpg" id="stPet"></div>
+        </div>
+        <div id="info"></div>
+        <script>
+            var newYork = document.getElementById("newYork");
+            var roma = document.getElementById("roma");
+            var stPet = document.getElementById("stPet");
+            var info = document.getElementById("info");
+            var innhold = 0;
+            
+            newYork.onclick = function(){
+                if (innhold === "newYork"){
+                    innhold = "";
+                    info.innerHTML= "";
+                }
+                else {
+                    innhold = "newYork";
+                    info.innerHTML = "<span>Hva heter byggningen? <input type='text' id='sporamal' placeholder='Svar her'><button id='knapp'>Sjekk svar</button></span>";
+                    var sporsmal = document.getElementById("sporamal");
+                    var knapp = document.getElementById("knapp");
+                    knapp.onclick = function(){
+                        if (sporsmal.value == "bygning"){
+                            info.innerHTML= "Du har riktig";
+                        }
+                        else{
+                            info.innerHTML= "Du har feil";
+                        }
+                    }
+                }
+            }
+            roma.onclick = function(){
+                if (innhold === "roma"){
+                    innhold = "";
+                    info.innerHTML = "";
+                }
+                else {
+                    innhold = "roma";
+                    info.innerHTML = "<video src='../media/roma_film.mp4' autoplay controls>Video av roma</video>";
+                }
+            }
+            stPet.onclick = function(){
+                if (innhold === "stPet"){
+                    innhold = "";
+                    info.innerHTML ="";
+                }
+                else {
+                    innhold ="stPet";
+                    info.innerHTML = "<img id='stortBilde' src='../media/vedleggheldags/stPet.jpg' alt='St Petersburg'>";
+                }
+            }
+        </script>
+	</body>
+</html>

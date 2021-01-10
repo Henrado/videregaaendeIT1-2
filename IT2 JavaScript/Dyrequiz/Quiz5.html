@@ -1,0 +1,432 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <style>
+            .skrift {
+                font-size: 30px;
+            }
+            .sjul {
+                display: none;
+                
+            }
+            #laster {
+                width: 1%;
+                background-color: red;
+                text-align: center;
+            }
+            #info {
+                width: 100%;
+                border: solid;
+            }
+            #laster2 {
+                width: 1%;
+                background-color: green;
+                text-align: center;
+            }
+body {
+	background-size: cover;
+}
+
+.innpakning {
+    width: 1000px;   /* innpakningens bredde */
+    background-color: #404040; /* en mørk gråfarge */
+    margin: auto; /* like stor høyre- og venstremarg */
+    display: flex; /* angir at vi vil bruke flexbox */
+    flex-direction: row; /* plasserer innholdet i en rad */
+    flex-wrap: wrap; /* lar oss bryte rader */
+}
+.topptekst {
+    flex-basis: 100%; /* fyller innpakningens bredde */
+    height: 200px; /* overskrift-/toppteksthøyde */
+    background-color: #909090; /* en lys gråfarge */
+    padding: 0px; /* avstand mellom bokskant og innhold */
+    margin: 5px;  /* luft rundt overskrift-/topptekstboks */
+    order: 1; /* angir rekkefølgen på boksene */
+	background-image: url("../Bilder/fjellbanner.jpg");
+	background-size: cover;
+}
+
+.meny2 {
+	flex-basis: 100%; /* aldri smalere enn 200 px */
+    background-color: #36A5C1; 
+    padding: 5px; /* avstand mellom bokskant og innhold */
+    margin: 5px; /* luft rundt menyboks */
+    order: 2; /* angir rekkefølgen på boksene */
+	font-family: calibri;
+}
+
+
+.sidebar {
+	background-color: #ffffff;
+	order: 3;
+	border: 5px grey solid;
+	margin: 5px;
+	flex-basis: 300px;
+	height: 300px;
+}
+
+
+
+.sbilde {
+	
+}
+
+.innhold {
+    background-color: #CECEDB; 
+    flex: 1; /* fyller ut all ledig plass i bredden */
+    order: 4; /* angir rekkefølgen på boksene */
+    padding: 5px; /* avstand mellom bokskant og innhold */
+    margin: 5px; /* luft rundt menyboks */
+	
+}
+
+.bunntekst {
+	flex-basis: 100%; /* aldri smalere enn 200 px */
+	background-color: #CECEDB; /* en lys gråfarge */
+    order: 5; /* angir rekkefølgen på boksene */
+    padding: 5px; /* avstand mellom bokskant og innhold */
+    margin: 5px; /* luft rundt menyboks */
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+	flex: 1;
+}
+
+th, td {
+    border: none;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+/*------------------------Font/tekst egenskaper-------------------------*/
+
+@font-face {
+   font-family: calibri; 
+}
+   
+p {
+	font-size: 16px;
+	font-family: calibri;
+	text-align: ;
+}
+
+* {
+	font-family: calibri;
+
+}
+
+h1 {
+	font-size: 32px;
+	text-align: center;
+	font-family: calibri;
+}
+
+}
+
+ol a {
+	width: 150px;
+	padding: 10px;
+	border-radius: 1px;
+	margin: 2px;
+	color: #333333;
+	font-weight: bold;
+	text-decoration: none;
+	background-color: lightblue;
+}
+
+ol a:hover {
+    background-color: #BCC4D1; /* lys grå */
+}
+
+ul {
+    list-style-type: none; /* fjerner kulepunkter */
+    margin: 0px; 
+    padding: 0px; 
+}
+
+ul a  {
+	padding: 10px 100px;
+    color: #333333; /* mørk grå tekst */
+    font-weight: bold; /* fet tekst */
+    text-decoration: none; /* fjerner understrek */
+    background-color: #BCC4D1; /* grå */
+}
+ul a:hover {
+    background-color: #BCC4D1; /* lys grå */
+}
+
+
+/*-----------------------dropdown---------------------------*/
+.dropbtn {
+    background-color: #36A5C1;
+    color: black;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+	border-bottom: 3px #404040 solid;
+    cursor: pointer;
+	font-family:Doge;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #38B0DE;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #4D4DFF}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: white;
+}
+
+/**--------------------------------breadcrumb--------------------------------------*/
+
+ul.breadcrumb {
+    padding: 10px 16px;
+    list-style: none;
+    background-color: #eee;
+    font-size: 17px;
+}
+ul.breadcrumb li {display: inline;}
+ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+}
+ul.breadcrumb li a {
+    color: #0275d8;
+    text-decoration: none;
+}
+ul.breadcrumb li a:hover {
+    color: #01447e;
+    text-decoration: underline;
+}
+        </style>
+	</head>
+	
+	<body>
+	
+	<div class="innpakning">
+
+		
+	
+		<div class="meny2">
+		          
+            <h1>Dyre Quiz</h1>
+				
+		
+			
+			
+			
+	</div>
+
+	
+		
+    <div class="innhold">
+		<div id="null">
+            <form id="person">
+                <input required type="text" id="navn" class="skrift">
+                <button id="knapp" type="submit">Angi svar</button>
+            </form>
+        </div>
+        <div id="en" class="sjul">
+            <b>1. Hvilket dyr er dette?</b><br>
+            <audio src="./Dyr/elefant.mp3" controls></audio>
+            <form id="lyd1">
+                <input type="radio" required name="dyr1" value="elefant"> Elefant<br>
+                <input type="radio" name="dyr1" value="ku"> Ku<br>
+                <input type="radio" name="dyr1" value="love">Løve<br>
+                <input type="radio" name="dyr1" value="gnu">Gnu<br>
+                <button id="knapp1" type="submit">Angi svar</button>
+            </form> 
+        </div>
+        <div id="to" class="sjul">
+            <b>2. Hvilket dyr er dette?</b><br>
+            <audio src="./Dyr/ku.mp3" controls></audio>
+            <form id="lyd2">
+                <input type="radio" required name="dyr1" value="elefant"> Elefant<br>
+                <input type="radio" name="dyr1" value="ku"> Ku<br>
+                <input type="radio" name="dyr1" value="love">Løve<br>
+                <input type="radio" name="dyr1" value="gnu">Gnu<br>
+                <button id="knapp2" type="submit">Angi svar</button>
+            </form>
+        </div>
+        <div id="tre" class="sjul">
+            <b>3. Hvilket dyr er dette?</b><br>
+            <audio src="./Dyr/love.mp3" controls></audio>
+            <form id="lyd3">
+                <input type="radio" required name="dyr1" value="elefant"> Elefant<br>
+                <input type="radio" name="dyr1" value="ku"> Ku<br>
+                <input type="radio" name="dyr1" value="love">Løve<br>
+                <input type="radio" name="dyr1" value="gnu">Gris<br>
+                <button id="knapp4" type="submit">Angi svar</button>
+            </form>
+        </div>
+        <div id="fire" class="sjul">
+            <b>4. Hvilket dyr er dette?</b><br>
+            <video src="./Dyr/Video1.mp4" controls></video>
+            <form id="vid4">
+                <input type="radio" required name="dyr1" value="elefant"> Pinnedyr<br>
+                <input type="radio" name="dyr1" value="sjiraff">Sjiraff<br>
+                <input type="radio" name="dyr1" value="okse">Okse<br>
+                <input type="radio" name="dyr1" value="gnu">Gnu<br>
+                <button id="knapp5" type="submit">Angi svar</button>
+            </form>
+        </div>
+        <div id="fem" class="sjul">
+            <b>5. Hvilket dyr er dette?</b><br>
+            <video src="Dyr/Video4.mp4" controls></video>
+            <form id="vid5">
+                <input type="radio" name="dyr1" value="elefant"> Elefant<br>
+                <input type="radio" name="dyr1" value="ku"> Ku<br>
+                <input type="radio" name="dyr1" value="love">Løve<br>
+                <input type="radio" name="dyr1" value="gnu">Gnu<br>
+                <button id="knapp6" type="submit">Angi svar</button>
+            </form>
+        </div>
+        <div id="resultat" class="sjul">
+            
+        </div>
+    </div>
+	<div class="bunntekst">
+        <div id="laster2">0%</div>
+        <div id="laster">0%</div>
+	</div>
+ 
+	</div> <!-- innpakning -->
+        <script>
+            var en = document.getElementById("en");
+            var to = document.getElementById("to");
+            var tre = document.getElementById("tre");
+            var fire = document.getElementById("fire");
+            var fem = document.getElementById("fem");
+            var resultat = document.getElementById("resultat");
+            var info = document.getElementById("info");
+            var laster = document.getElementById("laster");
+            var laster2 = document.getElementById("laster2");
+            
+            var lyd1 = document.getElementById("lyd1");
+            var lyd2 = document.getElementById("lyd2");
+            var lyd3 = document.getElementById("lyd3");
+            var vid4 = document.getElementById("vid4");
+            var vid5 = document.getElementById("vid5");
+            var person = document.getElementById("person");
+
+            var poeng = 0;
+            var side = 0;
+            var prosent = 0;
+            var poengProsent = 0;
+            
+            
+            person.onsubmit = function(evt){
+                evt.preventDefault();
+                person.style.display = "none";
+                en.style.display = "inline";
+                utregning();
+            }
+            
+            lyd1.onsubmit = function(evt){
+                evt.preventDefault();
+                en.style.display = "none";
+                to.style.display = "inline";
+                var knappTrykket = evt.target; //Finner hvilken knapp som ble trykket
+                if (lyd1.elements["dyr1"].value === "elefant"){
+                    poeng++;
+                }
+                utregning();
+            }
+            
+            lyd2.onsubmit = function(evt){
+                evt.preventDefault();
+                to.style.display = "none";
+                tre.style.display = "inline";
+                var knappTrykket = evt.target; //Finner hvilken knapp som ble trykket
+                if (lyd2.elements["dyr1"].value === "ku"){
+                    poeng++;
+                }
+                utregning();
+            }
+            
+            lyd3.onsubmit = function(evt){
+                evt.preventDefault();
+                tre.style.display = "none";
+                fire.style.display = "inline";
+                var knappTrykket = evt.target; //Finner hvilken knapp som ble trykket
+                if (lyd3.elements["dyr1"].value === "love"){
+                    poeng++;
+                }
+                utregning();
+            }
+            
+            vid4.onsubmit = function(evt){
+                evt.preventDefault();
+                fire.style.display = "none";
+                fem.style.display = "inline";
+                var knappTrykket = evt.target; //Finner hvilken knapp som ble trykket
+                if (vid4.elements["dyr1"].value === "sjiraff"){
+                    poeng++;
+                }
+                utregning();
+            }
+            
+            vid5.onsubmit = function(evt){
+                evt.preventDefault();
+                fem.style.display = "none";
+                resultat.style.display = "inline";
+                var knappTrykket = evt.target; //Finner hvilken knapp som ble trykket
+                if (vid5.elements["dyr1"].value === "gnu"){
+                    poeng++;
+                }
+                utregning();
+                
+                resultat.innerHTML = "Du fikk " + poeng + " av 5 mulige. ";
+                
+                if (poeng > 4){
+                    resultat.innerHTML += "Dette var veldig bra!";
+                }
+                else if (poeng >2){
+                    resultat.innerHTML += "Du klarte dette greit";
+                }
+                else {
+                    resultat.innerHTML += "Dette må du øve mere på";
+                }
+            }
+            
+            function utregning(){
+                side++;
+                prosent = 100*side/6;
+                poengProsent = 100*poeng/5;
+                laster.style.width = prosent + "%";
+                laster.innerHTML = prosent.toFixed(0) * 1 + "%";
+                laster2.style.width = poengProsent + "%";
+                laster2.innerHTML = poengProsent.toFixed(0) * 1 + "%";
+            }
+        </script>
+	</body>
+
+</html>

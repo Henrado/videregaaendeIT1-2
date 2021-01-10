@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 253</title>
+        <style>
+            body {
+                transition: 2s;
+            }
+            h1 {
+                transform-origin: top left;
+                transition: 2s;
+                transform: scale(1);
+            }
+        </style>
+	</head>
+	<body>
+        <h1 id="overskrift">Overskrift</h1>
+        <script>
+            var overskrift = document.getElementById("overskrift");
+            overskrift.onmouseover = function(){
+                overskrift.style.transform = "scale(3)";
+            }
+            overskrift.onmouseout = function(){
+                overskrift.style.transform = "scale(1)";
+            }
+        </script>
+	</body>
+</html>

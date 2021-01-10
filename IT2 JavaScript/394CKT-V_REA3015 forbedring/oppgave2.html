@@ -1,0 +1,245 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Matteside</title>
+        <style>
+            #innhold {
+                border: solid;
+                border-radius: 10px;
+                background-color: white;
+                margin: auto;
+                width: 80%;
+                padding: 20px;
+                align-items: center;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+            }
+            body {
+                background-color: gray;
+            }
+            #meny {
+                width: 100%;
+                border-radius: 10px;
+                background-color: #333;
+            }
+            #infoBoks {
+                width: 100%;
+            }
+            #alleBilerHolder {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
+            #alleBilerHolder > div {
+                flex-basis: 1;
+/*                border: solid;*/
+                flex-grow: 1;
+                margin: 20px;
+            }
+            #alleBilerHolder > div > img {
+                height: 200px;
+            }
+            .hovedInnhold {
+                background-color: aqua;
+                display: flex;
+                flex-direction: column;
+            }
+            .hovedInnhold {
+                width: 100%;
+                flex-basis: 1;
+                border-radius: 10px;
+            }
+            .steng {
+                background-color: gray;
+                border-radius: 10px;
+                font-size: 20px;
+                font-weight: bold;
+                cursor: pointer;
+                text-align: center;
+                padding: 20px;
+            }
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #333;
+                margin: auto
+            }
+            
+            li {
+                float: left;
+                margin: auto;
+                width: 33.3%;
+            }
+
+            li a {
+                display: block;
+                color: white;
+                margin: auto;
+                text-align: center;
+                padding: 15px 20px;
+                text-decoration: none;
+            }
+            
+            /* Change the link color to #111 (black) on hover */
+            li a:hover {
+                background-color: #111;
+            }
+            .knapp {
+                position: absolute;
+                top: 50%;
+                width: auto;
+                padding: 16px;
+                border: solid;
+                margin-top: -22px;
+                border-radius: 3px;
+            }
+            .knapp:hover {
+                background-color: white;
+            }
+            #neste {
+                right: 0;
+            }
+            .ramme {
+                border: solid;
+                border-radius: 20px;
+                flex-grow: 1;
+                margin: 10px;
+                padding: 10px;
+                background-color:gray;
+                background-repeat: repeat;
+                background-position: center;
+            }
+            .ramme > img {
+                width: 200px;
+            }
+            #bildeholder > img {
+                width: 100%;
+            }
+            #bildeHolder {
+                width: 100%;
+                margin: auto;
+                position: relative;
+                border: solid;
+                background-color: darkgreen;
+            }
+            #meny {
+                margin: 10px;
+            }
+            #fastRad {
+                background-color: white;
+                display: flex;
+                justify-content: space-around;
+            }
+            #fastRad > div {
+                flex-basis: 1;
+/*                border: solid;*/
+                flex-grow: 1;
+                margin: 20px;
+            }
+            #kvitering {
+                background-color: brown;
+            }
+        </style>
+	</head>
+	<body>
+        <div id="innhold">
+            <h1>Ringve musikkhistoriske museum</h1>
+            <div id="meny"></div>
+            <div id="menyInfo"></div>
+            <div id="infoBoks"></div>
+            <div class="">
+                <form id="sjema">
+                    <table>
+                        <tr><th>Velg arrangement</th><td><select id="inpArrangement"><option>Velg arrangement</option></select></td></tr>
+                        <tr><td colspan="2" id="arrInfo"></td></tr>
+                        <tr><th>Velg antall barn</th><td><input min="0" id="inpAntBarn" type="number" required value="0"></td></tr>
+                        <tr><th>Velg antall voksne</th><td><input min="0" id="inpAntVoksen" type="number" required value="0"></td></tr>
+                        <tr><td><button type="submit">Bestill</button></td><td><button type="reset">Reset</button></td></tr>
+                    </table>
+                </form>
+                <div id="kvitering"></div>
+            </div>
+        </div>
+        <script src="slett_meg.js"></script>
+        <script>
+            var infoBoks = document.getElementById("infoBoks");
+            var inpAntBarn = document.getElementById("inpAntBarn"); //Deklarerer variabler
+            var inpAntVoksen = document.getElementById("inpAntVoksen");
+            var sjema = document.getElementById("sjema");
+            var kvitering = document.getElementById("kvitering");
+            var arrInfo = document.getElementById("arrInfo");
+            var inpArrangement = document.getElementById("inpArrangement");
+            
+            var arrangementer = [ //Setter all info inn i array
+                {dato:"1.juni", tid:"11:00", arrangement:"Trondheim kammermusikkfestival: Fabelaktig formiddag", info: "Ting"},
+                {dato:"4.juni", tid:"14:30", arrangement:"Spill opp", info: "Ting"},
+                {dato:"6.juni", tid:"13:00", arrangement:"Onsdagskonsert", info: "Ting"},
+                {dato:"9.juni", tid:"14:00", arrangement:"Juiogat: Joik for folk", info: "Ting"}
+            ];
+            
+            for (var i = 0; i < arrangementer.length; i++){ //Legger til alle mulige arrangementer
+                inpArrangement.innerHTML += "<option>"+arrangementer[i].arrangement+"</option>"
+            }
+            
+            inpArrangement.onchange = function(){ //Når bruker forandrer på hvilket arrangement så blir info om det skrevet ut
+                var index = inpArrangement.selectedIndex - 1;
+                if(index < 0){
+                    arrInfo.innerHTML = "";
+                    return;
+                }
+                arrInfo.innerHTML = "Dato: " + arrangementer[index].dato + " Tidspunkt: " + arrangementer[index].tid + " Info: " + arrangementer[index].info;
+            }
+            
+            sjema.onsubmit = function(evt){ //Når bruker bestiller
+                evt.preventDefault();
+                var index = inpArrangement.selectedIndex - 1; //Finner arrangement
+                var antBarn = Number(inpAntBarn.value);
+                var antVoksen = Number(inpAntVoksen.value);
+                var totalAntallBilletter = 0;
+                var sumBarn = 0; //Dekalrerer variabler
+                var sumVoksene = 0;
+                var totalSum = 0;
+                var rabatt = 0.20;
+                if(index < 0){ //Sjekker om arrangement er valgt
+                    alert("Du må velge et arrangement fra nedtrekslisten");
+                    return;
+                }
+                if (antBarn < 1 && antVoksen < 1){ //Sjekker om anntall biletteter er valgt
+                    alert("Du må velge antall barn og voksne")
+                    return;
+                }
+                sumBarn = antBarn * 50; //Regner ut
+                sumVoksene = antVoksen * 100;
+                totalSum = sumBarn + sumVoksene;
+                totalAntallBilletter += Number(antBarn + antVoksen);
+                if (totalAntallBilletter >= 5){
+                    totalSum = totalSum - totalSum*rabatt; 
+                }
+                kvitering.innerHTML = ""; //Skriver ut kvitering
+                var teskt = document.createElement("DIV");
+                teskt.innerHTML+= "Du har bestilt " + totalAntallBilletter + " biletter til " + arrangementer[index].arrangement + "<br>";
+                teskt.innerHTML+= "Du har bestilt for: ";
+                if(antVoksen > 0){ //Sjekker om voksne
+                    teskt.innerHTML += antVoksen + " voksene";
+                }
+                if(antVoksen > 0 && antBarn > 0){ //Er her for god norsk 
+                    teskt.innerHTML += " og "
+                }
+                if(antBarn > 0){ //Sjekker barn
+                    teskt.innerHTML += antBarn + " barn";
+                }
+                teskt.innerHTML += "<br>Totalprisen er på kr " + totalSum; 
+                if(totalAntallBilletter >=5){ 
+                    teskt.innerHTML+= ", inkusiv gruppperabatt på 20 prosent";
+                }
+                kvitering.appendChild(teskt);
+            }
+        </script>
+    </body>
+</html>

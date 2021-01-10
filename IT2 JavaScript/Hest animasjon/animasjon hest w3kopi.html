@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Animasjon</title>
+        <style>
+            .bilder {
+                display: none;
+            }
+        </style>
+	</head>
+	<body onload="startGame()">
+        <div id="innhold">
+            <img id="scream" src="enhjorningFull2.png" class="bilder">
+            <img id="gress" src="gress.png" class="bilder">
+<!--            <canvas id="myCanvas" width="2000" height="800"></canvas>-->
+        </div>
+        <script>
+            var myGamePiece;
+            var myObstacles = [];
+            var myScore;
+            var blokker = [1,1,1,1,1,1,1,0,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
+            
+            function startGame() {
+                myGamePiece = new component(30, 30, "red", 10, 120);
+                myGamePiece.gravity = 0.05;
+                myGameArea.start();
+            }
+            
+            var myGameArea = {
+                canvas : document.createElement("canvas"),
+                start : function() {
+                    this.canvas.width = 480;
+                    this.canvas.height = 270;
+                    this.context = this.canvas.getContext("2d");
+                    document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+                    this.frameNo = 0;
+                    this.interval = setInterval(updateGameArea, 20);
+                },
+                clear : function() {
+                this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                }
+            }
+            
+            function component(width, height, color, x, y, type) {
+                this.type = type;
+                this.score = 0;
+                this.width = width;
+                this.height = height;
+                this.speedX = 0;
+                this.speedY = 0;    
+                this.x = x;
+                this.y = y;
+                this.gravity = 0;
+                this.gravitySpeed = 0;
+                this.update = function() {
+                    ctx = myGameArea.context;
+                    if (this.type == "text") {
+                        ctx.font = this.width + " " + this.height;
+                        ctx.fillStyle = color;
+                        ctx.fillText(this.text, this.x, this.y);
+                    } else {
+                        ctx.fillStyle = color;
+                        ctx.fillRect(this.x, this.y, this.width, this.height);
+                    }
+                }
+                this.newPos = function() {
+                    this.gravitySpeed += this.gravity;
+                    this.x += this.speedX;
+                    this.y += this.speedY + this.gravitySpeed;
+                    this.hitBottom();
+                }
+                this.hitBottom = function() {
+                    var rockbottom = myGameArea.canvas.height - this.height;
+                    if (this.y > rockbottom) {
+                        this.y = rockbottom;
+                        this.gravitySpeed = 0;
+                    }
+                }
+                this.crashWith = function(otherobj) {
+                    var myleft = this.x;
+                    var myright = this.x + (this.width);
+                    var mytop = this.y;
+                    var mybottom = this.y + (this.height);
+                    var otherleft = otherobj.x;
+                    var otherright = otherobj.x + (otherobj.width);
+                    var othertop = otherobj.y;
+                    var otherbottom = otherobj.y + (otherobj.height);
+                    var crash = true;
+                    if ((mybottom < othertop) || (mytop > otherbottom) || (myright < otherleft) || (myleft > otherright)) {
+                        crash = false;
+                    }
+                    return crash;
+                }
+            }
+            
+            function updateGameArea() {
+                var x, height, gap, minHeight, maxHeight, minGap, maxGap;
+                for (i = 0; i < myObstacles.length; i += 1) {
+                    if (myGamePiece.crashWith(myObstacles[i])) {
+                        return;
+                    } 
+                }
+                myGameArea.clear();
+                myGameArea.frameNo += 1;
+                if (myGameArea.frameNo == 1 || everyinterval(150)) {
+                    x = myGameArea.canvas.width;
+                    minHeight = 20;
+                    maxHeight = 200;
+                    height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
+                    minGap = 50;
+                    maxGap = 200;
+                    gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
+                    myObstacles.push(new component(10, height, "green", x, 0));
+                    myObstacles.push(new component(10, x - height - gap, "green", x, height + gap));
+                }
+                for (i = 0; i < myObstacles.length; i += 1) {
+                    myObstacles[i].x += -1;
+                    myObstacles[i].update();
+                }
+                //myScore.update();
+                myGamePiece.newPos();
+                myGamePiece.update();
+            }
+            /*
+            var hest = {
+                "xpos":30,
+                "ypos":30,
+                "xfart":3,
+                "yfart":3,
+                "xretning":0,
+                "yretning":0,
+                "gravitasjon": 0.05,
+                "gravitasjonFart": 0,
+                "iLuft": true
+            }
+            */
+            function everyinterval(n) {
+                if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
+                return false;
+            }
+            //window.onload = figur(); 
+            //window.onload = setInterval(figur, 1000); 
+            /*
+            var tall = 0;
+            function figur(){
+                var img = document.getElementById("scream");
+                var gress = document.getElementById("gress");
+                ctx.fillStyle="white";
+                ctx.fillRect(0,0,c.width,c.height);
+                
+                for(var i = 0; i < blokker.length; i++){
+                    if (blokker[i]===1){
+                        ctx.drawImage(gress,i*gress.height,c.height-gress.height)
+                    }
+                }
+                ctx.drawImage(img, tall, 0, 200, 200, hest.xpos, hest.ypos, 200, 200);
+                hest.gravitasjonFart += hest.gravitasjon;
+                hest.xpos = hest.xpos+(hest.xretning*hest.xfart)
+                hest.ypos = hest.ypos+(hest.yfart*hest.gravitasjonFart);
+                tall += 200;
+                if (tall >= 2000){
+                    tall = 0;
+                }
+                if ((hest.ypos + 200) > c.height-gress.height){
+                    hest.ypos = c.height-gress.height-200;
+                    hest.iLuft = true;
+                }
+                if ((hest.xpos + 200) > c.width){
+                    hest.xpos = c.width-200;
+                }
+                if ((hest.xpos) < 0){
+                    hest.xpos = 0;
+                }
+                //setTimeout(figur, 1000/6);
+                requestAnimationFrame(figur);
+            }
+            */
+            document.onkeydown = function(evt){
+                var tallkode = evt.keyCode;
+                console.log(tallkode);
+                if(tallkode === 39){
+                    hest.xretning = 1;
+                } 
+                if (tallkode === 37){
+                    hest.xretning = -1;
+                } 
+                if (tallkode === 38 && hest.iLuft){
+                    hest.gravitasjonFart = -3;
+                    hest.iLuft = false;
+                } 
+            }
+            document.onkeyup = function(){
+                hest.xretning = 0;
+                hest.yretning = 0;
+            }
+        </script>
+    </body>
+</html>

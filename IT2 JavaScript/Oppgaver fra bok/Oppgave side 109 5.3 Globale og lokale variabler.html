@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 109</title>
+	</head>
+	
+	<body>
+        <h1>Oppgave 1</h1>
+        <p id="oppgave1">Lokale variabler brukes inne i en funksjon hvis den bare skal brukes der</p>
+        <p>Globale variabler brukes når man må bruke variablen flere steder i koden</p>
+        
+        <h1>Oppgave 2</h1>
+        <p id="oppgave2"></p>
+        
+        <h1>Oppgave 3</h1>
+        <p id="oppgave3"></p>
+		<script>
+            //Oppgave 2
+            var poengsum = 0;
+            var oppgave2 = document.getElementById("oppgave2");
+            
+            function leggTilPoeng(){
+                poengsum = poengsum + 5;
+            }
+            function trekkFraPoeng(){
+                poengsum = poengsum - 5;
+            }
+            leggTilPoeng();
+            leggTilPoeng();
+            trekkFraPoeng();
+            
+            oppgave2.innerHTML+="Antall poeng " + poengsum;
+            
+            //Oppgave 3
+            var oppgave3 = document.getElementById("oppgave3");
+            
+            function visBetaling(pris){
+                var rabatt = 0.20;
+                var tilbudpris = (pris*rabatt);
+                oppgave3.innerHTML += "Den kostet " + pris + " men med " + rabatt*100 + "% får man " + tilbudpris + "kr i rabatt. Totalprisen blir " + (pris-tilbudpris)+ "<br>";
+            }
+            visBetaling(500);
+            visBetaling(700);
+            visBetaling(1200);
+            
+            //Oppgave 4
+            
+        </script>
+		
+	</body>
+</html>

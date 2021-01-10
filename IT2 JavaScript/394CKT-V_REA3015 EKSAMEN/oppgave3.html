@@ -1,0 +1,328 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Matteside</title>
+        <style>
+            #innhold {
+                border: solid;
+                border-radius: 10px;
+                background-color: white;
+                margin: auto;
+                width: 80%;
+                padding: 20px;
+                align-items: center;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+            }
+            body {
+                background-color: gray;
+            }
+            #meny {
+                width: 100%;
+                border-radius: 10px;
+                background-color: #333;
+            }
+            #infoBoks {
+                width: 100%;
+            }
+            #alleBilerHolder {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
+            #alleBilerHolder > div {
+                flex-basis: 1;
+/*                border: solid;*/
+                flex-grow: 1;
+                margin: 20px;
+            }
+            #alleBilerHolder > div > img {
+                height: 200px;
+            }
+            .hovedInnhold {
+                background-color: aqua;
+                display: flex;
+                flex-direction: column;
+            }
+            .hovedInnhold {
+                width: 100%;
+                flex-basis: 1;
+                border-radius: 10px;
+            }
+            .steng {
+                background-color: gray;
+                border-radius: 10px;
+                font-size: 20px;
+                font-weight: bold;
+                cursor: pointer;
+                text-align: center;
+                padding: 20px;
+            }
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #333;
+                margin: auto
+            }
+            
+            li {
+                float: left;
+                margin: auto;
+                width: 33.3%;
+            }
+
+            li a {
+                display: block;
+                color: white;
+                margin: auto;
+                text-align: center;
+                padding: 15px 20px;
+                text-decoration: none;
+            }
+            
+            /* Change the link color to #111 (black) on hover */
+            li a:hover {
+                background-color: #111;
+            }
+            .knapp {
+                position: absolute;
+                top: 50%;
+                width: auto;
+                padding: 16px;
+                border: solid;
+                margin-top: -22px;
+                border-radius: 3px;
+            }
+            .knapp:hover {
+                background-color: white;
+            }
+            #neste {
+                right: 0;
+            }
+            .ramme {
+                border: solid;
+                border-radius: 20px;
+                flex-grow: 1;
+                margin: 10px;
+                padding: 10px;
+                background-color:gray;
+                background-repeat: repeat;
+                background-position: center;
+            }
+            .ramme > img {
+                width: 200px;
+            }
+            #bildeholder > img {
+                width: 100%;
+            }
+            #bildeHolder {
+                width: 100%;
+                margin: auto;
+                position: relative;
+                border: solid;
+                background-color: darkgreen;
+            }
+            #meny {
+                margin: 10px;
+            }
+            #fastRad {
+                background-color: white;
+                display: flex;
+                justify-content: space-around;
+            }
+            #fastRad > div {
+                flex-basis: 1;
+/*                border: solid;*/
+                flex-grow: 1;
+                margin: 20px;
+            }
+            .smaBilder {
+                flex: 1;
+                margin: 10px;;
+                padding: 20px;
+                border: solid;
+                border-radius: 20px;
+            }
+            .smaBilder > img{
+                width: 100%;
+            }
+            #svar {
+                flex-wrap: nowrap;
+                display: flex;
+            }
+            #navn {
+                margin: 20px;
+            }
+            button {
+                font-size: 20px;
+                background-color: red;
+            }
+        </style>
+	</head>
+	<body>
+        <div id="innhold">
+            <h1>Ringve musikkhistoriske museum</h1>
+            <div id="meny"></div>
+            <div id="menyInfo"></div>
+            <div id="infoBoks"></div>
+            <div id="spill">
+                <form id="sjema">
+                    <input id="navn" required>
+                    <div id="sporsmol"><span>Hvilkt instrument er denne lyden sin? <button id="spillLyd" type="">Spill av lyd!</button></span></div>
+                    <div id="svar"></div>
+                </form>
+                <div id="resultat"></div>
+                <audio id="instrumentLyd" src="media/fagott.mp3"></audio>
+                <audio id="feilLyd" src="media/feil.mp3"></audio>
+                <audio id="riktigLyd" src="media/riktig.mp3"></audio>
+            </div>
+        </div>
+        <script src="slett_meg.js"></script>
+        <script>
+            var spill = document.getElementById("spill");
+            var sjema = document.getElementById("sjema");
+            var resultat = document.getElementById("resultat");
+            var sporsmol = document.getElementById("sporsmol");
+            var svar = document.getElementById("svar");
+            var instrumentLyd = document.getElementById("instrumentLyd")
+            var spillLyd = document.getElementById("spillLyd");
+            var feilLyd = document.getElementById("feilLyd");
+            var riktigLyd = document.getElementById("riktigLyd");
+            var feil = 0;
+            var tilfeldig = 0;
+            var brukteLyder = [];
+            var navn = document.getElementById("navn");
+            var ferdig_2 = false;
+            
+            var instrumenter = [
+                {navn: "Fagott", bilde: "media/fagott.png", lyd:"media/fagott.mp3"},
+                {navn: "Fløyte", bilde: "media/floyte.png", lyd:"media/floyte.mp3"},
+                {navn: "Klarinett", bilde: "media/klarinett.png", lyd:"media/klarinett.mp3"},
+                {navn: "Obo", bilde: "media/obo.png", lyd:"media/obo.mp3"},
+                {navn: "Valthorn", bilde: "media/valthorn.png", lyd:"media/valthorn.mp3"}
+            ];
+            
+            start();
+            function start(){
+                svar.innerHTML = "";
+                resultat.innerHTML="";
+                instrumenter.sort(function(a, b){return 0.5 - Math.random()}); //Fra w3
+                lagerTilfeldig();
+                
+                for(var i = 0; i < instrumenter.length; i++){
+                    svar.innerHTML += "<div class='smaBilder' data-instrument='"+instrumenter[i].navn+"' onclick='sjekkSvar("+ i +")'><img widt='120px' src='" + instrumenter[i].bilde +"'>"+instrumenter[i].navn+"</div>";
+                }
+                if(ferdig_2){
+                    ferdig();
+                }
+                
+            }
+            
+            function lagerTilfeldig(){
+                tilfeldig = Math.floor(Math.random()*instrumenter.length);
+                for(var i = 0; i < brukteLyder.length; i++){
+                    if(brukteLyder.length === instrumenter.length){
+                        console.warn("Like lange")
+                        ferdig_2 = true;
+                        return;
+                        break;
+                    }
+                    else if(instrumenter[tilfeldig].navn === brukteLyder[i]){
+                        console.log("samme lyd");
+                        lagerTilfeldig();
+                    }
+                }
+                instrumentLyd.src = instrumenter[tilfeldig].lyd
+            }
+            
+            
+            sjema.onsubmit = function(evt){
+                evt.preventDefault();
+                navn.disabled = true;
+                instrumentLyd.play();
+            }
+            
+            function sjekkSvar(idTilTing){ //Blir kjørt pga. onclick i div med et tall (index til arrayet til utrekte figurer)
+                var alleMenClass = document.getElementsByClassName("smaBilder"); //Finner alle de fire figurene basert på classe 
+                if(idTilTing === tilfeldig){ //Hvis id er lik som tilfeldig er det riktig
+                    alleMenClass[idTilTing].style.backgroundColor = "green"; //Gjør bakgrunnen grønn
+                    brukteLyder.push(alleMenClass[idTilTing].getAttribute("data-instrument"));
+                    console.log(brukteLyder);
+                    riktigLyd.play();
+                    setTimeout(start, 1000);
+                }
+                else{ //Er de ikke lik så er det feil 
+                    feilLyd.play();
+                    alleMenClass[idTilTing].style.backgroundColor = "red"; //Setter rød bakgrunn på den diven som ble trykket 
+                    alleMenClass[idTilTing].animate([ //Får den også til å riste
+                        {transform: "rotate(20deg)"},
+                        {transform: "rotate(-20deg)"},
+                        {transform: "rotate(20deg)"},
+                        {transform: "rotate(-20deg)"},
+                        {transform: "rotate(0deg)"}
+                    ],{
+                        duration: 500,
+                        iterations: 1
+                    });
+                    feil++; //Mere feil 
+                }
+            }
+            
+            function ferdig(){
+                svar.innerHTML ="";
+                sporsmol.innerHTML ="";
+                console.log("antall feil er "+ feil)
+                if (feil <= 0){
+                    svar.innerHTML = "<h1>Gratulerer! Du fikk 0 feile svar<h1>";
+                }
+                else{
+                    svar.innerHTML = "<h1>"+navn.value+" du fikk "+feil+" feil</h1>"
+                }
+                lagrePoeng(navn.value, feil);
+                hentePoeng();
+                feil =0;
+            }
+            
+            function lagrePoeng(JNavn, JFeil){
+                //Storing data:
+                if(localStorage.poengsum){ //Sjekker om det finnes fra før
+                    //console.log("den finnes");
+                    tekst = localStorage.getItem("poengsum"); //Henter data fra nettleser 
+                    myObj = JSON.parse(tekst); //Gjør om til JS 
+                    myObj.push({"navnLagre":JNavn, "feilLagre":JFeil}); //Legger til enda et objekt
+                    objekt = myObj; 
+                    //OBS!!!!!
+                    //Det hender med Chrome at den ikke sjønner at den skal push det nye objektet måten å fikse dette på er å:
+                    //Trykke F12 --> Application -->Local Storage --> Høyre klikk og CLEAR
+                } else {
+                    console.warn("den finnes ikke"); //Sier ifra
+                    objekt.push({"navnLagre":JNavn, "feilLagre":JFeil}); //legger til 
+                }
+                myJSON = JSON.stringify(objekt); //Gjør om objekt til JSON
+                localStorage.setItem("poengsum", myJSON); //Lagrer i nettleser 
+            }
+            
+            function hentePoeng(){ 
+                tekst = localStorage.getItem("poengsum"); //Henter fra nettleser
+                objekt = JSON.parse(tekst); //Gjør om til JSON
+                resultat.innerHTML = ""; //Tømmer tid for info om tid
+                objekt.sort(sorter); //Sorterer basert på poeng 
+                objekt.reverse(); //Gjør at høyest kommer først
+                for(var u of objekt){ //Skriver ut alle resultatene 
+                    resultat.innerHTML += "<p>" + u.navnLagre + " har " + u.feilLagre + " feil </p>";
+                }
+                resultat.innerHTML += "<p><button onclick=start()>Spill igjen med samme navn</button></p>"; //Lager en ny knapp for å starte på nytt
+            }
+            
+            function sorter(a, b){ //Sorterer 
+                return b.feilLagre - a.feilLagre;
+            }
+        </script>
+    </body>
+</html>

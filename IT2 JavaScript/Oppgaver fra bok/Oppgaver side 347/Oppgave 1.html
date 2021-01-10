@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 347</title>
+        <style>
+        </style>
+	</head>
+	<body>
+        <script>
+            class land {
+                constructor(navn, areal, folketall){
+                    this.navn = navn;
+                    this.areal = areal;
+                    this.folketall = folketall;
+                }
+                skrivUt(){
+                    document.write(this.navn + " "+ this.areal + " " + this.folketall + "<br>");
+                }
+                get innbyggerePerKvadratmeter(){
+                    return this.areal/this.folketall + "<br>";
+                }
+            }
+            var land1 = new land("Norge", 3000, 300);
+            var land2 = new land("Norge", "Mye", "Litt");
+            var land3 = new land("Norge", "Mye", "Litt");
+            var land4 = new land("Norge", "Mye", "Litt");
+            land1.skrivUt();
+            document.write(land1.innbyggerePerKvadratmeter);
+            land2.skrivUt();
+            land3.skrivUt();
+            land4.skrivUt();
+            
+        </script>
+	</body>
+</html>

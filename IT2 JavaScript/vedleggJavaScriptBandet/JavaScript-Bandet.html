@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 144</title>
+        <style>
+            body {
+                color: white;
+                font-family: "Helvetica Neue", Helvetica, sans-serif;
+                background-color: darkorange;
+            }
+            div {
+                text-align: center;
+            }
+            img {
+                height: 180px;
+                margin: 12px;
+                cursor: pointer;
+            }
+            #artInfo {
+                max-width: 600px;
+                margin-right: auto;
+                margin-left: auto;
+            }
+        </style>
+	</head>
+	<body>
+        <div>
+            <img id="imgTrommer" src="./images/trommer_blek.png">
+            <img id="imgBass" src="./images/bass_blek.png">
+            <img id="imgGitar" src="./images/gitar_blek.png">
+            <img id="imgOrgel" src="./images/orgel_blek.png">
+            <img id="imgPiano" src="./images/piano_blek.png">
+        </div>
+        <article id="artInfo"></article>
+        <audio id="trommer" src="./audio/trommer.mp3" autoplay loop></audio>
+        <audio id="bass" src="./audio/bass.mp3" autoplay loop></audio>
+        <audio id="orgel" src="./audio/orgel.mp3" autoplay loop></audio>
+        <audio id="piano" src="./audio/piano.mp3" autoplay loop></audio>
+        <audio id="gitar" src="./audio/gitar.mp3" autoplay loop></audio>
+        <script>
+            var trommer = document.getElementById("trommer");
+            var bass = document.getElementById("bass");
+            var orgel = document.getElementById("orgel");
+            var piano = document.getElementById("piano");
+            var gitar = document.getElementById("gitar");
+            
+            var imgTrommer = document.getElementById("imgTrommer");
+            var imgBass = document.getElementById("imgBass");
+            var imgGitar = document.getElementById("imgGitar");
+            var imgOrgel = document.getElementById("imgOrgel");
+            var imgPiano = document.getElementById("imgPiano");
+            
+            trommer.volume = 0;
+            bass.volume = 0;
+            orgel.volume = 0;
+            piano.volume = 0;
+            gitar.volume = 0;
+            
+            imgTrommer.onclick = function(){
+                
+                if(trommer.volume === 0){
+                    trommer.volume = 1;
+                    imgTrommer.src="./images/trommer_sort.png";
+                }
+                else {
+                    trommer.volume = 0;
+                    imgTrommer.src="./images/trommer_blek.png";
+                }
+            }
+            
+            imgBass.onclick = function(){
+                bass.currentTime = trommer.currentTime;
+                
+                if(bass.volume === 0){
+                    bass.volume = 1;
+                    imgBass.src="./images/bass_sort.png";
+                }
+                else {
+                    bass.volume = 0;
+                    imgBass.src="./images/bass_blek.png";
+                }
+            }
+            
+            imgOrgel.onclick = function(){
+                orgel.currentTime = trommer.currentTime;
+                
+                if(orgel.volume === 0){
+                    orgel.volume = 1;
+                    imgOrgel.src="./images/orgel_sort.png";
+                }
+                else {
+                    orgel.volume = 0;
+                    imgOrgel.src="./images/orgel_blek.png";
+                }
+            }
+            
+            imgGitar.onclick = function(){
+                gitar.currentTime = trommer.currentTime;
+                
+                if(gitar.volume === 0){
+                    gitar.volume = 1;
+                    imgGitar.src="./images/gitar_sort.png";
+                }
+                else {
+                    gitar.volume = 0;
+                    imgGitar.src="./images/gitar_blek.png";
+                }
+            }
+            
+            imgPiano.onclick = function(){
+                piano.currentTime = trommer.currentTime;
+                
+                if(piano.volume === 0){
+                    piano.volume = 1;
+                    imgPiano.src="./images/piano_sort.png";
+                }
+                else {
+                    piano.volume = 0;
+                    imgPiano.src="./images/piano_blek.png";
+                }
+            }
+        </script>
+	</body>
+</html>

@@ -1,0 +1,97 @@
+#banner {
+	width: 99%;
+    border-radius: 10px; /* avrunder kant */
+
+}
+
+#meny {
+	float: left;
+	border: solid;
+	width: 26%;
+	height: 500px;
+	background-color: #7777EE;
+    border-radius: 10px; /* avrunder kant */
+
+	
+}
+ul {
+    padding: 0px; /* avstand mellom bokskant og innhold */
+	list-style-type: none;
+
+}
+table {
+	width: 100%
+}
+
+table th {
+	border: 2px; 
+	border-style:solid;
+	font-size:30px;
+	background-color: #888888;	
+}
+
+table td {
+	border: 2px; 
+	border-style:solid;
+	font-size: 25px;
+	background-color: #DDDDDD;
+}
+
+ul a{
+	display: block; /* gjør om til block */
+    background-color: #8cbeFF; /* grønn */
+    width: 97%; /* tekstfeltets bredde */
+    color: #000000;
+	font-size: 40px;
+    border-radius: 10px; /* avrunder kant */
+    margin: 5px; /* avstand mellom bokser */
+}
+#innhold {
+	float: left;
+	height: 500px;
+	border: solid;
+	width: 72%;
+    border-radius: 10px; /* avrunder kant */
+	background-color: #717171;
+}
+p {
+	color: #00EEFF;
+	font-size: 50px;
+}
+/*ALLE <a>*/
+body {
+	background-color: #323232;
+}
+p:hover {
+    color: #FF0000;
+}
+
+/* unvisited link */
+ul a:hover {
+    color: #FF0000;
+}
+a { /* fjerner understrek */
+    text-decoration: none; 
+}
+p a {  /*Paragraf linker*/
+	font-size: 100px;
+	font-stretch:100%;
+}
+p a:link {
+    color: #00EEFF;
+}
+
+/* visited link */
+p a:visited {
+    color: #FF22EE;
+}
+
+/* mouse over link */
+p a:hover {
+    color: #FF0000;
+}
+
+/* selected link */
+p a:active {
+    color: yellow;
+}

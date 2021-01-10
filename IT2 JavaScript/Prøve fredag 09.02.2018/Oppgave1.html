@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Prøve 09.02.2018 Henrik</title>
+        <style>
+            #diagram{
+                display: flex;
+                width: 100%;
+                height: 300px;
+                flex-direction: row;
+                align-items: flex-end;
+                padding-top: 10px;
+                
+                
+                writing-mode: ;
+                
+            }
+            #diagram > div {
+                background-color: darkred;
+                margin: 5px;
+                flex-grow: 1;
+                text-align: center;
+                color: aliceblue;
+                font-family: areal;
+            }
+            #alt {
+                display: flex;
+                flex-direction: column;
+                width: 70%;
+                padding: 10px;;
+                margin: auto;
+                background-color: green;
+                border-radius: 10px;
+                text-align: center;
+            }
+            #meny {
+                display: flex;
+                width: 100%;
+                height: 100%;
+                flex-direction: row;
+                align-items: flex-end;
+            }
+            body {
+                align-items: center;
+                background-color:darkolivegreen;
+            }
+            .bokser {
+                height: 80px;
+                background-color: aquamarine;
+                flex-grow: 1;
+                text-align: center;
+                font-size: 20px;
+            }
+            #tabell {
+                border-collapse: collapse;
+                width: 100%;
+            }
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+            tr:hover {
+                background-color: #f5f5f5;
+            }
+            p {
+                background-color: #dddddd;
+            }
+        </style>
+	</head>
+	<body>
+        <div id="alt">
+            <h1>Turer du kan dra på!</h1>
+            <div id="meny">
+            </div>
+            <br>
+            <p id="info"></p>
+            <br>
+            <button id="knapp">Regn ut H faktor</button>
+            <table id="tabell"></table>
+            <h2>Grafisk fremstilling av lengdene</h2>
+            <div id="diagram"></div>
+        </div>
+        <script>
+            var alt = document.getElementById("alt"); //Deklarerer variabler
+            var meny = document.getElementById("meny");
+            var info = document.getElementById("info");
+            var knapp = document.getElementById("knapp");
+            var tabell = document.getElementById("tabell");
+            var diagram = document.getElementById("diagram");
+            
+            var data = [ //Setter data
+                {tur: "Jotunheimen rundt", lengde: 75, hoydemeter: 4800, tidsbruk: 4},
+                {tur: "Havbris på Hvaler", lengde: 48, hoydemeter: 300, tidsbruk: 2},
+                {tur: "Rondanes perler", lengde: 64, hoydemeter: 2300, tidsbruk: 3},
+                {tur: "Gokk og tilbake", lengde: 100, hoydemeter: 500, tidsbruk: 5}
+            ];
+            
+            for (var sted of data){ //Legger til bokser og knapper med navn på turer
+                meny.innerHTML += "<div class='bokser'>" + sted.tur + "<br><button id='"+ sted.tur +"' onclick='velgTur(this.id)'>Velg tur</button>" + "</div>"; //Sender med id når knapp trykkes
+            }
+            
+            function velgTur(evt){ //Kjører når en knapp blir trykket på
+                var i = 0;
+                for (var sted of data){ //Travaserer data og legger til hvis id til knapp er lik matvarenavn
+                    if (evt === sted.tur){//Sammenligner id og alle navnene i data
+                        info.innerHTML = "Turen du har valgt er " + data[i].tur + ", den er på " + data[i].lengde + " km lang, har en høydeforskjell på " + data[i].hoydemeter + " meter og det tar ca. " + data[i].tidsbruk + " dager å fulføre"; //Skriver ut i info
+                    }
+                i++;
+                }
+            }
+            
+            knapp.onclick = function(){ //LAger tabell med H
+                tabell.innerHTML = "";
+                tabell.innerHTML += "<tr><th>Tur</th><th>Lengde</th><th>Antall høydemeter</th><th>Tidsbruk</th><th>H faktor</th></tr>"; //Lager table hode, overskrift
+                for (var ting of data){
+                    var H = (ting.lengde*ting.hoydemeter)/(ting.tidsbruk*1000); //Rehner ut H
+                    tabell.innerHTML += "<tr><td>"+ ting.tur +"</td><td>"+ ting.lengde +"</td><td>"+ ting.hoydemeter +"</td><td>"+ ting.tidsbruk +"</td><td>" + H.toFixed(1) + "</td></tr>"; //Skriver ut i tabell
+                }
+            }
+            
+            function finnMaks(){ //Kopi fra boka for å finne maks
+                var maks = -Infinity;
+                for (var ting of data){
+                    if(ting.lengde > maks){
+                        maks = ting.lengde;
+                    }
+                }
+                return maks;
+            }
+            
+            function tegnStolper(){ //Kopi fra boka for å lage søylediagram
+                var maks = finnMaks();
+                for (var ting of data){
+                    console.log("Kjører")
+                    var prosent = ting.lengde/maks*100; //regner ut prosent
+                    diagram.innerHTML += '<div style="height:' + prosent +'%">' + ting.tur + '<br>' + prosent + '%</div>'; //Skriver ut
+                }
+            }
+            tegnStolper(); //Tegner stolper
+        </script>
+	</body>
+</html>

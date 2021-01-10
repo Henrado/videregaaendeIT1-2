@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Prøve fredag 20. Oktober Kap1</title>
+	</head>
+	
+	<body>
+        <h1>Oppgave 4</h1>
+		<button id="kanpp1" onclick="visBilde()">Knapp 1</button> 
+        <button id="knapp2" onclick="byttBakgrunn()">Knapp 2</button>
+        <br>
+        <img id="bilde1" src="#">
+        <script>
+            var i = false;  //Setter variabel som 0
+            function visBilde(){ //Blir kjørt når man trykker på knapp1
+                var bilde1 = document.getElementById("bilde1"); 
+                if (i === false){ //Sjekker om bildet har blitt vist før
+                    bilde1.src= "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/512px-HTML5_logo_and_wordmark.svg.png"; //Henter bilde
+                    i = true; //Setter at bildet er på
+                }
+               else if (i === true){ //Sjekker om bilde er synllig
+                   bilde1.src="#"; //Tar vekk bildet
+                   i = false; //Setter at bildet skal bli borte
+               }
+            }
+            function byttBakgrunn(){ //Blir kjørt når man trykker på knapp2
+                var byttBakgrunn = document.body.style;
+                byttBakgrunn.backgroundColor = "red"; //Setter rød bakgrunn
+                byttBakgrunn.fontSize = "30px"; //Setter skriftstørelse
+            }
+        </script>
+		
+	</body>
+</html>

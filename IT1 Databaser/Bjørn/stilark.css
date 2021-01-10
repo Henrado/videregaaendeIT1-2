@@ -1,0 +1,113 @@
+
+.alt {
+	border:;
+	width:80%;
+	margin:30px auto;
+	display:flex;
+	flex-direction:row;
+	flex-wrap:wrap;
+}
+
+body {
+	background-image: url('media/skog.jpg');
+	background-repeat: repeat;
+	background-size: 100%;
+}
+
+.banner {
+	flex-basis:100%;
+	border:solid;
+	order:1;
+	background-image:url("./media/skog_2.jpg");
+	background-repeat:no-repeat;
+	background-position:left-bottom;
+	height:182px;
+}
+
+.banner img {
+	height:100%;
+}
+
+.menytopp {
+	flex-basis:100%;
+	border:solid;
+	background-image:url("./media/tre.jpg");
+	order:2;
+}
+
+.menytopp ul li {
+	display: inline;
+}
+
+.menyside{
+	flex-basis:20%;
+	border:solid;
+	background-image:url("./media/tre2.jpg");
+	order:3;
+	padding:5px;
+}
+
+ ul li{
+	display:block;
+	border-radius:5px;
+	background-color:yellow;
+	margin:5px;
+	padding:5px;
+	font-size:20px;
+}
+
+.hoved {
+	order:4;
+	flex:1;
+	border:solid;
+	background-color:#f6f6f6;
+	height:20000px;
+}
+
+ul {
+	list-style-type:none;
+	padding:0px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ff9900;
+    min-width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 0px;
+	margin: auto;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+	border-radius:5px;
+}
+
+.bunn {
+	flex-basis:100%;
+	border:solid;
+	order:5;
+	background-color:#494949;
+}
+
+.menyboks {
+	width:20%;
+	padding:;
+}
+
+/*Koder CSS:
+background-color:	;
+font-family:	;	Skrift
+font-size:	;
+font-style:	; px
+color:	;
+id:;
+class:;
+
+*/

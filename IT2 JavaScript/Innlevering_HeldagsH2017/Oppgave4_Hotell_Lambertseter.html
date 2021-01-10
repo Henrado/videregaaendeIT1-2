@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Heldagsprøve IT2 11.12.2017</title>
+        <style>
+            div {
+                border: solid;
+                display: flex;
+                padding: auto;
+                margin: auto;
+                align-items: center;
+                flex-direction: column;
+                background-color: coral;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            }
+            #info {
+                text-align: center;
+                width: 300px;
+            }
+        </style>
+	</head>
+	<body>
+    <h1>Oppgave 4</h1>
+        <div>
+        <h2>Hotell lambert!</h2>
+        <h3>Registrer deg her!</h3>
+        
+        <form id="form"> 
+<!--            Skriver alle input elementene som skal til -->
+        <table>
+            <tr>
+                <th rowspan="2">Navn</th>
+                <td><input required type="text" id="fornavn" placeholder="Fornavn"></td>
+            </tr>
+            <tr>
+                <td><input required type="text" id="etternavn" placeholder="Etternavn"></td>
+            </tr>
+            <tr>
+                <th>Telefonnummer</th>
+                <td><input required type="tel" id="telefon" placeholder="Telefonnummer"></td>
+            </tr>
+            <tr>
+                <th>Innsjekkingsdato</th>
+                <td><input required type="date" id="dato" placeholder="Dato"></td>
+            </tr>
+            <tr>
+                <th rowspan="2">Ekstra frokost</th>
+                <td><label><input checked type="radio" id="rbFrokost" name="frokost">Ja</label></td>
+            </tr>
+            <tr>
+                <td><label><input  type="radio" id="rbIkkeFrokost" name="frokost">Nei</label></td>
+            </tr>
+            <tr>
+                <th>Antall netter</th>
+                <td>
+                    <select id="antallDager">
+                        <option>Antall netter</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th rowspan="3">Ekstra aktiviteter</th>
+                <td><label><input type="checkbox" id="tusenfryd">Tusenfryd</label></td>
+            </tr>
+            <tr>
+                <td><label><input type="checkbox" id="klatrehall">Klatrehall på Skullerud</label></td>
+            </tr>
+            <tr>
+                <td><label><input type="checkbox" id="ostmarka">Guidet tur i Østmarka</label></td>
+            </tr>
+            <tr>
+                <th colspan="2"><button type="submit">Send inn</button></th>
+            </tr>
+        </table>
+        </form>
+        </div>
+        <div id="info"></div>
+        <script>
+            var form = document.getElementById("form"); //Deklarer veldig mange variabler siden det er så mange inputelementer
+            var fornavn = document.getElementById("fornavn");
+            var etternavn = document.getElementById("etternavn");
+            var telefon = document.getElementById("telefon");
+            var dato =  document.getElementById("dato");
+            var rbFrokost = document.getElementById("rbFrokost");
+            var rbIkkeFrokost = document.getElementById("rbIkkeFrokost");
+            var antallDager = document.getElementById("antallDager");
+            var tusenfryd = document.getElementById("tusenfryd");
+            var klatrehall = document.getElementById("klatrehall");
+            var ostmarka = document.getElementById("ostmarka");
+            var indeks = antallDager.selectedIndex;
+            var info = document.getElementById("info");
+            
+            
+            form.onsubmit = function(evt){ //Gjør at ikke nettleseren går til en ny side
+                evt.preventDefault();
+                
+                var prisNatt = 800; //Setter vanlig pris for rom
+                
+                var samletPris = 0; //Setter den smlede prisen
+                
+                var aktiviteter =""; //Setter de samlede aktivitetene
+                
+                var funker = true; //For å teste om man har valgt riktig antall netter
+                
+                if (antallDager.value === "Antall netter"){ //Sjekker om man har valgt netter
+                    alert("Du må velge antall netter");
+                    funker = false; //Hvis man ikk har det fil koden bli stoppet senere
+                }else if (antallDager.value>2){ //Sjekker om det er flere enn to dager og da blir rommene 200 kr billigere
+                    prisNatt = 600;
+                }
+                if (rbFrokost.checked){ //Sjekker om man vil ha frokost
+                    var svarFrokost = "Ja";
+                    samletPris = samletPris + 200;
+                } else { //Hvis ikke så nei
+                    var svarFrokost = "Nei";
+                }
+                if (tusenfryd.checked){ //Sjekker hvilke aktiviteter man vil på
+                    samletPris = samletPris + 300;
+                    aktiviteter = aktiviteter + "Dagspass  Tusenfryd "; //Legger till aktivitetene som tekst til senere
+                }
+                if (klatrehall.checked){ //Samme som sist
+                    samletPris = samletPris + 150;
+                    aktiviteter = aktiviteter + "Dagspass Klatrehall ";//Samme som sist
+                }
+                if (ostmarka.checked){//Samme som sist
+                    samletPris = samletPris + 200;
+                    aktiviteter = aktiviteter + "Tur Østmarka ";//Samme som sist
+                }
+                
+                if(funker){ //Sjekker om det funker
+                    samletPris = samletPris + antallDager.value*prisNatt; //Regner ut summen 
+                    
+                    info.innerHTML = ""; //Skriver ut alt man har bestilt
+                    info.innerHTML+="<h3>Ordrebrekreftelse:</h3>";
+                    info.innerHTML+="<p>Kunde: " + fornavn.value + " " + etternavn.value + "</p>";
+                    info.innerHTML+="<p>Telefonnummer: " + telefon.value + "</p>";
+                    info.innerHTML+="<p>Innsjekkingsdato: " + dato.value + "</p>";
+                    info.innerHTML+="<p>Inkludert frokost: " + svarFrokost + "</p>";
+                    info.innerHTML+="<p>Antall netter: " + antallDager.value + "</p>";
+                    info.innerHTML+="<p>Ekstra aktiviteter: <p>"+ aktiviteter +"</p> </p>";
+                    info.innerHTML+="<p>Totalpris: "+ samletPris + "kr</p>";
+                }
+            }
+        </script>
+	</body>
+</html>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver s. 60</title>
+	</head>
+	
+	<body>
+		<h1>Oppgave 1</h1>
+		<p id="areal"></p>
+		<p id="omkrets"></p>
+
+        <h1>Oppgave 2</h1>
+		<p id="tilfeldig"></p>
+		
+		<h1>Oppgave 3</h1>
+		<p id="omkretskule"></p>
+		<p id="volumkule"></p>
+		<p id="arealkule"></p>
+        
+        <h1>Oppgave 4</h1>
+        <p id="karakter"></p>
+        
+        <h1>Oppgave 5</h1>
+        <p id="Kropsmasse"></p>
+		
+		<script>
+			//Oppgave 1
+			var hoyde =0;
+			var bredde = 0;
+			
+			hoyde = prompt("Høyde på rektangel");
+			bredde = prompt("Bredde på rektangel");
+			
+			var areal = hoyde * bredde;
+			var omkrets = Number(hoyde) + Number(hoyde) + Number(bredde) + Number(bredde);
+			
+			document.getElementById("areal").innerHTML = "Arealet til rektangelet er " + areal;
+			
+			document.getElementById("omkrets").innerHTML = "Omkrets til rektangelet er " + omkrets;
+			
+			//Oppgave 2
+			var test = Math.floor(Math.random()*20)+10;
+			
+			document.getElementById("tilfeldig").innerHTML = test;
+			7
+			//Oppgave 3 
+			var radius = 0;
+			
+			var radius = Number(prompt("Radius på kule"));
+						
+			var omkretskule = 2 * Math.PI * radius;
+			var volumkule = (4*Math.PI * Math.pow(radius, 3))/3;
+			var arealkule = 4 * Math.PI * Math.pow(radius, 2);
+			
+			omkretskule = omkretskule.toFixed(2);
+			volumkule = volumkule.toFixed(2);
+			arealkule = arealkule.toFixed(2);
+			
+			document.getElementById("omkretskule").innerHTML = "Omkretsen til kula er " + omkretskule;
+			
+			document.getElementById("volumkule").innerHTML = "Volumet til kula er " + volumkule;
+			
+			document.getElementById("arealkule").innerHTML = "Arealet til kula er " + arealkule;
+			
+			
+            //Oppgave 4
+            var karakter =0;
+            var poeng =0;
+            var mulige =0;
+            
+            poeng = Number(prompt("Antall poeng"));
+            mulige = Number(prompt("Antall mulig"));
+            
+            karakter = poeng / mulige * 6;
+            
+            karakter = Math.round(karakter);
+            
+            document.getElementById("karakter").innerHTML = "Karakteren din er " + karakter;
+
+            
+            //Oppgave 5 
+            var KMI = 0;
+            var vekt = 0;
+            var høyde = 0;
+            
+            vekt = Number(prompt("Din vekt i kg"));
+            hoyde = Number(prompt("Din høyde i meter"));
+            
+            KMI = vekt/(Math.pow(hoyde, 2));
+            
+            document.getElementById("Kropsmasse").innerHTML = "Din KMI er " + KMI.toFixed(2);
+            
+		</script>
+		
+	</body>
+</html>

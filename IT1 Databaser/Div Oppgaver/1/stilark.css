@@ -1,0 +1,31 @@
+#boks1 {
+	width: 250px;
+	height: 200px;
+	border-style: dashed;
+	padding: 10px;
+	float: left;
+
+}
+
+#boks2 {
+	width: 250px;
+	height: 200px;
+	border-style: solid;
+	float: left;
+}
+
+p {
+	color: red;
+	font-family: Areal;
+	font-size: 20px;
+}
+
+a:link {
+	
+}
+a:visited {
+	
+}
+a{
+	text-decoration: no;
+}

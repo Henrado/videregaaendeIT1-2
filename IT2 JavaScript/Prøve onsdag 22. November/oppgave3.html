@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>IT2 prøve 22.11 Henrik</title>
+        <style>
+            p {
+                text-align: center;
+                background-color: chartreuse;
+                font-size: 80px;
+            }
+        </style>
+	</head>
+	<h1>Oppgave 3</h1>
+    <p id="tekst"></p>
+	<body>
+        <script>
+            var tekst = document.getElementById("tekst"); //Deklarerer variabler
+            
+            function regne(verdi){ //
+                var sum = 0;    //Setter sum = 0;
+                while(verdi>0){ //Sjekker om sum er større enn 0
+                    sum = sum + verdi; //Legger til verdien i sum 
+                    verdi--;    //For så å minske sum med 1
+                }
+            return sum;
+            }
+            
+            tekst.innerHTML = regne(9); //Kjører funksjonen med paramereren 9. 
+        </script>
+	</body>
+</html>

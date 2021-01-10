@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 152</title>
+        <style>
+            div {
+                text-align: center;
+                display:flex;
+                flex-direction:row;
+                border:;
+                flex-wrap: wrap;
+            }
+            button {
+                width: 200px;
+            }
+            #postIt {
+                border: none;
+                display:flex;
+                flex-direction:column;
+                height: 267px;
+                width: 311px;
+                background-image: url("postItLapp.png");
+                flex-wrap: wrap;
+            }
+            h1 {
+                font-size: 25px;
+            }
+        </style>
+	</head>
+	<body>
+        <h1>Oppgave 2</h1>
+        <h2>Lag en huskelapp!</h2>
+        <form id="frmHuskelapp">
+            <p><input id="inpHusk" type="text" required placeholder="Hva skal huskes"></p>
+            <p><button type="submit">Trykk her</button></p>
+        </form>
+        <div id="info"></div>
+        <script>
+            var frmHuskelapp = document.getElementById("frmHuskelapp")
+            var inpHusk = document.getElementById("inpHusk");
+            var info = document.getElementById("info");
+            
+            frmHuskelapp.onsubmit = function(evt){
+                evt.preventDefault();
+                info.innerHTML += "<div id='postIt'><h1>Ting som skal huskes:</h1><br><p>" + inpHusk.value + "</p></div>";
+                inpHusk.value = "";
+            }
+        </script>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Matteside</title>
+        <style>
+            #innhold {
+                position: relative
+            }
+            #bilde {
+                position: absolute;
+            }
+            /*#bilde:hover {
+                transform:rotate3d(0,1,0, 180deg);
+            }*/
+        </style>
+	</head>
+	<body>
+        <div id="innhold">
+            <img id="bilde" src="enhjorning.png">
+        </div>
+        <script>
+            var bilde = document.getElementById("bilde");
+            var innhold = document.getElementById("innhold");
+            
+            //innhold.animate(a3, kontrollobjekt)
+            
+            bilde.animate([ //Roterer vindmøllen 
+                    {left:"0px", transform:"rotate3d(0,1,0, 0deg)"},
+                    {left:"500px", transform:"rotate3d(0,1,0, 0deg)"},
+                    {left:"1200px", transform:"rotate3d(0,1,0, 0deg)"},
+                    {left:"1700px", transform:"rotate3d(0,1,0, 180deg)"}, //360 grader ganger vindstyrke som skal gjørs på 5 sekunder 
+                    {left:"1200px", transform:"rotate3d(0,1,0, 180deg)"}, //360 grader ganger vindstyrke som skal gjørs på 5 sekunder 
+                    {left:"500px", transform:"rotate3d(0,1,0, 180deg)"},
+                    {left:"0px", transform:"rotate3d(0,1,0, 0deg)"} 
+                ],{
+                    duration: 5000,
+                    iterations: Infinity,
+                    easing: 'linear'
+                })
+        </script>
+    </body>
+</html>

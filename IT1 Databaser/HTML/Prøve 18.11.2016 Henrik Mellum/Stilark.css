@@ -1,0 +1,38 @@
+body {
+	font-family: comic sans ms;
+	font-size: 70px;
+	text-align:center; 
+	}
+	
+.innpakning {
+	width:1100px;
+	margin: auto;
+	display:flex;
+	flex-direction:row;
+	flex-wrap:wrap;
+}
+
+.banner {
+	flex-basis:100%;
+	border-bottom:solid;
+	border-top:solid;
+	border-color:grey;
+	margin:5px;
+}
+
+.bilde1 {
+	flex-basis:100%;
+	border-bottom:solid;
+	border-color:grey;
+	margin: 5px;
+	}
+
+.bilder {
+	flex-basis:100%;
+	margin:5px;
+	}
+	
+.banner img {
+	position:absolute;
+	right:10%;
+}

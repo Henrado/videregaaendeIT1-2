@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Prøve fredag 20. Oktober Kap1</title>
+	</head>
+	
+	<body>
+        <h1>Oppgave 3 Nivå 2</h1>
+        <p id="primtall"></p>
+        
+		<script>
+            var primtall = document.getElementById("primtall"); //Deklarerer varabler
+            for(var i =1; i<= 10;i+=2){
+                
+                for(var j=1;j<=10;j++){
+                   primtall.innerHTML += i + "x" + j + "=" + (i*j) + "<br> ";
+                }
+                primtall.innerHTML += "<br>";
+            }
+        </script>
+		
+	</body>
+</html>

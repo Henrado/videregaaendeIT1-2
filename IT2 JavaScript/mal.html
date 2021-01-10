@@ -1,0 +1,33 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Matteside</title>
+        <style>
+        </style>
+	</head>
+	<body>
+        <div id="innhold">
+            <h1>Overskrift</h1>
+            <div id="alleBilerHolder"></div>
+            <div id="infoBoks"></div>
+        </div>
+        <script>
+            var alleBilerHolder = document.getElementById("alleBilerHolder");
+            var infoBoks = document.getElementById("infoBoks");
+            var bilde = document.getElementById("bilde");
+            
+            var bilder = ["","",""];
+            
+            for(var i = 0; i < bilder.length; i++){ //Skriver ut alle som diver som kjører funksjonen (med argumentet index) finnSport når de blir trykket på 
+                alleBilerHolder.innerHTML += "<div id='div"+i+"' onclick='finn("+i+")'><img src='"+bilder[i]+"'><h1>TEkst</h1></div>";
+            }
+            
+            function finn(tall){
+                infoBoks.innerHTML += "<div><h1>Noe tekst</h1><p onclick='slett(this.parentElement)'>X</p></div>"
+            }
+        </script>
+        <script src="slett_meg.js"></script>
+    </body>
+</html>

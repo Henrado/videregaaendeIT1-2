@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 144</title>
+        <style>
+            #diagram {
+                display: flex;
+                width: 100%;
+                height: 100%;
+                flex-direction: row;
+                align-items: flex-end;
+            }
+            #diagram > div {
+                background-color: darkgreen;
+                margin: 5px;
+                flex-grow: 1;
+            }
+        </style>
+	</head>
+	<body>
+        <h1>Antall brøskiver spist i klassen</h1>
+        <div id="diagram"></div>
+        <script>
+            var diagramDiv = document.getElementById("diagram");
+            var data = [];
+            for (var i = 0; i < 40; i++){
+                var tall = Math.round(Math.random()*50+10);
+                data.push(tall);
+            }
+            for (var kilo of data){
+                diagramDiv.innerHTML += "<div style='height:" + kilo*10 + "px'>"+ kilo + "</div>"
+            }
+            
+        </script>
+	</body>
+</html>

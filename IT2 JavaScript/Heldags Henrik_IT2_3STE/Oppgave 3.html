@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Heldagsprøve IT2 27.04.18</title>
+        <style>
+            #innhold {
+                border: solid;
+                border-radius: 10px;
+                background-color: limegreen;
+                margin: auto;
+                width: 80%;
+                padding: 20px;
+                text-align: center;
+            }
+            body {
+                background-color: gray;
+            }
+        </style>
+	</head>
+	<body>
+        <div id="innhold">
+            <h1>Velg en verdensdel for å se hvor mange medaljer den fikk</h1>
+            <select id="selLand">
+                <option value="">Velg en verdensdel</option>
+            </select>
+            <div id="info"></div>
+        </div>
+        <script>
+            var medaljer = [
+                {land:"Sør-Korea", verdensdel: "Asia", antGull:5, antSolv:8, antBronse:4},
+                {land:"Japan", verdensdel: "Asia", antGull:1, antSolv:4, antBronse:3},
+                {land:"Sverige", verdensdel: "Europa", antGull:4, antSolv:5, antBronse:5},
+                {land:"Norge", verdensdel: "Europa", antGull:14, antSolv:14, antBronse:11},
+                {land:"Kina", verdensdel: "Asia", antGull:1, antSolv:6, antBronse:2},
+                {land:"Olympick atlets of Russia", verdensdel: "Asia", antGull:2, antSolv:6, antBronse:9},
+                {land:"Finland", verdensdel: "Europa", antGull:1, antSolv:1, antBronse:4},
+                {land:"Østerriket", verdensdel: "Europa", antGull:5, antSolv:3, antBronse:6},
+                {land:"USA", verdensdel: "Nord-Amerika", antGull:9, antSolv:8, antBronse:6},
+                {land:"Hviterussland", verdensdel: "Europa", antGull:2, antSolv:1, antBronse:0},
+                {land:"Canada", verdensdel: "Nord-Amerika", antGull:11, antSolv:8, antBronse:10}
+            ];
+            var selLand = document.getElementById("selLand"); //Deklarerer variabler 
+            var alleLand = document.getElementById("alleLand");
+            var impLand = document.getElementById("impLand");
+            var innhold = document.getElementById("innhold");
+            var info = document.getElementById("info");
+            var chart = document.getElementById("chart");
+            var alleVerdensdeler = [medaljer[0].verdensdel];
+            
+            for (var land of medaljer){ //Er her for at det er bare en av hver verdensdel i nedtrekslisten
+                //Går gjennom alle landene i medaljer
+                var funnet = false; //Setter at den ikke har funnet noe likt
+                for(var i=0; i < alleVerdensdeler.length; i++){ //For hvert land går den gjennom alle landene i array alleVerdensdeler
+                    if(land.verdensdel === alleVerdensdeler[i]){  //Hvis den finner noe likt 
+                        funnet = true; //Setter at den er funnet 
+                        break; //Hopper ut av løkken 
+                    }
+                }
+                if(!funnet){//Hvis den IKKE er funnet skal verdensdlen settes i alleVerdensdeler
+                    alleVerdensdeler.push(land.verdensdel);
+                }
+            }
+            console.log(alleVerdensdeler);
+            
+            for (var land of alleVerdensdeler){ //Skriver ut alle options verdiene
+                selLand.innerHTML+="<option value='"+land+"'>"+land+"</option>"
+            }
+            
+            selLand.onchange = function(){ //Kjøres når bruker bytter vagt index
+                if(selLand.selectedIndex === 0){ //Finner om bruker har valgt en ugyldig index
+                    return; //Stopper
+                }
+                info.innerHTML = ""; //Nullstiller
+                var sumGul = 0; //Lager sum for forskjellige medaljer
+                var sumSolv = 0;
+                var sumBronse = 0;
+                var sumGulverdensdel = 0;
+                var sumSolvverdensdel = 0;
+                var sumBronseverdensdel = 0;
+                for(land of medaljer){
+                    sumBronse += land.antBronse; //Legger til alle landenes medaljer i sumene
+                    sumSolv += land.antSolv;
+                    sumGul += land.antGull;
+                    if(land.verdensdel === selLand.value){
+                        sumGulverdensdel += land.antGull //Hvis landet er i verdensdelen som er valgt legges det også til her
+                        sumSolvverdensdel += land.antSolv
+                        sumBronseverdensdel += land.antBronse
+                    }
+                }
+                var sumVerdensdel = sumGulverdensdel + sumSolvverdensdel + sumBronseverdensdel; //Legger sammen summen av alle 
+                var sumMedaljer = sumGul + sumSolv + sumBronse;
+                
+                info.innerHTML += "<h2>Verdensdelen "+selLand.value +" tokk til sammen " + sumGulverdensdel + " gull " + sumSolvverdensdel + "sølv og " + sumBronseverdensdel +" bronse"+"</h2>"; //Skriver ut 
+                
+                info.innerHTML += "<h3>Verdensdelen " + selLand.value + " tok " + (sumVerdensdel/sumMedaljer*100).toFixed(1) + "% av alle medaljene totalt, " + (sumGulverdensdel/sumGul*100).toFixed(1)+ "% av alle gullmedalgene, "+ (sumSolvverdensdel/sumSolv*100).toFixed(1)+"% av alle sølvmedaljene og " + (sumBronseverdensdel/sumBronse*100).toFixed(1)+"% av alle bronsemedaljene</h3>"; //Skriver ut
+            }
+        </script>
+	</body>
+</html>

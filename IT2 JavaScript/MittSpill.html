@@ -1,0 +1,43 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Mitt spill</title>
+        <style>
+            canvas {
+                background-color: black;
+            }
+        </style>
+	</head>
+	<body>
+        <canvas id="canvas" width="400" height="400"></canvas>
+        <script>
+            // Bruker strict-mode for å kunne lage klasser
+            "use strict"
+
+            // Henter canvas-elementet
+            var canvas = document.getElementById("canvas");
+            // Angir at vi ønsker å bruke 2D-konteksten
+            var ctx = canvas.getContext("2d");
+            
+            
+            
+            
+            // Funksjon som gjentas
+            function animer () {
+            // Fjerner alt innholdet i canvas-elementet
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            // Flytter ballen
+                ball.flytt();
+            // Tegner opp ballen
+                ball.tegn();
+            // Gjentar prosessen
+                requestAnimationFrame(animer);
+            }
+
+        // Setter i gang animasjonen
+            requestAnimationFrame(animer);
+        </script>
+	</body>
+</html>

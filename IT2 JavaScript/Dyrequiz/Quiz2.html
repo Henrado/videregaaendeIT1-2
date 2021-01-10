@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 144</title>
+        <style>
+            .skrift {
+                font-size: 30px;
+            }
+        </style>
+	</head>
+    <body>
+	<h1>Dyre Quiz</h1>
+    <div id="alt">
+            <input type="text" id="navn" class="skrift">
+        <form id="sporsmol">
+            <audio src="dyr.mp4"></audio>
+            <input type="radio" required name="dyr1" value="elefant"> Elefant<br>
+            <input type="radio" name="dyr1" value="ku"> Ku<br>
+            <input type="radio" name="dyr1" value="love">Løve<br>
+            <input type="radio" name="dyr1" value="gnu">Gnu<br>
+            <button class="skrift" id="neste" type="submit">Neste spørsmål</button>
+        </form> 
+    </div>
+    <div id="info">
+        
+    </div>
+        <script>
+            var side = 0;
+            var navn = document.getElementById("navn");
+            var poeng = 0;
+            var neste = document.getElementById("neste");
+            var alt = document.getElementById("alt");
+            var info = document.getElementById("info");
+            var sporsmol = document.getElementById("sporsmol");
+            
+            sporsmol.onsubmit = function(evt){
+                evt.preventDefault();
+                side++;
+                if(side === 1){
+                    alt.innerHTML += side;
+                }
+                else if (side === 2){
+                    alt.innerHTML += side;
+                }
+                else if (side === 3){
+                    alt.innerHTML += "tre";
+                }
+                else if (side === 4){
+                    
+                }
+                else if (side === 5){
+                    
+                }
+                else if (side === 6){
+                    body.removeChild(neste);
+                    if(poeng === 5){
+                        alt.innerHTML = "Du er kjempeflink!!!! Du fikk 5 av 5 riktige :)";
+                        return;
+                    }
+                    else if (poeng >= 3){
+                        alt.innerHTML = "Du kan dette greit! Du fikk " + poeng + " av 5 riktige";
+                        return;
+                    }
+                    else if (poeng < 3){
+                        alt.innerHTML = "Du burde øve mere. Du fikk " + poeng + " av 5 riktige";
+                        return;
+                    }
+                }
+            }
+        </script>
+	</body>
+</html>

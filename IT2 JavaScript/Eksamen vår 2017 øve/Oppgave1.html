@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="#">
+		<title>Oppgaver side 347</title>
+        <style>
+            #innhold {
+                border: solid;
+                border-radius: 10px;
+                background-color: white;
+                margin: auto;
+                width: 80%;
+                padding: 20px;
+                align-items: center;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+            }
+            body {
+                background-color: gray;
+            }
+            #divOvelser {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-around;
+
+            }
+            #divOvelser > div {
+                flex-basis: 1;
+                border: solid;
+                flex-grow: 1;
+                
+            }
+            #divOvelser > div > img {
+                height: 100px;
+            }
+            .knapp {
+                position: absolute;
+                top: 50%;
+                width: auto;
+                padding: 16px;
+                border: solid;
+                margin-top: -22px;
+                border-radius: 3px;
+            }
+            .knapp:hover {
+                background-color: white;
+            }
+            #neste {
+                right: 0;
+            }
+            .ramme {
+                border: solid;
+                border-radius: 20px;
+                flex-grow: 1;
+                margin: 10px;
+                padding: 10px;
+                background-color:gray;
+                background-repeat: repeat;
+                background-position: center;
+            }
+            .ramme > img {
+                width: 200px;
+            }
+            #bildeholder > img {
+                width: 70%;
+                padding-bottom: 10px;
+                padding-top: 10px;
+            }
+            #bildeHolder {
+                width: 60%;
+                margin: auto;
+                position: relative;
+                border: solid;
+                background-color: darkgreen;
+                background-image: url(rammebakgrunn.jpg);
+                background-position: center;
+            }
+        </style>
+	</head>
+	<body>
+        <div id="innhold">
+            <h1>De forskjellige partiene</h1>
+            <div id="divOvelser"></div>
+            <div id="infoBoks"></div>
+            
+            <div id="bildeHolder">
+                <img id="bilde" src="#">
+                <h1 id="infoImg"></h1>
+                <div id="neste" data-verdi="1" class="knapp">&#10095;</div>
+                <div id="forgje" data-verdi="-1" class="knapp">&#10094;</div>
+            </div>
+        </div>
+        <script>
+            var infoBoks = document.getElementById("infoBoks");
+            var bilde = document.getElementById("bilde");   //Deklarer variabler
+            var neste = document.getElementById("neste");
+            var forgje = document.getElementById("forgje");
+            var nummer = -1;
+            var setTid;
+            var erTrykket = false;
+            var bilder = ["./Filer_Hoest_17/ap.png", "./Filer_Hoest_17/frp.jpg", "./Filer_Hoest_17/hoyre.png", "./Filer_Hoest_17/krf.jpg", "./Filer_Hoest_17/miljopartiet.png", "./Filer_Hoest_17/raudt.png", "./Filer_Hoest_17/sp.png"];
+            
+            for(var i = 0; i < bilder.length; i++){ //Skriver ut alle øvelsene som diver som kjører funksjonen (med argumentet index) finnSport når de blir trykket på 
+                divOvelser.innerHTML += "<div id='div"+i+"' onclick='finnSport("+i+")'><img src='"+bilder[i]+"'></div>";
+            }
+            
+            function finnSport(tall){
+                if (tall === 6){
+                    infoBoks.innerHTML += "<video src='#'></video>";
+                }
+                document.getElementById("div"+ tall).animate(animasjon,2)
+            }
+            
+            var animasjon = [
+                {display:1},
+                {display:0}
+            ]
+            
+            start();
+            
+            function start(){
+                nummer = nummer +1;
+                if (nummer > bilder.length - 1){  //Hvis nummeret er større enn lengden til imgKilde
+                    nummer = 0; //Sette nummer = 0
+                } else if (nummer < 0){
+                    nummer = bilder.length - 1; //For å starte på 0 igjen
+                }
+                bilde.src = bilder[nummer]; //Setter kilden på bilde til bilde
+                //Setter ny kilde til bilde
+                setTid = setTimeout(start, 5000); //Starter på nytt om 5 sekunder
+            }
+            
+            neste.onclick = forgje.onclick = function(evt){
+                var knappTrykket = evt.target; //Finner hvilken knapp som blir trykket
+                clearTimeout(setTid); //Stopper at start skal kjøre igjen
+                erTrykket = true; //Setter at den er tykket
+                nummer = nummer + Number(knappTrykket.getAttribute("data-verdi")); //Finner ut om den skal 
+                nummer = Number(nummer);
+                if (nummer > bilder.length - 1){  //Hvis nummeret er større enn lengden til imgKilde
+                    nummer = 0; //Sette nummer = 0
+                } else if (nummer < 0){
+                    nummer = bilder.length - 1;
+                }
+                bilde.src = bilder[nummer];   //Setter ny kilde til bilde
+            }
+            bilde.onclick = function(){ //Når trykker på 
+                if(erTrykket){ //Sjekker om den er trykket
+                    setTimeout(start, 0); //Starter karusellen igjen 
+                    erTrykket = false; //Setter at den ikke er trykket 
+                }else{
+                    clearTimeout(setTid); //Stopper at de skal kjøre igjen 
+                    erTrykket = true; //Setter at knappen er trykket 
+                }
+            }
+        </script>
+	</body>
+</html>

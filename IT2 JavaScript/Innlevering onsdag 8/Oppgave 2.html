@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 117</title>
+	</head>
+	
+	<body>
+        <button id="knapp">Rull terning</button>
+        <br>
+        <img id="bilde" src="./terninger/Terning6.jpg">
+        <script>
+            var terning = ["1","2","3","4","5","6"];
+            var bilde = document.getElementById("bilde");
+            var knapp = document.getElementById("knapp");
+            
+            function tilfeldig(){
+                var tall = Math.floor(Math.random()*terning.length);
+                bilde.src="./terninger/Terning" + terning[tall] + ".jpg";
+            }
+            bilde.onclick = tilfeldig;
+            knapp.onclick = tilfeldig;
+        </script>
+	</body>
+</html>

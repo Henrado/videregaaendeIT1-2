@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 144</title>
+        <style>
+            #diagram {
+                transition: 1s;
+                border: solid;
+                height: 20px;
+                background-color: chartreuse;
+            }
+            #innhold {
+                padding: 20px;
+                margin: auto;
+                width: 90%;
+                background-color: aqua;
+                text-align: center;
+                height: 600px;
+            }
+            img {
+                width: 100%;
+            }
+            #bildeHolder {
+                width: 70%;
+                height: 200px;
+                margin: auto;
+            }
+        </style>
+	</head>
+	<body>
+        <div id="innhold">
+            <h1>De fire fasene gjennom døgnet</h1>
+            <div id="bildeHolder">
+                <img id="bilde" src="#">
+                <p id="info">For en gutt på 18 år er normalt energiforbruk i disse fasene på:</p>
+                <div id="diagram"></div>
+            </div>
+            <audio id="lyd" src="#" autoplay loop></audio>
+        </div>
+        <script>
+            var bilde = document.getElementById("bilde");   //Deklarer variabler
+            var lyd = document.getElementById("lyd");
+            var diagram = document.getElementById("diagram");
+            var innhold = document.getElementById("innhold");
+            
+            var nummer = 0;
+            var imgKilde = ["./Vedlegg_v2013/s%C3%B8vn.jpg", "./Vedlegg_v2013/skole.jpg", "./Vedlegg_v2013/aktiv_fritid_basket.jpg", "./Vedlegg_v2013/hvile_filmpublikum.jpg"]; //Setter de forskjellige kildene 
+            var audioKilde = ["Vedlegg_v2013/s%C3%B8vn.mp3", "Vedlegg_v2013/Skole_kritt_paa_tavle.mp3", "Vedlegg_v2013/aktiv_fritid_basket.mp3", "Vedlegg_v2013/hvile_samtale.mp3"];
+            var kalorier = [90, 110, 130, 110];
+            var sekunder = [4,3,2,3];
+            
+            visSider();
+            
+            function visSider(){
+                if (nummer > imgKilde.length - 1){  //Hvis nummeret er større enn lengden til imgKilde
+                    nummer = 0; //Sette nummer = 0
+                }
+                bilde.src = imgKilde[nummer];   //Setter ny kilde til bilde
+                lyd.src = audioKilde[nummer];   //Setter ny kilde til bilde
+                diagram.innerHTML = kalorier[nummer] + " kcal per time";
+                var j = tid(nummer); //Sender hvilken persiode, nummer man skal ha sekunder til
+                diagram.style.width = kalorier[nummer]/130*100 + "%"; //Endrer bredden på div i %
+                //alert(j);
+                nummer++; //Legger till +1 i nummer
+                setTimeout(visSider, j*1000); //Venter i j sekunder for så å kjøre visSider igjen 
+            }
+            
+            function tid(x){
+                return sekunder[nummer]; //Finner hvor mange sekunder fra array 
+            }
+            
+            //Annen mulig måte å finne sekunder ved å få nummer på periode 
+//            function tid(x){
+//                var sekunder = 3 + Math.sin(1.571*x + 1.571);
+//                return sekunder.toFixed(0);
+//            }
+        </script>
+	</body>
+</html>

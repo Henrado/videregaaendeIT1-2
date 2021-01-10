@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgave side 90</title>
+	</head>
+	
+	<body>
+        <h1>Oppgave 1</h1>
+        <p id="oppgave1"></p>
+        
+        <h1>Oppgave 2</h1>
+        <canvas id="canvas" width="500" height="400"></canvas>
+        
+        <h1>Oppgave 3</h1>
+        <p id="oppgave3"></p>
+        
+        <h1>Oppgave 4</h1>
+        <p id="oppgave4"></p>
+        
+        <h1>Oppgave 5</h1>
+        <p id="oppgave5"></p>
+        
+		<script>
+		  //Oppgave 1
+            var oppgave1 = document.getElementById("oppgave1");
+            var vinner = Math.floor(Math.random()*10+1);
+            
+            while (vinner !==10){
+                oppgave1.innerHTML += "Du vant ikke! <br>"
+                var vinner = Math.floor(Math.random()*10+1);
+            }
+            oppgave1.innerHTML += "Du vant";
+            
+          //Oppgave 2
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            var bredde = window.innerWidth;
+            
+            canvas.width=bredde;
+            canvas.height=bredde;
+            yPos = 1;
+
+            while (yPos < bredde) {
+            ctx.moveTo(0, yPos);
+            ctx.lineTo(bredde, yPos)
+            ctx.stroke();
+            yPos = yPos + 10;
+            }
+            
+          //Oppgave 3
+            var oppgave3 = document.getElementById("oppgave3");
+            
+            var terningSum = 0;
+            
+            while (terningSum < 50){
+                terningSum = terningSum + Math.floor(Math.random()*6+1);
+            }
+            oppgave3.innerHTML = terningSum;
+          //Oppgave 4 
+            var oppgave4 = document.getElementById("oppgave4");
+            var u = 10;
+            while(u <= 30){
+                u++
+                u++
+                oppgave4.innerHTML += u + "<br>";
+            }
+            
+        //Oppgave 5
+            var oppgave5 = document.getElementById("oppgave5");
+            var orginal = 8;
+            
+            var gange = orginal;
+            while(gange <= 10*orginal){
+                oppgave5.innerHTML += gange + "<br>";
+                gange = gange + orginal;
+            }
+        
+        </script>
+		
+	</body>
+</html>

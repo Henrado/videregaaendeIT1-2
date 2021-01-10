@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Oppgaver side 144</title>
+        <style>
+            div {
+                text-align: center;
+                background-color: aqua;
+                display:flex;
+                flex-direction:row;
+                border: solid;
+            }
+            button {
+                width: 200px;
+            }
+        </style>
+	</head>
+	<body>
+        <h1>Oppgave 3</h1>
+        <label for="cbValg">Godtar du?</label>
+        <input id="cbValg" type="checkbox">
+        <span id="info"></span>
+        <script>
+            var cbValg = document.getElementById("cbValg");
+            var info = document.getElementById("info");
+            
+            cbValg.onchange = function(){
+                if(cbValg.checked){
+                    info.innerHTML="Du valgte A";
+                }
+                else{
+                    info.innerHTML="Du valgte ikke A";
+                }
+            }
+        </script>
+	</body>
+</html>

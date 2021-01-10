@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+	<meta charset="utf-8">
+    <!-- 
+      <link rel="icon" href="media/favicon.ico">
+    -->
+    <link rel="stylesheet" href="css/hovedstilark.css">
+	<title>Quiz</title>
+    <style>
+        #innhold {
+            display: none;
+           /* height: 300px;*/
+        }
+    </style>
+</head>
+<body>
+    <h1>Quiz</h1>
+    <div id="quizValg"></div>
+    <div id="innhold">
+        <div id="idDivForMedia"></div>
+        <p id="idSpm"></p>
+        <p id="idAlternativ"></p>
+        <button id="idSvarAvgitt">Svar avgitt</button>
+    </div>
+    
+	
+	
+<script>
+    var mediaDiv = document.getElementById("idDivForMedia");
+    var spmP = document.getElementById("idSpm");
+    var alternativP = document.getElementById("idAlternativ");
+    var innhold = document.getElementById("innhold");
+    var quizValg = document.getElementById("quizValg");
+    var svarAvgittBTN = document.getElementById("idSvarAvgitt");
+    var globalIndex = 0;
+    var i = 0;
+    var poeng = [];
+    var svar = [];
+    var riktigsvar=[];
+
+    
+    var kilde = [
+            {
+                navn: "Quiz 1",
+                spm:["1","to","tre"], 
+                alternativer:[
+                    ["Oslo","Stockholm","København","Madrid"],
+                    ["Oslo","New York","London","Mos Eisley","Trondheim"],
+                    ["Røssvatnet","Mjøsa","Femunden"],
+                    ["Ja","Nei"],
+                    ["Molde","Ålesund","Åndalsnes"]
+                ],
+                fasit: [
+                    [1,-1,-1,-1],
+                    [1/3,-1,1/3,-1,1/3],
+                    [-1,1,-1],
+                    [1,-1],
+                    [-1,-1,1]
+                ],
+                media: [
+                    "<video height='300' controls><source src='media/oslo.mp4' type='video/mp4'></video>",
+                    "<img src='media/london.jpg' height='300'>",
+                    "<audio controls><source src='media/maker.mp3' type='audio/mpeg'></audio>",
+                    "",
+                    "<img src='media/andalsnes.JPG' height='300'>"
+                ],
+                typeboks: [
+                    "radio",
+                    "checkbox",
+                    "radio",
+                    "radio",
+                    "radio"
+                ]
+            },
+            {
+                navn: "Quiz 2"
+            }
+    ];
+    
+    for (var u = 0; u < kilde.length; u++){
+        quizValg.innerHTML += "<h2 onclick=start("+u+")>" + kilde[u].navn + "</h2>";
+    }
+    
+    function start(tall){
+        globalIndex = tall;
+        innhold.style.display = "block";
+        quizValg.style.display = "none";
+        visSpm(i);
+    }
+    
+    window.onload = oppstart;
+    
+    function oppstart() {
+        svarAvgittBTN.addEventListener("click",svarAvgittFunk);
+    }
+    
+    function visSpm(nr) {
+        mediaDiv.innerHTML = kilde[globalIndex].media[nr];
+        spmP.innerHTML = kilde[globalIndex].spm[nr];
+        alternativP.innerHTML = "";
+        for (var j=0; j<kilde[globalIndex].alternativer[nr].length; j++) {
+            alternativP.innerHTML += "<input class='altClass' type='" + kilde[globalIndex].typeboks[nr] + "' name='svaralternativer' value="+ kilde[globalIndex].fasit[nr][j] +">" + kilde[globalIndex].alternativer[nr][j] + "<br>";
+        }
+    }
+    
+   
+    
+    function svarAvgittFunk() {
+        poeng[i] = 0;
+        svar[i] = "";
+        riktigsvar[i] = "";
+        
+        var sjekkbokser = document.querySelectorAll(".altClass");
+        
+        for (var k=0; k<sjekkbokser.length; k++) {
+            if (kilde[globalIndex].fasit[i][k] > 0) {
+                riktigsvar[i] += kilde[globalIndex].alternativer[i][k] + " ";
+            }
+            if (sjekkbokser[k].checked) {
+                poeng[i] += Number(sjekkbokser[k].value);
+                svar[i] += kilde[globalIndex].alternativer[i][k] + " ";
+            }
+        }
+        
+        i++;
+        if (i < kilde[globalIndex].spm.length) {
+            visSpm(i);
+        }
+        else {
+            mediaDiv.innerHTML = "";
+            spmP.innerHTML = "";
+            alternativP.innerHTML = "";
+            svarAvgittBTN.style.visibility = "hidden";
+            
+            tekst = "<table><tr><th>Spørsmål</th><th>Fasit</th><th>Svar avgitt</th><th>Poeng</th>";
+            
+            var totalpoeng = 0;
+            for (var m=0; m<kilde[globalIndex].spm.length; m++) {
+                totalpoeng += poeng[m];
+                
+                tekst += "<tr><td>" + kilde[globalIndex].spm[m] 
+                    + "</td><td>" + riktigsvar[m]
+                    + "</td><td>" + svar[m]
+                    + "</td><td>" + (poeng[m]).toFixed(1)
+                    + "</td></tr>";
+            }
+            
+            tekst += "</table>";
+            spmP.innerHTML = tekst;
+            
+            spmP.innerHTML += "<br><p>Du fikk " + totalpoeng.toFixed(1) + " poeng totalt.</p>";
+            
+            if (totalpoeng > 0) {
+                mediaDiv.innerHTML = "<img src='#' height='150'>";
+            }
+            else {
+                mediaDiv.innerHTML = "<img src='#' height='150'>";
+            }
+        }
+    }
+    
+</script>
+</body>
+</html>

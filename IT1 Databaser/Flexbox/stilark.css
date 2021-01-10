@@ -1,0 +1,36 @@
+#banner {
+	width: 99%;
+    border-radius: 10px; /* avrunder kant */
+
+}
+
+#meny {
+	float: left;
+	border: solid;
+	width: 26%;
+	height: 500px;
+	background-color: #7777EE;
+    border-radius: 10px; /* avrunder kant */
+
+	
+}
+
+#bakgrunn {
+	background-image: url("asphalt-texture.jpg"); 
+	background-repeat:repeat-y;
+	background:;
+	width: 100%;
+	border: solid; 
+	display: flex; 
+	background-position:;
+}
+
+.logo_homepage__tt {
+    padding: 0 12px;
+    font-weight: 600;
+    font-size: 16px;
+    bottom: auto;
+    right: auto;
+    left: 80%;
+    top: 35%;
+}

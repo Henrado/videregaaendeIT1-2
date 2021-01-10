@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Øveprøve oppgave 2</title>
+	</head>
+	
+	<body>
+        <h1>Øveprøve oppgave 2</h1>
+        <canvas id="canvas" width="500" height="500"></canvas>
+        <h1 id="advarsel"></h1>
+        
+		<script>
+            var sideLenge = 0; //Deklarerer variabler
+            var bredeCanvas = window.innerWidth;
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            sideLenge = prompt("Hvor lang er hver side?");  //Spør brukeren 
+            var utRegning = bredeCanvas/2-sideLenge/2;  //Regner ut x og y verdien til rektangelet
+            
+            document.getElementById("canvas").width= bredeCanvas;
+            document.getElementById("canvas").height= bredeCanvas;
+             
+            
+            ctx.fillStyle="red";    //Tegner rektangelet og skifter farge på det
+            ctx.fillRect(utRegning, utRegning, sideLenge, sideLenge);
+            ctx.strokeWidth=8;
+            ctx.strokeStyle="blue";
+            ctx.strokeRect(utRegning,utRegning, sideLenge, sideLenge);
+            
+            if(sideLenge < 100){ //Hvis du setter inn små tall og lurer på hvor den er
+                document.getElementById("advarsel").innerHTML= "Du burde øke lengden siden den blir veldig liten";
+            }
+            
+        </script>
+		
+	</body>
+</html>

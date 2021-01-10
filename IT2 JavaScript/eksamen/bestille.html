@@ -1,0 +1,51 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="">
+		<title>Matteside</title>
+        <style>
+        </style>
+	</head>
+	<body>
+        <div id="innhold">
+            <form id="sjema">
+                <div id="valgMuligheter"></div>
+                <button type="submit">Send inn</button>
+            </form>
+            <div id="kvitering"></div>
+        </div>
+        <script>
+            var valgMuligheter = document.getElementById("valgMuligheter");
+            var kvitering = document.getElementById("kvitering");
+            var sjema = document.getElementById("sjema");
+            var kortRute = [
+                {attraksjon: "Saftpresse", pris:190},
+                {attraksjon: "Skattejakt", pris:95},
+                {attraksjon: "Elvelangs Glomma", pris:165},
+                {attraksjon: "Mini Cruise", pris:145},
+                {attraksjon: "Klatre", pris:195},
+                {attraksjon: "Pilegrimsveien", pris:60}
+            ];
+            
+            for (var i = 0; i < kortRute.length; i++){
+                valgMuligheter.innerHTML += '<p>'+kortRute[i].attraksjon+'<input class="valg" type="checkbox" data-navn="'+kortRute[i].attraksjon+'" value="'+kortRute[i].pris+'"></p>';
+            }
+            
+            sjema.onsubmit = function(evt){
+                evt.preventDefault();
+                var alleValg = document.getElementsByClassName("valg");
+                var sum = 0;
+                kvitering.innerHTML = "";
+                for (var i = 0; i < alleValg.length; i++){
+                    if(alleValg[i].checked){
+                        kvitering.innerHTML += "<p>"+ kortRute[i].attraksjon + "</p>";
+                        sum += Number(alleValg[i].value);
+                    }
+                }
+                alert(sum);
+                
+            }
+        </script>
+    </body>
+</html>
